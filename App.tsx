@@ -1,12 +1,8 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import MainAppNav from './src/navigation';
 
 const App = () => {
-  return (
-    <SafeAreaView>
-      <Text>App</Text>
-    </SafeAreaView>
-  );
+  return <MainAppNav />;
 };
 
 export default App;
