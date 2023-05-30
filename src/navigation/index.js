@@ -2,6 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Splash from '../screens/Auth/Splash/Splash';
+import HomeStack from './stacks/HomeStack';
 
 const AppStack = createNativeStackNavigator();
 
@@ -14,6 +15,8 @@ const MainAppNav = () => {
           animation: 'slide_from_right',
         }}>
         <AppStack.Screen name={'Splash'} component={Splash} />
+        <AppStack.Screen name={'HomeStack'} component={HomeStack} />
+
         {/* <AppStack.Screen name={'App'} component={MyDrawerStack} /> */}
         {/* <AppStack.Screen name={'Auth'} component={AuthStack} /> */}
       </AppStack.Navigator>
