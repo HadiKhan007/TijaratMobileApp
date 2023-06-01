@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyle: {
-    color: colors.white,
+    color: colors.w1,
     textAlign: 'center',
     fontFamily: family.roboto_bold,
     marginLeft: WP('2'),
