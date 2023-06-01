@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Splash from '../screens/Auth/Splash/Splash';
 import HomeStack from './stacks/HomeStack';
+import AuthStack from './stacks/AuthStack';
 
 const AppStack = createNativeStackNavigator();
 
@@ -12,13 +13,11 @@ const MainAppNav = () => {
       <AppStack.Navigator
         screenOptions={{
           headerShown: false,
-          animation: 'slide_from_right',
+          animation: 'fade',
         }}>
         <AppStack.Screen name={'Splash'} component={Splash} />
         <AppStack.Screen name={'HomeStack'} component={HomeStack} />
-
-        {/* <AppStack.Screen name={'App'} component={MyDrawerStack} /> */}
-        {/* <AppStack.Screen name={'Auth'} component={AuthStack} /> */}
+        <AppStack.Screen name={'AuthStack'} component={AuthStack} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

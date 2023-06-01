@@ -1,8 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {WP, appIcons, colors} from '../../utilities';
+import {WP, appIcons, colors, size} from '../../utilities';
+import {useNavigation} from '@react-navigation/native';
 
 const AppHeader = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity style={styles.leftContainer}>
@@ -17,35 +19,48 @@ const AppHeader = () => {
         style={styles.centerIcon}
         resizeMode="contain"
       />
-      <View style={styles.rigthContainer}>
-        <Image
-          source={appIcons.category}
-          style={styles.leftIcon}
-          resizeMode="center"
-        />
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('AuthStack')}>
+          <Image
+            source={appIcons.profile}
+            style={styles.rightIcon}
+            resizeMode="center"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={appIcons.category}
+            style={styles.rightIcon}
+            resizeMode="center"
+          />
+        </TouchableOpacity>
         <View style={styles.countContainer}>
-          <Text>0</Text>
+          <Text style={styles.countText}>0</Text>
         </View>
       </View>
     </View>
   );
 };
 
-export default AppHeader;
+export {AppHeader};
 
 const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: WP('3'),
   },
   leftIcon: {
+    width: WP('5'),
+    height: WP('5'),
+  },
+  rightIcon: {
     width: WP('6'),
     height: WP('6'),
+    marginRight: WP('2'),
   },
   leftContainer: {
-    backgroundColor: 'red',
+    backgroundColor: colors.g1,
     width: WP('10'),
     height: WP('10'),
     alignItems: 'center',
@@ -58,11 +73,17 @@ const styles = StyleSheet.create({
   },
   countContainer: {
     backgroundColor: colors.gr,
-    padding: WP('1'),
-    borderRadius: WP('5'),
+    borderRadius: WP('2.5'),
+    width: WP('5'),
+    height: WP('5'),
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
-    top: -WP('4'),
-    right: -5,
+    top: -WP('3'),
+    right: -WP('1'),
   },
-  rigthContainer: {},
+  countText: {
+    color: colors.w1,
+    fontSize: size.xtiny,
+  },
 });

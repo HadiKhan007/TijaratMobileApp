@@ -1,6 +1,8 @@
 export const appImages = {
-  //   messi: require('../../assets/images/messi.png'),
-  //
+  baby: require('../../assets/images/baby.png'),
+  pent: require('../../assets/images/pent.png'),
+  plugs: require('../../assets/images/plugs.png'),
+  bgImg: require('../../assets/images/bgImg.png'),
 };
 
 export const applogos = {
@@ -12,4 +14,6 @@ export const appIcons = {
   tijaratIcon: require('../../assets/icons/tijaratIcon.png'),
   menuIcon: require('../../assets/icons/menu.png'),
   category: require('../../assets/icons/category.png'),
+  search: require('../../assets/icons/searchIcon.png'),
+  profile: require('../../assets/icons/profile.png'),
 };
