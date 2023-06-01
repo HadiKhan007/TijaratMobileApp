@@ -10,4 +10,6 @@ export const applogos = {
 
 export const appIcons = {
   tijaratIcon: require('../../assets/icons/tijaratIcon.png'),
+  menuIcon: require('../../assets/icons/menu.png'),
+  category: require('../../assets/icons/category.png'),
 };

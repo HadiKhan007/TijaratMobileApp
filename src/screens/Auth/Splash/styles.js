@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: colors.bgColor,
+  },
+  mainContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: WP('8'),
@@ -14,12 +17,13 @@ const styles = StyleSheet.create({
     height: WP('30'),
   },
   textStyle: {
-    paddingHorizontal: WP('10'),
     color: colors.p1,
-    textAlign: 'center',
     fontSize: size.small,
     lineHeight: WP('6'),
     fontFamily: family.workSans_medium,
+    marginVertical: WP('8'),
+    alignSelf: 'center',
+    textAlign: 'center',
   },
   btnStyle: {
     marginTop: WP('30'),
