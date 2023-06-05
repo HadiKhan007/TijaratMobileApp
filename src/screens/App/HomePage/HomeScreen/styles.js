@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexGrow: 1,
-    marginBottom: WP('30'),
   },
   main: {
     flex: 1,

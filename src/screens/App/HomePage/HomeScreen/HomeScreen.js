@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, SafeAreaView, Image} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  ScrollView,
+  Dimensions,
+  FlatList,
+} from 'react-native';
 import styles from './styles';
 import {
   AppButton,
@@ -12,6 +20,9 @@ import {appImages} from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const HomeScreen = () => {
+  const {width} = Dimensions.get('window');
+  const {height} = Dimensions.get('window');
+  const data = [{}, {}, {}];
   return (
     <SafeAreaView style={styles.rootContainer}>
       <KeyboardAwareScrollView
@@ -46,6 +57,7 @@ const HomeScreen = () => {
         <AppTitle Title="Explore Top Category" />
         <AppTitle Title="Recommended Items" />
         <ItemCard />
+        {/* <FlatList data={data} renderItem={() => <ItemCard />} horizontal /> */}
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
