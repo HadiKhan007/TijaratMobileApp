@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
     paddingVertical: WP('3'),
     paddingHorizontal: WP('3'),
     width: '45%',
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4,
+    margin: WP('2'),
   },
   imgStyle: {
     width: WP('40'),

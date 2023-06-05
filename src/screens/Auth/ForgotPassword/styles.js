@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgColor,
   },
   mainContainer: {
-    paddingHorizontal: WP('4'),
-    marginVertical: WP('2'),
+    paddingHorizontal: WP('6'),
+    marginVertical: WP('5'),
   },
   titleText: {
     color: colors.p3,
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: size.large,
     fontFamily: family.workSans_bold,
     marginVertical: WP('3'),
-    marginTop: WP('5'),
+    marginTop: WP('40'),
   },
   subTitle: {
     color: colors.p2,
@@ -25,25 +25,17 @@ const styles = StyleSheet.create({
     fontSize: size.small,
     lineHeight: WP('5'),
   },
-  accountText: {
-    color: colors.p2,
-    fontFamily: family.workSans_medium,
-    fontSize: size.small,
-    marginTop: WP('20'),
+  titleStyle: {
+    marginTop: WP('8'),
   },
-  clickText: {
-    color: colors.p4,
-    fontFamily: family.workSans_medium,
-    fontSize: size.medium,
+  btnStyle: {
+    marginTop: WP('5'),
   },
   contentContainer: {
     flexGrow: 1,
   },
   main: {
     flex: 1,
-  },
-  btnStyle: {
-    marginTop: WP('5'),
   },
 });
 

@@ -9,6 +9,8 @@ export const colors = {
   //Primary Colours
   p1: '#001543',
   p2: '#6F8AA9',
+  p3: '#223859',
+  p4: '#27499E',
 
   //Grey
   g1: '#EDEDF0',

@@ -16,4 +16,8 @@ export const appIcons = {
   category: require('../../assets/icons/category.png'),
   search: require('../../assets/icons/searchIcon.png'),
   profile: require('../../assets/icons/profile.png'),
+  google: require('../../assets/icons/google.png'),
+  backArrow: require('../../assets/icons/backArrow.png'),
+  eye: require('../../assets/icons/eye.png'),
+  closeeye: require('../../assets/icons/closeeye.png'),
 };
