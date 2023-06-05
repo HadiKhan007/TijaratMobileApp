@@ -7,7 +7,11 @@ const AppHeader = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity style={styles.leftContainer}>
+      <TouchableOpacity
+        style={styles.leftContainer}
+        onPress={() => navigation.navigate('App')}
+        // onPress={() => navigation.openDrawer()}
+      >
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}
@@ -29,7 +33,7 @@ const AppHeader = () => {
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
-            source={appIcons.category}
+            source={appIcons.cart}
             style={styles.rightIcon}
             resizeMode="center"
           />

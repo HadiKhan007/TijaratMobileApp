@@ -20,9 +20,9 @@ import {appImages} from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const HomeScreen = () => {
-  const {width} = Dimensions.get('window');
-  const {height} = Dimensions.get('window');
-  const data = [{}, {}, {}];
+  // const {width} = Dimensions.get('window');
+  // const {height} = Dimensions.get('window');
+  // const data = [{}, {}, {}];
   return (
     <SafeAreaView style={styles.rootContainer}>
       <KeyboardAwareScrollView
