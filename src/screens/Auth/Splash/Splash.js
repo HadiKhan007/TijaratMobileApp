@@ -6,10 +6,9 @@ import {appIcons} from '../../../utilities';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('HomeStack');
+      navigation.navigate('BottomTabs');
     }, 3000);
   });
-
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>

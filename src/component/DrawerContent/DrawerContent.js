@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
-import {View, Text, FlatList, ScrollView} from 'react-native';
-import {appIcons, drawerData} from '../../utilities';
+import {View, Text, FlatList} from 'react-native';
+import {drawerData} from '../../utilities';
 import {AppLoader} from '../AppModal/AppLoader';
 import {DrawerBar} from '../DrawerBar/DrawerBar';
 import styles from './styles';
@@ -36,46 +37,45 @@ const DrawerContent = ({navigation}) => {
   //       setLoading(true);
   //     }
   //   };
-
   const onPressBar = item => {
     navigation.closeDrawer();
-    switch (item?.id) {
-      case 0:
-        navigation.navigate(item?.onPress);
-        break;
-      case 1:
-        navigation.navigate(item?.onPress);
-        break;
-      case 2:
-        navigation.navigate(item?.onPress);
-        break;
-      case 3:
-        navigation.navigate(item?.onPress);
-        break;
-      case 4:
-        navigation.navigate(item?.onPress);
-        break;
-      case 5:
-        navigation.navigate('ClientResourcesStack', {screen: 'ScheduleCall'});
-        break;
-      case 6:
-        navigation.navigate(item?.onPress);
-        break;
-      case 7:
-        navigation.navigate(item?.onPress);
-        break;
-      case 8:
-        navigation.navigate(item?.onPress);
-        break;
-      case 10:
-        navigation.navigate('OtherScreens', {screen: 'PrivacyPolicy'});
-        break;
-      case 11:
-        navigation.navigate('OtherScreens', {screen: 'TermsConditions'});
-        break;
-      default:
-        return;
-    }
+    // switch (item?.id) {
+    //   case 0:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 1:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 2:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 3:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 4:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 5:
+    //     navigation.navigate('ClientResourcesStack', {screen: 'ScheduleCall'});
+    //     break;
+    //   case 6:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 7:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 8:
+    //     navigation.navigate(item?.onPress);
+    //     break;
+    //   case 10:
+    //     navigation.navigate('OtherScreens', {screen: 'PrivacyPolicy'});
+    //     break;
+    //   case 11:
+    //     navigation.navigate('OtherScreens', {screen: 'TermsConditions'});
+    //     break;
+    //   default:
+    //     return;
+    // }
   };
 
   const renderItem = ({item}) => (
@@ -94,28 +94,26 @@ const DrawerContent = ({navigation}) => {
         </Text>
       </View>
       <View style={styles.secondContainer}>
-        <Text style={styles.titleText}>Your Account</Text>
-        <ScrollView
+        {/* <ScrollView
           style={styles.container}
-          showsVerticalScrollIndicator={false}>
-          <FlatList
-            data={drawerData}
-            showsVerticalScrollIndicator={false}
-            renderItem={renderItem}
-            style={styles.flatlistStyle}
-            contentContainerStyle={styles.contentContainerStyle}
-            keyExtractor={(item, index) => item + index.toString()}
-            ListFooterComponent={
-              <DrawerBar
-                item={{title: 'LogOut', leftIcon: appIcons.logOut}}
-                onPress={() => {
-                  //   LogoutUser();
-                }}
-              />
-            }
-            ListFooterComponentStyle={styles.listFooterComponentStyle}
-          />
-        </ScrollView>
+          showsVerticalScrollIndicator={false}> */}
+        <FlatList
+          data={drawerData}
+          showsVerticalScrollIndicator={false}
+          renderItem={renderItem}
+          style={styles.flatlistStyle}
+          contentContainerStyle={styles.contentContainerStyle}
+          keyExtractor={(item, index) => item + index.toString()}
+          // ListFooterComponent={
+          //   <DrawerBar
+          //     item={{title: 'LogOut', leftIcon: appIcons.logOut}}
+          //     onPress={() => {
+          //       //   LogoutUser();
+          //     }}
+          //   />
+          // }
+          // ListFooterComponentStyle={styles.listFooterComponentStyle}
+        />
       </View>
       <AppLoader loading={loading} />
     </View>

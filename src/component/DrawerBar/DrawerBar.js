@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {colors, family, size, WP} from '../../utilities';
 import {hasNotch} from 'react-native-device-info';
-import PropTypes from 'prop-types';
 
 const DrawerBar = ({item, onPress}) => {
   return (
@@ -12,9 +11,9 @@ const DrawerBar = ({item, onPress}) => {
         <Text style={styles.textStyle}>{item?.title}</Text>
       </View>
 
-      {!!item?.rightIcon && (
+      {/* {!!item?.rightIcon && (
         <Image source={item?.rightIcon} style={styles.iconStyle} />
-      )}
+      )} */}
     </TouchableOpacity>
   );
 };
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: colors.white,
-    fontFamily: family.roboto_medium,
+    fontFamily: family.workSans_medium,
     fontSize: size.large,
     marginLeft: hasNotch() ? WP('3') : WP('1.5'),
     width: '85%',
@@ -56,10 +55,5 @@ const styles = StyleSheet.create({
     marginTop: WP('0.5'),
   },
 });
-
-DrawerBar.propTypes = {
-  item: PropTypes.object,
-  onPress: PropTypes.func,
-};
 
 export {DrawerBar};

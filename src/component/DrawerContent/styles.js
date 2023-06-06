@@ -4,10 +4,10 @@ import {colors, family, size, WP} from '../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: colors.p3,
+    backgroundColor: colors.bgColor,
   },
   firstContainer: {
-    backgroundColor: colors.p2,
+    backgroundColor: colors.bgColor,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: WP('8'),
@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   textStyle: {
-    color: colors.white,
-    fontFamily: family.roboto_medium,
+    color: colors.p3,
+    fontFamily: family.workSans_medium,
     fontSize: size.h5,
     width: '70%',
   },
   titleText: {
-    color: colors.white,
-    fontFamily: family.roboto_bold,
+    color: colors.p3,
+    fontFamily: family.workSans_bold,
     fontSize: size.large,
     marginLeft: WP('8'),
     marginVertical: WP('3'),

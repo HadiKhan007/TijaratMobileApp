@@ -54,8 +54,8 @@ const HomeScreen = () => {
           resizeMode="cover"
           style={styles.imgStyle}
         />
-        <AppTitle Title="Explore Top Category" />
-        <AppTitle Title="Recommended Items" />
+        <AppTitle Title="Explore Top Category" secondTitle="See all" />
+        <AppTitle Title="Recommended Items" secondTitle="See all" />
         <ItemCard />
         {/* <FlatList data={data} renderItem={() => <ItemCard />} horizontal /> */}
       </KeyboardAwareScrollView>

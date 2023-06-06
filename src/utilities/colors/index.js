@@ -5,12 +5,15 @@ export const colors = {
 
   //White
   w1: '#FFFFFF',
+  w2: '#F8FBFF',
 
   //Primary Colours
   p1: '#001543',
   p2: '#6F8AA9',
   p3: '#223859',
   p4: '#27499E',
+  p5: '#22385980',
+  p6: '#22385920',
 
   //Grey
   g1: '#EDEDF0',
