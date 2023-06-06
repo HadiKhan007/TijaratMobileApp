@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../../screens/App/HomePage/HomeScreen/HomeScreen';
-import GetStarted from '../../screens/Auth/GetStarted/GetStarted';
 
 const Stack = createNativeStackNavigator();
 

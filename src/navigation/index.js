@@ -5,7 +5,7 @@ import Splash from '../screens/Auth/Splash/Splash';
 import HomeStack from './stacks/HomeStack';
 import AuthStack from './stacks/AuthStack';
 import MyDrawerStack from './stacks/MyDrawerStack';
-import {BottomTabs} from './stacks/BottomTabs';
+import BottomTabs from './stacks/BottomTabs';
 
 const AppStack = createNativeStackNavigator();
 
@@ -18,10 +18,11 @@ const MainAppNav = () => {
           animation: 'fade',
         }}>
         <AppStack.Screen name={'Splash'} component={Splash} />
-        <AppStack.Screen name={'App'} component={MyDrawerStack} />
         <AppStack.Screen name={'HomeStack'} component={HomeStack} />
+        {/* <AppStack.Screen name={'App'} component={MyDrawerStack} /> */}
+
         <AppStack.Screen name={'AuthStack'} component={AuthStack} />
-        {/* <AppStack.Screen name={'BottomTabs'} component={BottomTabs} /> */}
+        <AppStack.Screen name={'BottomTabs'} component={BottomTabs} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

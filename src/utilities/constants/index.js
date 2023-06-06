@@ -42,55 +42,55 @@ const championPlaceholder = [
 const drawerData = [
   {
     id: 0,
-    title: 'Edit Profile',
-    leftIcon: appIcons.cart,
+    title: 'Home',
+    leftIcon: appIcons.home,
     onPress: 'Profile',
   },
   {
     id: 1,
-    title: 'Check In Form',
+    title: 'My Tijarat',
     leftIcon: appIcons.person,
     onPress: 'ClientForms',
   },
   {
     id: 2,
-    title: 'Onboarding Questionnaire',
+    title: 'Seller Dashboard',
     leftIcon: appIcons.dashboard,
     onPress: 'OnboardingQuestions',
   },
   {
     id: 3,
-    title: 'SWOT Analysis',
+    title: 'Notifications',
     leftIcon: appIcons.notification,
     onPress: 'SWOTAnalysis',
   },
   {
     id: 4,
-    title: 'View Notes',
+    title: 'Category',
     leftIcon: appIcons.category,
     onPress: 'Notes',
   },
   {
     id: 5,
-    title: 'Scheduled Calls',
+    title: 'Wishlist',
     leftIcon: appIcons.heart,
     onPress: '',
   },
   {
     id: 6,
-    title: 'Champion Legacy Statement',
+    title: 'Add to Cart',
     leftIcon: appIcons.cart,
     onPress: 'Legacy',
   },
   {
     id: 7,
-    title: 'Change Password',
+    title: 'Help & Contact',
     leftIcon: appIcons.phone,
     onPress: 'ResetPassword',
   },
   {
     id: 10,
-    title: 'Privacy Policy',
+    title: 'LogOut',
     leftIcon: appIcons.logOut,
     onPress: 'PrivacyPolicy',
   },
@@ -103,18 +103,18 @@ const socialData = [
     iconName: appIcons.fb,
     connected: false,
   },
-  {
-    id: 1,
-    title: 'Instagram',
-    iconName: appIcons.insta,
-    connected: false,
-  },
-  {
-    id: 2,
-    title: 'Twitter',
-    iconName: appIcons.twitter2,
-    connected: true,
-  },
+  // {
+  //   id: 1,
+  //   title: 'Instagram',
+  //   iconName: appIcons.insta,
+  //   connected: false,
+  // },
+  // {
+  //   id: 2,
+  //   title: 'Twitter',
+  //   iconName: appIcons.twitter2,
+  //   connected: true,
+  // },
 ];
 
 const SWOT_List = [
@@ -140,30 +140,24 @@ const SWOT_List = [
   },
 ];
 
-const SWOT_HEADERS = [
+const OrderData = [
   {
     id: 0,
-    title: 'S',
-    subTitle: 'STRENGTHS',
-    selected: true,
+    orderId: 10082 - 1,
+    orderDetail: 'House number, house...',
+    orderStatus: 'Delivered',
   },
   {
     id: 1,
-    title: 'W',
-    subTitle: 'WEAKNESSES',
-    selected: false,
+    orderId: 10082 - 1,
+    orderDetail: 'House number, house...',
+    orderStatus: 'Delivered',
   },
   {
     id: 2,
-    title: 'O',
-    subTitle: 'OPPORTUNITIES',
-    selected: false,
-  },
-  {
-    id: 3,
-    title: 'T',
-    subTitle: 'THREATS',
-    selected: false,
+    orderId: 10082 - 1,
+    orderDetail: 'House number, house...',
+    orderStatus: 'Delivered',
   },
 ];
 
@@ -176,5 +170,5 @@ export {
   championPlaceholder,
   SOCKET_URL,
   SWOT_List,
-  SWOT_HEADERS,
+  OrderData,
 };

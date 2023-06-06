@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {WP, appIcons, colors, size} from '../../utilities';
@@ -9,9 +10,8 @@ const AppHeader = () => {
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.leftContainer}
-        onPress={() => navigation.navigate('App')}
-        // onPress={() => navigation.openDrawer()}
-      >
+        // onPress={() => navigation.navigate('AuthStack')}
+        onPress={() => navigation.openDrawer()}>
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}
@@ -24,7 +24,7 @@ const AppHeader = () => {
         resizeMode="contain"
       />
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => navigation.navigate('AuthStack')}>
+        <TouchableOpacity onPress={() => navigation.navigate('BottomTabs')}>
           <Image
             source={appIcons.profile}
             style={styles.rightIcon}

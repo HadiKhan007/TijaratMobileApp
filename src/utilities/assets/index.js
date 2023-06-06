@@ -28,5 +28,11 @@ export const appIcons = {
   phone: require('../../assets/icons/phone.png'),
   notification: require('../../assets/icons/notification.png'),
   earn: require('../../assets/icons/earn.png'),
+  home: require('../../assets/icons/Home.png'),
   promotion: require('../../assets/icons/promotion.png'),
+  editIcon: require('../../assets/icons/editIcon.png'),
+  cloneIcone: require('../../assets/icons/cloneIcone.png'),
+  addProducts: require('../../assets/icons/addProducts.png'),
+  order: require('../../assets/icons/order.png'),
+  dashboardB: require('../../assets/icons/dashboard.png'),
 };

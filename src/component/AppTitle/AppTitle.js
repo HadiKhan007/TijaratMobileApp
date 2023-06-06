@@ -2,11 +2,17 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 
-const AppTitle = ({Title}) => {
+const AppTitle = ({
+  Title,
+  secondTitle,
+  titleStyle,
+  subTextStyle,
+  mainContainer,
+}) => {
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.titleStyle}>{Title}</Text>
-      <Text style={styles.subTextStyle}>Sell all</Text>
+    <View style={[styles.mainContainer, mainContainer]}>
+      <Text style={[styles.titleStyle, titleStyle]}>{Title}</Text>
+      <Text style={[styles.subTextStyle, subTextStyle]}>{secondTitle}</Text>
     </View>
   );
 };
