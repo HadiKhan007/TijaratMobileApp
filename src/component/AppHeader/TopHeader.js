@@ -4,19 +4,24 @@ import {WP, colors, family, size} from '../../utilities';
 import {useNavigation} from '@react-navigation/native';
 
 const TopHeader = ({iconName, iconStyle, title, titleStyle}) => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.iconContainer}
-        onPress={() => navigation.goBack()}>
+        // onPress={() => navigation.goBack()
+      >
         <Image
           source={iconName}
           style={[styles.iconStyle, iconStyle]}
           resizeMode="center"
         />
       </TouchableOpacity>
-      {title ? <Text style={styles.titleStyle}>{title}</Text> : <View />}
+      {title ? (
+        <Text style={[styles.titleStyle, titleStyle]}>{title}</Text>
+      ) : (
+        <View />
+      )}
       <View />
     </View>
   );
