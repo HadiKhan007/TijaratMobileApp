@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {OrderData, WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
@@ -14,16 +15,26 @@ const SellerOrderCard = () => {
         <Text style={[styles.subTitle, {marginLeft: WP('20')}]}>Status</Text>
       </View>
       <AppDivider lineStyle={styles.lineStyle} />
-      <View style={styles.rowContainer}>
-        <Text style={styles.idStyle}>10082-1</Text>
-        <Text style={styles.textStyle}>Ali</Text>
-        <Text
-          style={[styles.textStyle, {marginLeft: WP('31'), marginRight: 0}]}>
-          Delivered
-        </Text>
-      </View>
-      <AppDivider
-        lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
+      <FlatList
+        data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+        renderItem={() => (
+          <>
+            <View style={styles.rowContainer}>
+              <Text style={styles.idStyle}>10082-1</Text>
+              <Text style={styles.textStyle}>Ali</Text>
+              <Text
+                style={[
+                  styles.textStyle,
+                  {marginLeft: WP('31'), marginRight: 0},
+                ]}>
+                Delivered
+              </Text>
+            </View>
+            <AppDivider
+              lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
+            />
+          </>
+        )}
       />
     </View>
   );

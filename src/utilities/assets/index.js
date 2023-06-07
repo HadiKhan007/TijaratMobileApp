@@ -35,4 +35,13 @@ export const appIcons = {
   addProducts: require('../../assets/icons/addProducts.png'),
   order: require('../../assets/icons/order.png'),
   dashboardB: require('../../assets/icons/dashboard.png'),
+  click: require('../../assets/icons/click.png'),
+  unClick: require('../../assets/icons/unClick.png'),
+  addImage: require('../../assets/icons/addImage.png'),
+  plus: require('../../assets/icons/plus.png'),
+  downArrow: require('../../assets/icons/downArrow.png'),
+  toy: require('../../assets/icons/toy.png'),
+  garden: require('../../assets/icons/garden.png'),
+  pet: require('../../assets/icons/pet.png'),
+  beauty: require('../../assets/icons/beauty.png'),
 };

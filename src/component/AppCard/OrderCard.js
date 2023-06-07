@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {OrderData, WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
@@ -17,15 +17,23 @@ const OrderCard = () => {
         <Text style={[styles.subTitle]}>Status</Text>
       </View>
       <AppDivider lineStyle={styles.lineStyle} />
-      <View style={styles.rowContainer}>
-        <Text style={styles.idStyle}>10082-1</Text>
-        <Text style={styles.textStyle}>House number, house...</Text>
-        <Text style={[styles.textStyle, {marginRight: WP('0')}]}>
-          Delivered
-        </Text>
-      </View>
-      <AppDivider
-        lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
+      <FlatList
+        data={[{}, {}, {}]}
+        keyExtractor={(item, index) => item + index.toString()}
+        renderItem={() => (
+          <>
+            <View style={styles.rowContainer}>
+              <Text style={styles.idStyle}>10082-1</Text>
+              <Text style={styles.textStyle}>House number, house...</Text>
+              <Text style={[styles.textStyle, {marginRight: WP('0')}]}>
+                Delivered
+              </Text>
+            </View>
+            <AppDivider
+              lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
+            />
+          </>
+        )}
       />
     </View>
   );
@@ -62,6 +70,7 @@ const styles = StyleSheet.create({
   },
   lineStyle: {
     backgroundColor: colors.p5,
+    marginVertical: WP('2'),
   },
   idStyle: {
     color: colors.p3,

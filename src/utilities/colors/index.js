@@ -1,6 +1,6 @@
 export const colors = {
   //Screens bg colors
-  bgColor: '#F8FBFF',
+  bgColor: '##FFFFFF',
   b1: '#333333',
 
   //White
@@ -25,5 +25,6 @@ export const colors = {
   //Green
   gr: '#9DCC2D',
   gr1: '#37833B',
+  gr2: '#00E19D',
   //GrayScale
 };
