@@ -24,7 +24,7 @@ const AppHeader = () => {
         resizeMode="contain"
       />
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => navigation.navigate('BottomTabs')}>
+        <TouchableOpacity onPress={() => navigation.navigate('AuthStack')}>
           <Image
             source={appIcons.profile}
             style={styles.rightIcon}
