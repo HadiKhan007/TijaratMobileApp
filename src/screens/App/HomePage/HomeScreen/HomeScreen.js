@@ -19,7 +19,7 @@ import {
 import {appImages} from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   // const {width} = Dimensions.get('window');
   // const {height} = Dimensions.get('window');
   // const data = [{}, {}, {}];
@@ -54,7 +54,11 @@ const HomeScreen = () => {
           resizeMode="cover"
           style={styles.imgStyle}
         />
-        <AppTitle Title="Explore Top Category" secondTitle="See all" />
+        <AppTitle
+          Title="Explore Top Category"
+          secondTitle="See all"
+          onPress={() => navigation.navigate('AllCategories')}
+        />
         <AppTitle Title="Recommended Items" secondTitle="See all" />
         <ItemCard />
         {/* <FlatList data={data} renderItem={() => <ItemCard />} horizontal /> */}

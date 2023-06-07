@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 
 const AppTitle = ({
@@ -8,11 +8,14 @@ const AppTitle = ({
   titleStyle,
   subTextStyle,
   mainContainer,
+  onPress,
 }) => {
   return (
     <View style={[styles.mainContainer, mainContainer]}>
       <Text style={[styles.titleStyle, titleStyle]}>{Title}</Text>
-      <Text style={[styles.subTextStyle, subTextStyle]}>{secondTitle}</Text>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={[styles.subTextStyle, subTextStyle]}>{secondTitle}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

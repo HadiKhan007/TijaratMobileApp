@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {View, Text, SafeAreaView, FlatList} from 'react-native';
 import styles from './styles';
 import {
-  AppDivider,
   OrderCard,
   ProfileCard,
   ResultCard,
   TopHeader,
 } from '../../../../component';
-import {OrderData, appIcons} from '../../../../utilities';
+import {appIcons} from '../../../../utilities';
 
 const SellerDashboard = () => {
   return (

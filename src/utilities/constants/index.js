@@ -24,21 +24,6 @@ let championOptions = [
 const default_img =
   'https://i1.sndcdn.com/avatars-000439901343-0dng23-t500x500.jpg';
 
-const championPlaceholder = [
-  {
-    title: 'For Me',
-    data: [1],
-  },
-  {
-    title: 'For Someone Else',
-    data: [1],
-  },
-  {
-    title: 'For My Business',
-    data: [1],
-  },
-];
-
 const drawerData = [
   {
     id: 0,
@@ -96,47 +81,67 @@ const drawerData = [
   },
 ];
 
-const socialData = [
-  {
-    id: 0,
-    title: 'Facebook',
-    iconName: appIcons.fb,
-    connected: false,
-  },
-  // {
-  //   id: 1,
-  //   title: 'Instagram',
-  //   iconName: appIcons.insta,
-  //   connected: false,
-  // },
-  // {
-  //   id: 2,
-  //   title: 'Twitter',
-  //   iconName: appIcons.twitter2,
-  //   connected: true,
-  // },
-];
+// const socialData = [
+//   {
+//     id: 0,
+//     title: 'Facebook',
+//     iconName: appIcons.fb,
+//     connected: false,
+//   },
+//   // {
+//   //   id: 1,
+//   //   title: 'Instagram',
+//   //   iconName: appIcons.insta,
+//   //   connected: false,
+//   // },
+//   // {
+//   //   id: 2,
+//   //   title: 'Twitter',
+//   //   iconName: appIcons.twitter2,
+//   //   connected: true,
+//   // },
+// ];
 
-const SWOT_List = [
+const categoryData = [
   {
     id: 1,
-    title: 'STRENGTHS',
-    answer: '',
+    iconName: appIcons.toy,
+    title: 'Babies & Toys',
   },
   {
     id: 2,
-    title: 'WEAKNESSES',
-    answer: '',
+    iconName: appIcons.beauty,
+    title: 'Health & Beauty',
   },
   {
     id: 3,
-    title: 'OPPORTUNITIES',
-    answer: '',
+    iconName: appIcons.pet,
+    title: 'Groceries & Pets',
   },
   {
     id: 4,
-    title: 'THREATS',
-    answer: '',
+    iconName: appIcons.garden,
+    title: 'Home & Garden',
+  },
+  {
+    id: 5,
+    iconName: appIcons.toy,
+    title: 'Babies & Toys',
+  },
+  {
+    id: 6,
+    iconName: appIcons.beauty,
+    title: 'Health & Beauty',
+  },
+  {
+    id: 7,
+    iconName: appIcons.pet,
+    title: 'Groceries & Pets',
+  },
+  {
+    id: 8,
+    iconName: appIcons.garden,
+    title: 'Home & Garden',
   },
 ];
 
@@ -163,12 +168,10 @@ const OrderData = [
 
 export {
   drawerData,
-  socialData,
   default_img,
   image_options,
   championOptions,
-  championPlaceholder,
   SOCKET_URL,
-  SWOT_List,
   OrderData,
+  categoryData,
 };

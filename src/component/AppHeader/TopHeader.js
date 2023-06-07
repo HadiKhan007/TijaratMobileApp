@@ -13,7 +13,7 @@ const TopHeader = ({iconName, iconStyle, title, titleStyle}) => {
         <Image
           source={iconName}
           style={[styles.iconStyle, iconStyle]}
-          resizeMode="center"
+          resizeMode="contain"
         />
       </TouchableOpacity>
       {title ? (

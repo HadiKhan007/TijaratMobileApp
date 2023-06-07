@@ -2,6 +2,7 @@
 export * from './AppButton/AppButton';
 export * from './AppButton/SearchItem';
 export * from './AppButton/SocialButton';
+export * from './AppButton/ClickButton';
 
 //AppHeader
 
@@ -20,10 +21,12 @@ export * from './AppCard/ResultCard';
 export * from './AppCard/OrderCard';
 export * from './AppCard/ProductCard';
 export * from './AppCard/SellerOrderCard';
+export * from './AppCard/CategoryCard';
 
 //AppInput
 
 export * from './AppInput/TaskInput';
+export * from './AppInput/AddSpecsInput';
 
 //AppModal
 
@@ -42,3 +45,11 @@ export * from './BottomTabs/BottomTabs';
 //AppDivider
 
 export * from './AppDivider/AppDivider';
+
+//AddImage
+
+export * from './AddImage/AddImage';
+
+//DropDown
+
+export * from './DropDown/DropDown';

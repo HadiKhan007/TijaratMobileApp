@@ -6,7 +6,7 @@ import {appIcons} from '../../../utilities';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('BottomTabs');
+      navigation.navigate('HomeStack');
     }, 3000);
   });
   return (
