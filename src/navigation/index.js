@@ -19,8 +19,7 @@ const MainAppNav = () => {
         }}>
         <AppStack.Screen name={'Splash'} component={Splash} />
         <AppStack.Screen name={'HomeStack'} component={HomeStack} />
-        {/* <AppStack.Screen name={'App'} component={MyDrawerStack} /> */}
-
+        <AppStack.Screen name={'AppNew'} component={MyDrawerStack} />
         <AppStack.Screen name={'AuthStack'} component={AuthStack} />
         <AppStack.Screen name={'BottomTabs'} component={BottomTabs} />
       </AppStack.Navigator>

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WP, colors, family, size} from '../../../../utilities';
+import {WP, colors} from '../../../../../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -7,12 +7,10 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingHorizontal: WP('4'),
-    marginVertical: WP('0'),
+    marginVertical: WP('6'),
   },
-  positionCon: {
-    position: 'absolute',
-    right: -WP('3'),
-    bottom: -WP('45'),
+  titleCon: {
+    paddingHorizontal: 0,
   },
 });
 

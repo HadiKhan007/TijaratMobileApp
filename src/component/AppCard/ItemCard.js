@@ -2,21 +2,18 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {WP, appImages, colors, family, size} from '../../utilities';
 
-const ItemCard = () => {
+const ItemCard = ({item}) => {
   return (
     <View style={styles.mainContainer}>
       <Image
-        source={appImages.plugs}
+        source={item?.imageName}
         style={styles.imgStyle}
         resizeMode="contain"
       />
-      <Text style={styles.textStyle}>
-        Plastic useless plugs and tubes for high-fidelity prototyping. Fit &
-        Eat!
-      </Text>
+      <Text style={styles.textStyle}>{item?.text}</Text>
       <View style={styles.priceContainer}>
-        <Text style={styles.priceText}>$12.48</Text>
-        <Text style={styles.discountText}>50% OFF</Text>
+        <Text style={styles.priceText}>{item?.price}</Text>
+        <Text style={styles.discountText}>{item?.discount}</Text>
       </View>
     </View>
   );
@@ -29,7 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.w1,
     paddingVertical: WP('3'),
     paddingHorizontal: WP('3'),
-    width: '45%',
+    width: '30%',
+    height: WP('90'),
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -37,6 +35,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 4,
     margin: WP('2'),
+    marginLeft: WP('4'),
   },
   imgStyle: {
     width: WP('40'),

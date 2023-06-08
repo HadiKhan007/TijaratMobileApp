@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: WP('4'),
-    marginVertical: WP('6'),
+    marginVertical: WP('5'),
   },
   titleStyle: {
     color: colors.p1,
