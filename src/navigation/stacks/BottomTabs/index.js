@@ -49,7 +49,6 @@ import SAddProductsStack from '../BottomStack/SAddProductsStack';
 import SOrdersStack from '../BottomStack/SOrdersStack';
 import {WP, appIcons, colors} from '../../../utilities';
 import {Image} from 'react-native';
-import SMoreItemsStack from '../BottomStack/SMoreItemsStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -131,24 +130,6 @@ const BottomTabs = () => {
                 tintColor: focused ? colors.gr : 'grey',
               }}
               source={appIcons.home}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="SMoreItemsStack"
-        component={SMoreItemsStack}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
-            <Image
-              style={{
-                width: WP(6),
-                height: WP(6),
-                resizeMode: 'contain',
-                tintColor: focused ? colors.gr : 'grey',
-              }}
-              source={appIcons.cart}
             />
           ),
         }}

@@ -16,27 +16,30 @@ import {
   ItemCard,
   SearchItem,
 } from '../../../../component';
-import {appImages} from '../../../../utilities';
+import {appIcons, appImages} from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import HomeTopTabs from '../../../../navigation/stacks/TopTabs/HomeTopTabs';
+import {FloatingAction} from 'react-native-floating-action';
 
 const HomeScreen = ({navigation}) => {
-  // const {width} = Dimensions.get('window');
-  // const {height} = Dimensions.get('window');
-  // const data = [{}, {}, {}];
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <KeyboardAwareScrollView
+      {/* <KeyboardAwareScrollView
         style={styles.main}
         enableOnAndroid
         pagingEnabled
         contentContainerStyle={styles.contentContainer}
         enableAutomaticScroll
-        showsVerticalScrollIndicator={false}>
-        <View style={styles.mainContainer}>
-          <AppHeader />
-          <SearchItem />
-        </View>
-        <View style={styles.fContainer}>
+        showsVerticalScrollIndicator={false}> */}
+      {/* <View style={styles.mainContainer}> */}
+      <View style={styles.mainContainer}>
+        <AppHeader />
+        <SearchItem />
+      </View>
+      <HomeTopTabs />
+
+      {/* </View> */}
+      {/* <View style={styles.fContainer}>
           <Text style={styles.titleStyle}>
             Brilliant things happen, When you buy from real person.
           </Text>
@@ -60,9 +63,9 @@ const HomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate('AllCategories')}
         />
         <AppTitle Title="Recommended Items" secondTitle="See all" />
-        <ItemCard />
-        {/* <FlatList data={data} renderItem={() => <ItemCard />} horizontal /> */}
-      </KeyboardAwareScrollView>
+        <ItemCard /> */}
+      {/* <FlatList data={data} renderItem={() => <ItemCard />} horizontal /> */}
+      {/* </KeyboardAwareScrollView> */}
     </SafeAreaView>
   );
 };

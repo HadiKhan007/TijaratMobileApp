@@ -1,34 +1,21 @@
-// import React from 'react';
-// import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-// import ActionItems from '../../../screens/App/Home/Tabs/ActionItems';
-// import ChampionDay from '../../../screens/App/Home/Tabs/ChampionDay';
-// import MyChallenge from '../../../screens/App/Home/Tabs/MyChallenge';
-// import {HomeTabBar} from '../../../components';
+import React from 'react';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
-// const Tab = createMaterialTopTabNavigator();
+import {HomeTabsBar} from '../../../component';
+import Categories from '../../../screens/App/HomePage/HomeScreen/TopTabs/Categories';
+import Fashion from '../../../screens/App/HomePage/HomeScreen/TopTabs/Fashion';
+import Deals from '../../../screens/App/HomePage/HomeScreen/TopTabs/Deals';
 
-// const TopTabBarHome = () => {
-// 	return (
-// 		<Tab.Navigator tabBar={props => <HomeTabBar {...props} />}>
-// 			<Tab.Screen
-// 				options={{
-// 					tabBarLabel: 'Championship Day',
-// 				}}
-// 				name="ChampionDay"
-// 				component={ChampionDay}
-// 			/>
-// 			<Tab.Screen
-// 				options={{tabBarLabel: 'Action Items'}}
-// 				name="ActionItems"
-// 				component={ActionItems}
-// 			/>
-// 			<Tab.Screen
-// 				options={{tabBarLabel: 'My Challenges'}}
-// 				name="MyChallenge"
-// 				component={MyChallenge}
-// 			/>
-// 		</Tab.Navigator>
-// 	);
-// };
+const Tab = createMaterialTopTabNavigator();
 
-// export default TopTabBarHome;
+const HomeTopTabs = () => {
+  return (
+    <Tab.Navigator tabBar={props => <HomeTabsBar {...props} />}>
+      <Tab.Screen name="Categories" component={Categories} />
+      <Tab.Screen name="Fashion" component={Fashion} />
+      <Tab.Screen name="Deals" component={Deals} />
+    </Tab.Navigator>
+  );
+};
+
+export default HomeTopTabs;

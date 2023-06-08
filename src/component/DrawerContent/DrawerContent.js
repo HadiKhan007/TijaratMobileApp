@@ -1,42 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React from 'react';
+import {View, Text, FlatList, ScrollView} from 'react-native';
+import {DrawerBar} from '..';
 import {drawerData} from '../../utilities';
-import {AppLoader} from '../AppModal/AppLoader';
-import {DrawerBar} from '../DrawerBar/DrawerBar';
 import styles from './styles';
 
 const DrawerContent = ({navigation}) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  //   const LogoutUser = () => {
-  //     try {
-  //       navigation.closeDrawer();
-  //       setLoading(true);
-
-  //       const cbSuccess = () => {
-  //         setLoading(false);
-  //         dispatch({
-  //           type: LOGOUT_REQUEST_SUCCESS,
-  //           payload: null,
-  //         });
-  //         navigation.replace('Auth');
-  //       };
-
-  //       const cbFailure = () => {
-  //         setLoading(false);
-  //         dispatch({
-  //           type: LOGOUT_REQUEST_SUCCESS,
-  //           payload: null,
-  //         });
-  //         navigation.replace('Auth');
-  //       };
-
-  //       dispatch(destroyFcmTokenRequest(token, cbSuccess, cbFailure));
-  //     } catch (error) {
-  //       setLoading(true);
-  //     }
-  //   };
   const onPressBar = item => {
     navigation.closeDrawer();
     // switch (item?.id) {
@@ -67,6 +37,9 @@ const DrawerContent = ({navigation}) => {
     //   case 8:
     //     navigation.navigate(item?.onPress);
     //     break;
+    //   case 9:
+    //     userConfirmation();
+    //     break;
     //   case 10:
     //     navigation.navigate('OtherScreens', {screen: 'PrivacyPolicy'});
     //     break;
@@ -86,36 +59,30 @@ const DrawerContent = ({navigation}) => {
       }}
     />
   );
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.firstContainer}>
         <Text style={styles.textStyle} numberOfLines={3}>
-          Ali Haider
+          Ali
         </Text>
       </View>
       <View style={styles.secondContainer}>
-        {/* <ScrollView
+        <Text style={styles.titleText}>Your Account</Text>
+        <ScrollView
           style={styles.container}
-          showsVerticalScrollIndicator={false}> */}
-        <FlatList
-          data={drawerData}
-          showsVerticalScrollIndicator={false}
-          renderItem={renderItem}
-          style={styles.flatlistStyle}
-          contentContainerStyle={styles.contentContainerStyle}
-          keyExtractor={(item, index) => item + index.toString()}
-          // ListFooterComponent={
-          //   <DrawerBar
-          //     item={{title: 'LogOut', leftIcon: appIcons.logOut}}
-          //     onPress={() => {
-          //       //   LogoutUser();
-          //     }}
-          //   />
-          // }
-          // ListFooterComponentStyle={styles.listFooterComponentStyle}
-        />
+          showsVerticalScrollIndicator={false}>
+          <FlatList
+            data={drawerData}
+            showsVerticalScrollIndicator={false}
+            renderItem={renderItem}
+            style={styles.flatlistStyle}
+            contentContainerStyle={styles.contentContainerStyle}
+            keyExtractor={(item, index) => item + index.toString()}
+          />
+        </ScrollView>
       </View>
-      <AppLoader loading={loading} />
+      {/* <AppLoader loading={loading} /> */}
     </View>
   );
 };

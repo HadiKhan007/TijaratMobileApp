@@ -22,6 +22,7 @@ export * from './AppCard/OrderCard';
 export * from './AppCard/ProductCard';
 export * from './AppCard/SellerOrderCard';
 export * from './AppCard/CategoryCard';
+export * from './AppCard/HCategoryCard';
 
 //AppInput
 
@@ -53,3 +54,7 @@ export * from './AddImage/AddImage';
 //DropDown
 
 export * from './DropDown/DropDown';
+
+//TopTabs
+
+export * from './AppTopTabs/HomeTabsBar';

@@ -44,4 +44,11 @@ export const appIcons = {
   garden: require('../../assets/icons/garden.png'),
   pet: require('../../assets/icons/pet.png'),
   beauty: require('../../assets/icons/beauty.png'),
+  deal: require('../../assets/icons/deal.png'),
+  selling: require('../../assets/icons/selling.png'),
+  wCategory: require('../../assets/icons/wCategory.png'),
+  mobile: require('../../assets/icons/mobile.png'),
+  lcd: require('../../assets/icons/lcd.png'),
+  dumble: require('../../assets/icons/dumble.png'),
+  payment: require('../../assets/icons/payment.png'),
 };

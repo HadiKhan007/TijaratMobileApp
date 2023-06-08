@@ -10,8 +10,7 @@ const AppHeader = () => {
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.leftContainer}
-        // onPress={() => navigation.navigate('AuthStack')}
-        onPress={() => navigation.openDrawer()}>
+        onPress={() => navigation.navigate('BottomTabs')}>
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}
