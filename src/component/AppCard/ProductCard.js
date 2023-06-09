@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     marginVertical: WP('1'),
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   secondText: {
     color: colors.p2,
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     marginLeft: WP('3'),
     flexWrap: 'wrap',
     flex: 1,
-    textAlign: 'center',
   },
   iconStyle: {
     width: WP('5'),

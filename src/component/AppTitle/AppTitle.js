@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {WP, colors, family, size} from '../../utilities';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {WP, appIcons, colors, family, size} from '../../utilities';
 
 const AppTitle = ({
   Title,
@@ -9,12 +9,22 @@ const AppTitle = ({
   subTextStyle,
   mainContainer,
   onPress,
+  iconName,
 }) => {
   return (
     <View style={[styles.mainContainer, mainContainer]}>
       <Text style={[styles.titleStyle, titleStyle]}>{Title}</Text>
       <TouchableOpacity onPress={onPress}>
-        <Text style={[styles.subTextStyle, subTextStyle]}>{secondTitle}</Text>
+        <View style={styles.rownContainer}>
+          {iconName && (
+            <Image
+              source={iconName}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
+          )}
+          <Text style={[styles.subTextStyle, subTextStyle]}>{secondTitle}</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -40,5 +50,14 @@ const styles = StyleSheet.create({
     fontFamily: family.workSans_medium,
     fontSize: size.small,
     textDecorationLine: 'underline',
+  },
+  iconStyle: {
+    width: WP('4'),
+    height: WP('4'),
+    marginHorizontal: WP('2'),
+  },
+  rownContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

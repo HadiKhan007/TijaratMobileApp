@@ -6,7 +6,6 @@ import {
   ScrollView,
   Animated,
   Image,
-  Platform,
 } from 'react-native';
 import {colors, family, size, WP, appIcons} from '../../utilities';
 
