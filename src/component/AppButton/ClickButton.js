@@ -2,19 +2,29 @@ import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const ClickButton = ({title}) => {
+const ClickButton = ({title, secondIcon}) => {
   const [state, setState] = useState(false);
   return (
     <TouchableOpacity
       style={styles.mainContainer}
       onPress={() => setState(!state)}>
-      <Image
-        source={state ? appIcons.click : appIcons.unClick}
-        style={styles.iconStyle}
-      />
-      <Text style={[styles.textStyle, {color: state ? colors.p3 : colors.p2}]}>
-        {title}
-      </Text>
+      <View style={styles.rowContainer}>
+        <Image
+          source={state ? appIcons.click : appIcons.unClick}
+          style={styles.iconStyle}
+        />
+        <Text
+          style={[styles.textStyle, {color: state ? colors.p3 : colors.p2}]}>
+          {title}
+        </Text>
+      </View>
+      {secondIcon && (
+        <Image
+          source={appIcons.forwardArrow}
+          style={styles.secondIcon}
+          resizeMode="contain"
+        />
+      )}
     </TouchableOpacity>
   );
 };
@@ -26,6 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: WP('2'),
+    justifyContent: 'space-between',
   },
   iconStyle: {
     width: WP('6'),
@@ -36,5 +47,12 @@ const styles = StyleSheet.create({
     fontFamily: family.workSans_semiBold,
     fontSize: size.small,
     marginHorizontal: WP('3'),
+  },
+  rowContainer: {
+    flexDirection: 'row',
+  },
+  secondIcon: {
+    width: WP('4'),
+    height: WP('4'),
   },
 });

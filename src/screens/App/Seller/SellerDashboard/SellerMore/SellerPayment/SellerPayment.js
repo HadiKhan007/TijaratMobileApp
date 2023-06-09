@@ -1,7 +1,12 @@
 import React from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import styles from './styles';
-import {AppTitle, TopHeader} from '../../../../../../component';
+import {
+  AppTitle,
+  ClickButton,
+  PaymentCard,
+  TopHeader,
+} from '../../../../../../component';
 import {appIcons} from '../../../../../../utilities';
 
 const SellerPayment = () => {
@@ -13,6 +18,8 @@ const SellerPayment = () => {
           Title="Current Payment Methods"
           mainContainer={styles.titleCon}
         />
+
+        <PaymentCard />
       </View>
     </SafeAreaView>
   );

@@ -16,13 +16,16 @@ export * from './AppTitle/AppTitle';
 //Cards
 
 export * from './AppCard/ItemCard';
-export * from './AppCard/ProfileCard';
 export * from './AppCard/ResultCard';
 export * from './AppCard/OrderCard';
 export * from './AppCard/ProductCard';
 export * from './AppCard/SellerOrderCard';
 export * from './AppCard/CategoryCard';
 export * from './AppCard/HCategoryCard';
+export * from './AppCard/PaymentCard';
+export * from './AppCard/ProfileCard';
+export * from './AppCard/AccountCard';
+export * from './AppCard/ProfileCard';
 
 //AppInput
 

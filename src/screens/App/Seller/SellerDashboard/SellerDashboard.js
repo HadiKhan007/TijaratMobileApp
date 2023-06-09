@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {View, Text, SafeAreaView, FlatList, ScrollView} from 'react-native';
 import styles from './styles';
 import {
+  AccountCard,
   OrderCard,
-  ProfileCard,
   ResultCard,
   TopHeader,
 } from '../../../../component';
@@ -39,7 +39,7 @@ const SellerDashboard = ({navigation}) => {
       <View style={styles.mainContainer}>
         <ScrollView>
           <TopHeader iconName={appIcons.menuIcon} title="Seller Dashboard" />
-          <ProfileCard
+          <AccountCard
             email="hamza1@gmail.com"
             title="Hamza Habib"
             iconName={appIcons.person}

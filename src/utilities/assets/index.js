@@ -3,6 +3,7 @@ export const appImages = {
   pent: require('../../assets/images/pent.png'),
   plugs: require('../../assets/images/plugs.png'),
   bgImg: require('../../assets/images/bgImg.png'),
+  frontId: require('../../assets/images/frontId.png'),
 };
 
 export const applogos = {
@@ -57,4 +58,5 @@ export const appIcons = {
   fAddProduct: require('../../assets/icons/fAddProduct.png'),
   SDashboard: require('../../assets/icons/SDashboard.png'),
   sProduct: require('../../assets/icons/Product.png'),
+  forwardArrow: require('../../assets/icons/forwardArrow.png'),
 };

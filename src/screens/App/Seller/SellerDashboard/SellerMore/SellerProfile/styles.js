@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: WP('4'),
     marginVertical: WP('6'),
   },
+  titleContainer: {
+    paddingHorizontal: 0,
+  },
 });
 
 export default styles;
