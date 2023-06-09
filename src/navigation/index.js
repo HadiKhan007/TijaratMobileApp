@@ -1,15 +1,19 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Splash from '../screens/Auth/Splash/Splash';
 import HomeStack from './stacks/HomeStack';
 import AuthStack from './stacks/AuthStack';
 import MyDrawerStack from './stacks/MyDrawerStack';
 import BottomTabs from './stacks/BottomTabs';
+import {LogBox} from 'react-native';
 
 const AppStack = createNativeStackNavigator();
 
 const MainAppNav = () => {
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
   return (
     <NavigationContainer>
       <AppStack.Navigator

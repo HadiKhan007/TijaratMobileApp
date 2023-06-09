@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     paddingVertical: WP('3'),
     paddingHorizontal: WP('3'),
     width: '30%',
-    height: WP('90'),
+    height: WP('70'),
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     marginLeft: WP('4'),
   },
   imgStyle: {
-    width: WP('40'),
-    height: WP('40'),
+    width: WP('30'),
+    height: WP('30'),
   },
   textStyle: {
     color: colors.p1,
