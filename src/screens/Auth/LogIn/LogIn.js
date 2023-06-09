@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import {View, Text, SafeAreaView, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
 import {
   AppButton,
@@ -14,7 +14,9 @@ import {Formik} from 'formik';
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
 
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    Alert.alert('Your Good to go');
+  };
   return (
     <SafeAreaView style={styles.rootContainer}>
       <Formik

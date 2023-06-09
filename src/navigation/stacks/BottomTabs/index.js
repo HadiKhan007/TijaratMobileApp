@@ -73,9 +73,8 @@ const BottomTabs = () => {
                 width: WP(6),
                 height: WP(6),
                 resizeMode: 'contain',
-                tintColor: focused ? colors.green : 'grey',
               }}
-              source={appIcons.home}
+              source={focused ? appIcons.fSDashboard : appIcons.SDashboard}
             />
           ),
         }}
@@ -91,9 +90,8 @@ const BottomTabs = () => {
                 width: WP(6),
                 height: WP(6),
                 resizeMode: 'contain',
-                tintColor: focused ? colors.gr : 'grey',
               }}
-              source={appIcons.addProducts}
+              source={focused ? appIcons.fProduct : appIcons.sProduct}
             />
           ),
         }}
@@ -109,9 +107,8 @@ const BottomTabs = () => {
                 width: WP(6),
                 height: WP(6),
                 resizeMode: 'contain',
-                tintColor: focused ? colors.gr : 'grey',
               }}
-              source={appIcons.home}
+              source={focused ? appIcons.fAddProduct : appIcons.addProducts}
             />
           ),
         }}
@@ -127,9 +124,8 @@ const BottomTabs = () => {
                 width: WP(6),
                 height: WP(6),
                 resizeMode: 'contain',
-                tintColor: focused ? colors.gr : 'grey',
               }}
-              source={appIcons.home}
+              source={focused ? appIcons.fOrder : appIcons.order}
             />
           ),
         }}

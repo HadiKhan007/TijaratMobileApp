@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, Alert} from 'react-native';
 import styles from './styles';
 import {AppButton, TaskInput, TopHeader} from '../../../component';
 import {appIcons, forgotPass, forgotVS} from '../../../utilities';
@@ -8,7 +8,9 @@ import {Formik} from 'formik';
 
 const ForgotPassword = () => {
   const formikRef = useRef();
-  const handleForgot = () => {};
+  const handleForgot = () => {
+    Alert.alert('Your Good to go');
+  };
 
   return (
     <SafeAreaView style={styles.rootContainer}>

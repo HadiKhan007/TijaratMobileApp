@@ -55,7 +55,7 @@ const Categories = ({navigation}) => {
       discount: '50% OFF',
     },
   ];
-  const renderItem = ({item}) => <HCategoryCard item={item} />;
+  // const renderItem = ({item}) => <HCategoryCard item={item} />;
   const renderItemCard = ({item}) => <ItemCard item={item} />;
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -78,7 +78,7 @@ const Categories = ({navigation}) => {
         </View>
         <Image
           source={appImages.baby}
-          resizeMode="cover"
+          resizeMode="contain"
           style={styles.imgStyle}
         />
         <AppTitle
@@ -86,7 +86,7 @@ const Categories = ({navigation}) => {
           secondTitle="See all"
           onPress={() => navigation.navigate('AllCategories')}
         />
-        <FlatList
+        {/* <FlatList
           data={HCategoryData}
           renderItem={renderItem}
           keyExtractor={(item, index) => item + index.toString()}
@@ -95,7 +95,18 @@ const Categories = ({navigation}) => {
             flexDirection: 'row',
             // flexWrap: 'wrap',
           }}
-        />
+        /> */}
+        <View style={{flexDirection: 'row'}}>
+          <HCategoryCard iconName={appIcons.lcd} title="LED" />
+          <HCategoryCard iconName={appIcons.mobile} title="Mobile" />
+          <HCategoryCard iconName={appIcons.dumble} title="Fitness" />
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <HCategoryCard iconName={appIcons.lcd} title="LED" />
+          <HCategoryCard iconName={appIcons.mobile} title="Mobile" />
+          <HCategoryCard iconName={appIcons.dumble} title="Fitness" />
+        </View>
+
         <AppTitle Title="Recommended Items" secondTitle="See all" />
         <FlatList
           data={ItemCardData}
@@ -153,5 +164,6 @@ const styles = StyleSheet.create({
   imgStyle: {
     width: '100%',
     height: '30%',
+    marginVertical: -WP('20'),
   },
 });

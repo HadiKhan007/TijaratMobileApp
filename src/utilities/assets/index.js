@@ -51,4 +51,10 @@ export const appIcons = {
   lcd: require('../../assets/icons/lcd.png'),
   dumble: require('../../assets/icons/dumble.png'),
   payment: require('../../assets/icons/payment.png'),
+  fSDashboard: require('../../assets/icons/fSDashboard.png'),
+  fOrder: require('../../assets/icons/fOrder.png'),
+  fProduct: require('../../assets/icons/fProduct.png'),
+  fAddProduct: require('../../assets/icons/fAddProduct.png'),
+  SDashboard: require('../../assets/icons/SDashboard.png'),
+  sProduct: require('../../assets/icons/Product.png'),
 };
