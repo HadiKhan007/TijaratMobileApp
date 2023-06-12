@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import SellerDashboard from '../../../screens/App/Seller/SellerDashboard/SellerDashboard';
-import SellerAddProducts from '../../../screens/App/Seller/SellerAddProducts/SellerAddProducts';
+import SellerDashboard from '../../../screens/App/SellerDashboard/SellerDashboard/SellerDashboard';
+import SellerAddProducts from '../../../screens/App/SellerDashboard/SellerAddProducts/SellerAddProducts';
 
 const Stack = createNativeStackNavigator();
 
