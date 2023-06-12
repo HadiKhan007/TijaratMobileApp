@@ -7,6 +7,7 @@ import AuthStack from './stacks/AuthStack';
 import MyDrawerStack from './stacks/MyDrawerStack';
 import BottomTabs from './stacks/BottomTabs';
 import {LogBox} from 'react-native';
+import UserStack from './stacks/UserStack';
 
 const AppStack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const MainAppNav = () => {
         <AppStack.Screen name={'AppNew'} component={MyDrawerStack} />
         <AppStack.Screen name={'AuthStack'} component={AuthStack} />
         <AppStack.Screen name={'BottomTabs'} component={BottomTabs} />
+        <AppStack.Screen name={'UserStack'} component={UserStack} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

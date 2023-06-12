@@ -2,16 +2,24 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const AccountCard = ({title, email, iconName}) => {
+const AccountCard = ({
+  title,
+  email,
+  iconName,
+  titleStyle,
+  mailStyle,
+  iconStyle,
+  mainContainer,
+}) => {
   return (
-    <View style={styles.mainContainer}>
+    <View style={[styles.mainContainer, mainContainer]}>
       <Image
         source={iconName ? iconName : appIcons.person}
-        style={styles.iconStyle}
+        style={[styles.iconStyle, iconStyle]}
       />
       <View>
-        <Text style={styles.titleStyle}>{title}</Text>
-        <Text style={styles.mailStyle}>{email}</Text>
+        <Text style={[styles.titleStyle, titleStyle]}>{title}</Text>
+        <Text style={[(styles.mailStyle, mailStyle)]}>{email}</Text>
       </View>
     </View>
   );
