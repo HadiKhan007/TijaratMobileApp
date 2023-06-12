@@ -165,6 +165,50 @@ const OrderData = [
     orderStatus: 'Delivered',
   },
 ];
+const UserDashboardData = [
+  {
+    id: 0,
+    leftIcon: appIcons.dashboard,
+    title: 'My Dashboard',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'MyDashboard',
+  },
+  {
+    id: 1,
+    leftIcon: appIcons.person,
+    title: 'My Account',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'UMyAccount',
+  },
+  {
+    id: 2,
+    leftIcon: appIcons.lock,
+    title: 'Change Password',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'UChangePassword',
+  },
+  {
+    id: 3,
+    leftIcon: appIcons.offerIcon,
+    title: 'Offers',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'Uoffers',
+  },
+  {
+    id: 4,
+    leftIcon: appIcons.bag,
+    title: 'Orders',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'UOrders',
+  },
+  {
+    id: 5,
+    leftIcon: appIcons.closeeye,
+    title: 'Deactivate',
+    rightIcon: appIcons.forwardArrow,
+    onPress: 'UDeactiveAccount',
+  },
+];
 
 export {
   drawerData,
@@ -174,4 +218,5 @@ export {
   SOCKET_URL,
   OrderData,
   categoryData,
+  UserDashboardData,
 };

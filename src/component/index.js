@@ -26,6 +26,7 @@ export * from './AppCard/PaymentCard';
 export * from './AppCard/ProfileCard';
 export * from './AppCard/AccountCard';
 export * from './AppCard/ProfileCard';
+export * from './AppCard/UserDashboardCard';
 
 //AppInput
 

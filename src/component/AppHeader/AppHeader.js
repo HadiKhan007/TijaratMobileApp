@@ -10,7 +10,7 @@ const AppHeader = () => {
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.leftContainer}
-        onPress={() => navigation.navigate('BottomTabs')}>
+        onPress={() => navigation.navigate('UserStack')}>
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}

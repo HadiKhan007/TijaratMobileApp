@@ -4,6 +4,7 @@ export const appImages = {
   plugs: require('../../assets/images/plugs.png'),
   bgImg: require('../../assets/images/bgImg.png'),
   frontId: require('../../assets/images/frontId.png'),
+  curveImg: require('../../assets/images/curveImg.png'),
 };
 
 export const applogos = {
@@ -59,4 +60,7 @@ export const appIcons = {
   SDashboard: require('../../assets/icons/SDashboard.png'),
   sProduct: require('../../assets/icons/Product.png'),
   forwardArrow: require('../../assets/icons/forwardArrow.png'),
+  lock: require('../../assets/icons/lock.png'),
+  bag: require('../../assets/icons/bag.png'),
+  offerIcon: require('../../assets/icons/offerIcon.png'),
 };
