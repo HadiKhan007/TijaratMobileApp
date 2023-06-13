@@ -4,7 +4,7 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {OrderData, WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
-const SellerOrderCard = () => {
+const SellerOrderCard = ({orderId, firstTitle, SecondTitle}) => {
   const [data, setData] = useState(OrderData);
 
   return (

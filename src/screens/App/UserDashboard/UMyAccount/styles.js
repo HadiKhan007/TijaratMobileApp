@@ -50,6 +50,11 @@ const styles = StyleSheet.create({
   btn2Title: {
     color: colors.p3,
   },
+  inputStyle: {
+    backgroundColor: colors.bgColor,
+    marginVertical: WP('2.5'),
+    paddingHorizontal: WP('2'),
+  },
 });
 
 export default styles;

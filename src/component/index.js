@@ -27,11 +27,13 @@ export * from './AppCard/ProfileCard';
 export * from './AppCard/AccountCard';
 export * from './AppCard/ProfileCard';
 export * from './AppCard/UserDashboardCard';
+export * from './AppCard/OfferCard';
 
 //AppInput
 
 export * from './AppInput/TaskInput';
 export * from './AppInput/AddSpecsInput';
+export * from './AppInput/OutLineInput';
 
 //AppModal
 
