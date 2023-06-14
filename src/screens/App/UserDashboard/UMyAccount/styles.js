@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {WP, colors, family, size} from '../../../../utilities';
-const {width, height} = Dimensions.get('window');
+import {WP, colors} from '../../../../utilities';
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   secondContainer: {
     flex: 0.6,
-    marginHorizontal: WP('6'),
+    marginHorizontal: WP('4'),
   },
   rowContainer: {
     flexDirection: 'row',
@@ -54,6 +54,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgColor,
     marginVertical: WP('2.5'),
     paddingHorizontal: WP('2'),
+  },
+  containerStyle: {
+    height: WP('12'),
+    alignItems: 'center',
+    paddingVertical: WP('1'),
   },
 });
 

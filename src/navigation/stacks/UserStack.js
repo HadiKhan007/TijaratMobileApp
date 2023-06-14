@@ -7,6 +7,7 @@ import Uoffers from '../../screens/App/UserDashboard/Uoffers/Uoffers';
 import UDeactiveAccount from '../../screens/App/UserDashboard/UDeactiveAccount/UDeactiveAccount';
 import UMyAccount from '../../screens/App/UserDashboard/UMyAccount/UMyAccount';
 import UOrders from '../../screens/App/UserDashboard/UOrders/UOrders';
+import UserOrderDetail from '../../screens/App/UserDashboard/UserOrderDetail/UserOrderDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ function UserStack() {
       <Stack.Screen name="Uoffers" component={Uoffers} />
       <Stack.Screen name="UOrders" component={UOrders} />
       <Stack.Screen name="UDeactiveAccount" component={UDeactiveAccount} />
+      <Stack.Screen name="UserOrderDetail" component={UserOrderDetail} />
     </Stack.Navigator>
   );
 }

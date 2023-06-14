@@ -1,48 +1,110 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const OfferCard = () => {
+const OfferCard = props => {
+  const {
+    heading1,
+    heading2,
+    heading3,
+    heading4,
+    heading5,
+    heading6,
+    heading7,
+    subHeading1,
+    subHeading2,
+    subHeading3,
+    subHeading4,
+    subHeading5,
+    subHeading6,
+    subHeading7,
+    iconName,
+  } = props;
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Seller:</Text>
-        <Text style={styles.secondText}>Hamza </Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Itmes:</Text>
-        <Text style={styles.secondText}>Fashion Shoes </Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Buyer Offered:</Text>
-        <Text style={styles.secondText}>Rs 1000</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Quantity::</Text>
-        <Text style={styles.secondText}>1</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Seller Offered:</Text>
-        <Text style={styles.secondText}>950</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Status:</Text>
-        <Text style={styles.secondText}>Counter Offer By Seller</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Date:</Text>
-        <Text style={styles.secondText}>October 19, 2022</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <TouchableOpacity style={styles.rowContainer}>
-          <Image
-            source={appIcons.closeeye}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-          <Text style={styles.cloneStyle}>Action</Text>
-        </TouchableOpacity>
-      </View>
+      {heading1 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading1}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading1}</Text>
+          </View>
+        </View>
+      )}
+      {heading2 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading2}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading2}</Text>
+          </View>
+        </View>
+      )}
+      {heading3 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading3}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading3} </Text>
+          </View>
+        </View>
+      )}
+      {heading4 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading4}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading4} </Text>
+          </View>
+        </View>
+      )}
+      {heading5 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading5}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading5} </Text>
+          </View>
+        </View>
+      )}
+      {heading6 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading6}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading6} </Text>
+          </View>
+        </View>
+      )}
+      {heading7 && (
+        <View style={styles.rowContainer}>
+          <View style={{flex: 1}}>
+            <Text style={styles.titleStyle}>{heading7}</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <Text style={styles.secondText}>{subHeading7} </Text>
+          </View>
+        </View>
+      )}
+      {iconName && (
+        <View style={styles.rowContainer}>
+          <TouchableOpacity style={styles.rowContainer}>
+            <Image
+              source={appIcons.closeeye}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
+            <Text style={styles.cloneStyle}>Action</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -71,9 +133,8 @@ const styles = StyleSheet.create({
     color: colors.p2,
     fontFamily: family.workSans_medium,
     fontSize: size.tiny,
-    marginLeft: WP('3'),
-    flexWrap: 'wrap',
-    flex: 1,
+    marginLeft: -WP('10'),
+    alignSelf: 'flex-start',
   },
   iconStyle: {
     width: WP('5'),

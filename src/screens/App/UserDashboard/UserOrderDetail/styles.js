@@ -9,11 +9,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: WP('4'),
     marginVertical: WP('0'),
   },
-  positionCon: {
-    position: 'absolute',
-    right: -WP('3'),
-    bottom: -WP('45'),
-  },
 });
 
 export default styles;

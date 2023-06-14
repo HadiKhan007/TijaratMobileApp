@@ -210,6 +210,51 @@ const UserDashboardData = [
   },
 ];
 
+const UserOrderData = [
+  {
+    id: 0,
+    orderId: 10178,
+    status: 'Processing',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+  {
+    id: 1,
+    orderId: 10178,
+    status: 'Completed',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+  {
+    id: 2,
+    orderId: 10178,
+    status: 'Completed',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+  {
+    id: 3,
+    orderId: 10178,
+    status: 'Completed',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+  {
+    id: 4,
+    orderId: 10178,
+    status: 'Completed',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+  {
+    id: 5,
+    orderId: 10178,
+    status: 'Completed',
+    CDate: 'March 30, 2023',
+    onPress: 'UserOrderDetail',
+  },
+];
+
 export {
   drawerData,
   default_img,
@@ -219,4 +264,5 @@ export {
   OrderData,
   categoryData,
   UserDashboardData,
+  UserOrderData,
 };

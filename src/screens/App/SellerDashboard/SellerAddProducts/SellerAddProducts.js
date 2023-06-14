@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import styles from './styles';
 import {
   AddImage,
@@ -11,9 +11,8 @@ import {
   TaskInput,
   TopHeader,
 } from '../../../../component';
-import {WP, appIcons, colors} from '../../../../utilities';
+import {appIcons, colors} from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import ModalDropdown from 'react-native-modal-dropdown';
 
 const SellerAddProducts = () => {
   const [selectItem, setSelectItem] = useState('');
