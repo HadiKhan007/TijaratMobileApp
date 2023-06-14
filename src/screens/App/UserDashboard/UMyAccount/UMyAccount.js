@@ -1,18 +1,16 @@
 import React from 'react';
-import {View, Text, SafeAreaView, ImageBackground} from 'react-native';
+import {View, SafeAreaView, ImageBackground} from 'react-native';
 import styles from './styles';
 import {
   AccountCard,
   AppButton,
   AppTitle,
+  TaskInput,
   TopHeader,
 } from '../../../../component';
 import {appIcons, appImages, colors} from '../../../../utilities';
-import {TextInput} from 'react-native-paper';
 
 const UMyAccount = ({navigation}) => {
-  const [text, setText] = React.useState('');
-
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.imgContainer}>
@@ -39,13 +37,16 @@ const UMyAccount = ({navigation}) => {
       </View>
       <View style={styles.secondContainer}>
         <AppTitle Title="My Account" mainContainer={styles.titleContainer} />
-        <TextInput
-          label="Email"
-          value={text}
-          onChangeText={text => setText(text)}
-          autoFocus
-          outlineColor="red"
-          outlineStyle={{borderColor: 'red'}}
+        <TaskInput
+          title="Email"
+          titleStyle={styles.titleStyle}
+          inputContainerStyle={styles.containerStyle}
+          inputStyle={styles.inputStyle}
+          placeholder="example123@gmail.com"
+          // value={values.email}
+          // onChangeText={handleChange('email')}
+          // errorMessage={errors.email}
+          keyboardType={'email-address'}
         />
         <View style={styles.rowContainer}>
           <AppButton

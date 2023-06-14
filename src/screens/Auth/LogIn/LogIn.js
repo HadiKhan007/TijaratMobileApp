@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {View, Text, SafeAreaView, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
 import {
