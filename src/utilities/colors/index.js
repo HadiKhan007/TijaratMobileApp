@@ -26,5 +26,7 @@ export const colors = {
   gr: '#9DCC2D',
   gr1: '#37833B',
   gr2: '#00E19D',
-  //GrayScale
+
+  //Red
+  r1: '#FC122E',
 };
