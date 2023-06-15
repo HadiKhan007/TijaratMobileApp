@@ -29,6 +29,7 @@ export * from './AppCard/ProfileCard';
 export * from './AppCard/UserDashboardCard';
 export * from './AppCard/OfferCard';
 export * from './AppCard/UserOrderCard';
+export * from './AppCard/RulesCard';
 
 //AppInput
 
@@ -39,6 +40,8 @@ export * from './AppInput/OutLineInput';
 //AppModal
 
 export * from './AppModal/AppLoader';
+export * from './AppModal/DistanceModal';
+export * from './AppModal/CityModal';
 
 //DrawerBar
 

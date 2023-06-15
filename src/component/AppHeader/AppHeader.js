@@ -30,7 +30,7 @@ const AppHeader = () => {
             resizeMode="center"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('BottomTabs')}>
           <Image
             source={appIcons.cart}
             style={styles.rightIcon}

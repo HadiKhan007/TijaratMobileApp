@@ -63,4 +63,7 @@ export const appIcons = {
   lock: require('../../assets/icons/lock.png'),
   bag: require('../../assets/icons/bag.png'),
   offerIcon: require('../../assets/icons/offerIcon.png'),
+  crossIcon: require('../../assets/icons/crossIcon.png'),
+  edit: require('../../assets/icons/edit.png'),
+  delete: require('../../assets/icons/delete.png'),
 };

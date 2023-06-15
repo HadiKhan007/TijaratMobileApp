@@ -6,8 +6,20 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgColor,
   },
   mainContainer: {
-    paddingHorizontal: WP('4'),
     marginVertical: WP('0'),
+  },
+  titleContainer: {
+    paddingHorizontal: 0,
+  },
+  headerContainer: {
+    paddingHorizontal: WP('4'),
+  },
+  btnStyle: {
+    width: '30%',
+    borderRadius: 100,
+    marginHorizontal: WP('1'),
+    marginVertical: WP('10'),
+    alignSelf: 'center',
   },
 });
 
