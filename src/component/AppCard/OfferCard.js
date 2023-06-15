@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     color: colors.p2,
     fontFamily: family.workSans_medium,
     fontSize: size.tiny,
-    marginLeft: -WP('10'),
+    marginLeft: -WP('7'),
     alignSelf: 'flex-start',
   },
   iconStyle: {

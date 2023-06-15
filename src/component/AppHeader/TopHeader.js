@@ -3,10 +3,17 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 import {useNavigation} from '@react-navigation/native';
 
-const TopHeader = ({iconName, iconStyle, title, titleStyle, iconContainer}) => {
+const TopHeader = ({
+  iconName,
+  iconStyle,
+  title,
+  titleStyle,
+  iconContainer,
+  mainContainer,
+}) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.mainContainer}>
+    <View style={[styles.mainContainer, mainContainer]}>
       <TouchableOpacity
         style={[styles.iconContainer, iconContainer]}
         onPress={() => navigation.goBack()}>
