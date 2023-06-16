@@ -29,4 +29,7 @@ export const colors = {
 
   //Red
   r1: '#FC122E',
+
+  //pink
+  pc: '#EDBEEA',
 };

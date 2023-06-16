@@ -9,46 +9,37 @@ const DrawerContent = ({navigation}) => {
 
   const onPressBar = item => {
     navigation.closeDrawer();
-    // switch (item?.id) {
-    //   case 0:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 1:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 2:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 3:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 4:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 5:
-    //     navigation.navigate('ClientResourcesStack', {screen: 'ScheduleCall'});
-    //     break;
-    //   case 6:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 7:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 8:
-    //     navigation.navigate(item?.onPress);
-    //     break;
-    //   case 9:
-    //     userConfirmation();
-    //     break;
-    //   case 10:
-    //     navigation.navigate('OtherScreens', {screen: 'PrivacyPolicy'});
-    //     break;
-    //   case 11:
-    //     navigation.navigate('OtherScreens', {screen: 'TermsConditions'});
-    //     break;
-    //   default:
-    //     return;
-    // }
+    switch (item?.id) {
+      case 0:
+        navigation.navigate(item?.onPress);
+        break;
+      case 1:
+        navigation.navigate(item?.onPress);
+        break;
+      case 2:
+        navigation.navigate(item?.onPress);
+        break;
+      case 3:
+        navigation.navigate(item?.onPress);
+        break;
+      case 4:
+        navigation.navigate(item?.onPress);
+        break;
+      case 5:
+        navigation.navigate('ClientResourcesStack', {screen: 'ScheduleCall'});
+        break;
+      case 6:
+        navigation.navigate(item?.onPress);
+        break;
+      case 7:
+        navigation.navigate(item?.onPress);
+        break;
+      case 8:
+        navigation.navigate(item?.onPress);
+        break;
+      default:
+        return;
+    }
   };
 
   const renderItem = ({item}) => (

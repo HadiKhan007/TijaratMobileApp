@@ -5,6 +5,7 @@ export const appImages = {
   bgImg: require('../../assets/images/bgImg.png'),
   frontId: require('../../assets/images/frontId.png'),
   curveImg: require('../../assets/images/curveImg.png'),
+  sneakers: require('../../assets/images/sneakers.png'),
 };
 
 export const applogos = {
