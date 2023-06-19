@@ -1,11 +1,14 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
-import {AppDivider} from '../AppDivider/AppDivider';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoryCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.mainContainer}>
+    <TouchableOpacity
+      style={styles.mainContainer}
+      onPress={() => navigation.navigate(item?.onPress)}>
       <View style={styles.imgCon}>
         <Image
           source={item?.iconName}
@@ -14,7 +17,7 @@ const CategoryCard = ({item}) => {
         />
       </View>
       <Text style={[styles.titleStyle]}>{item?.title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

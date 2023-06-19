@@ -10,10 +10,6 @@ const DrawerBar = ({item, onPress}) => {
         <Image source={item?.leftIcon} style={styles.leftIconStyle} />
         <Text style={styles.textStyle}>{item?.title}</Text>
       </View>
-
-      {/* {!!item?.rightIcon && (
-        <Image source={item?.rightIcon} style={styles.iconStyle} />
-      )} */}
     </TouchableOpacity>
   );
 };
@@ -22,6 +18,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
     marginVertical: WP('2'),
   },

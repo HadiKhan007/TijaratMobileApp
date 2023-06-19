@@ -2,13 +2,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
 import Splash from '../screens/Auth/Splash/Splash';
-import HomeStack from './stacks/HomeStack';
 import AuthStack from './stacks/AuthStack';
-import MyDrawerStack from './stacks/MyDrawerStack';
-import BottomTabs from './stacks/BottomTabs';
 import {LogBox} from 'react-native';
-import UserStack from './stacks/UserStack';
 import MyNewDrawer from './stacks/MyDrawerStack';
+import OtherScreensStack from './stacks/OtherScreensStack';
 
 const AppStack = createNativeStackNavigator();
 
@@ -24,13 +21,12 @@ const MainAppNav = () => {
           animation: 'fade',
         }}>
         <AppStack.Screen name={'Splash'} component={Splash} />
-        <AppStack.Screen name={'HomeStack'} component={HomeStack} />
-        <AppStack.Screen name={'AppNew'} component={MyDrawerStack} />
         <AppStack.Screen name={'AuthStack'} component={AuthStack} />
-        {/* <AppStack.Screen name={'MyNewDrawer'} component={MyNewDrawer} /> */}
-
-        <AppStack.Screen name={'BottomTabs'} component={BottomTabs} />
-        <AppStack.Screen name={'UserStack'} component={UserStack} />
+        <AppStack.Screen name={'MyNewDrawer'} component={MyNewDrawer} />
+        <AppStack.Screen
+          name={'OtherScreensStack'}
+          component={OtherScreensStack}
+        />
       </AppStack.Navigator>
     </NavigationContainer>
   );

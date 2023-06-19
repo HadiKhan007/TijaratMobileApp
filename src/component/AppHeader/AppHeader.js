@@ -2,7 +2,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {WP, appIcons, colors, size} from '../../utilities';
-import {useNavigation} from '@react-navigation/native';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 
 const AppHeader = () => {
   const navigation = useNavigation();
@@ -10,7 +10,7 @@ const AppHeader = () => {
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.leftContainer}
-        onPress={() => navigation.navigate('UserStack')}>
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}

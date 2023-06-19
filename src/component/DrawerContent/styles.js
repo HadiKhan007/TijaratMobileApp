@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: colors.bgColor,
+    paddingHorizontal: WP('4'),
   },
   firstContainer: {
     backgroundColor: colors.bgColor,
@@ -15,9 +16,6 @@ const styles = StyleSheet.create({
   },
   secondContainer: {
     alignItems: 'flex-start',
-    paddingHorizontal: WP('3'),
-    paddingTop: WP('5'),
-    flexGrow: 1,
   },
   textStyle: {
     color: colors.p3,
