@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WP, colors} from '../../../utilities';
-
+import {colors, WP} from '../../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -9,15 +8,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     paddingHorizontal: WP('4'),
   },
-  titleContainer: {
+  titleCon: {
     paddingHorizontal: 0,
   },
   btnStyle: {
     borderRadius: 100,
-    position: 'absolute',
-    bottom: WP('4'),
-    alignSelf: 'center',
-    width: '94%',
+    marginVertical: WP('7'),
   },
 });
 

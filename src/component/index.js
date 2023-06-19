@@ -32,6 +32,8 @@ export * from './AppCard/UserOrderCard';
 export * from './AppCard/RulesCard';
 export * from './AppCard/NotificationCard';
 export * from './AppCard/WishCard';
+export * from './AppCard/SummaryCard';
+export * from './AppCard/DeliveryCard';
 
 //AppInput
 

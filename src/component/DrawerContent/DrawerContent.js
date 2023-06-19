@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, FlatList, ScrollView} from 'react-native';
-import {DrawerBar} from '..';
-import {drawerData} from '../../utilities';
+import {AccountCard, AppLoader, DrawerBar} from '..';
+import {appIcons, drawerData} from '../../utilities';
 import styles from './styles';
 
 const DrawerContent = ({navigation}) => {
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onPressBar = item => {
     navigation.closeDrawer();
@@ -26,15 +26,12 @@ const DrawerContent = ({navigation}) => {
         navigation.navigate(item?.onPress);
         break;
       case 5:
-        navigation.navigate('ClientResourcesStack', {screen: 'ScheduleCall'});
+        navigation.navigate(item?.onPress);
         break;
       case 6:
         navigation.navigate(item?.onPress);
         break;
       case 7:
-        navigation.navigate(item?.onPress);
-        break;
-      case 8:
         navigation.navigate(item?.onPress);
         break;
       default:
@@ -53,13 +50,12 @@ const DrawerContent = ({navigation}) => {
 
   return (
     <View style={styles.rootContainer}>
-      <View style={styles.firstContainer}>
-        <Text style={styles.textStyle} numberOfLines={3}>
-          Ali
-        </Text>
-      </View>
+      <AccountCard
+        iconName={appIcons.person}
+        title="Hamza Habib"
+        email="Madison, United State..."
+      />
       <View style={styles.secondContainer}>
-        <Text style={styles.titleText}>Your Account</Text>
         <ScrollView
           style={styles.container}
           showsVerticalScrollIndicator={false}>
@@ -73,7 +69,7 @@ const DrawerContent = ({navigation}) => {
           />
         </ScrollView>
       </View>
-      {/* <AppLoader loading={loading} /> */}
+      <AppLoader loading={loading} />
     </View>
   );
 };
