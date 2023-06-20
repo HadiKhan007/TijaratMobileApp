@@ -16,9 +16,11 @@ const styles = StyleSheet.create({
   btnStyle: {
     borderRadius: 100,
     marginVertical: WP('7'),
+    width: '90%',
+    alignSelf: 'center',
   },
   lineStyle: {
-    marginVertical: 0,
+    marginVertical: WP('4'),
   },
   titleStyle: {
     color: colors.p1,
@@ -29,6 +31,12 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color: colors.p3,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
+  main: {
+    flex: 1,
   },
 });
 

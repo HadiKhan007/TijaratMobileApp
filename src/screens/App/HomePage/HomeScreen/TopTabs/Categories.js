@@ -84,7 +84,10 @@ const Categories = ({navigation}) => {
         <AppTitle
           Title="Explore Top Category"
           secondTitle="See all"
-          onPress={() => navigation.navigate('AllCategories')}
+          // onPress={() => navigation.navigate('AllCategories')}
+          onPress={() =>
+            navigation.navigate('OtherScreensStack', {screen: 'ClickedItem'})
+          }
         />
         {/* <FlatList
           data={HCategoryData}
