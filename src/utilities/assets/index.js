@@ -6,6 +6,7 @@ export const appImages = {
   frontId: require('../../assets/images/frontId.png'),
   curveImg: require('../../assets/images/curveImg.png'),
   sneakers: require('../../assets/images/sneakers.png'),
+  sneakers2: require('../../assets/images/sneakers2.png'),
 };
 
 export const applogos = {
@@ -67,4 +68,8 @@ export const appIcons = {
   crossIcon: require('../../assets/icons/crossIcon.png'),
   edit: require('../../assets/icons/edit.png'),
   delete: require('../../assets/icons/delete.png'),
+  emptyHeart: require('../../assets/icons/emptyHeart.png'),
+  fillHeart: require('../../assets/icons/fillHeart.png'),
+  sort: require('../../assets/icons/sort.png'),
+  filter: require('../../assets/icons/filter.png'),
 };

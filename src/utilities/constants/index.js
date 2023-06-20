@@ -152,6 +152,32 @@ const categoryData = [
     onPress: 'OtherScreensStack',
   },
 ];
+const SheetData = [
+  {
+    id: 0,
+    title: 'Latest Items',
+  },
+  {
+    id: 1,
+    title: 'Price: High to Low',
+  },
+  {
+    id: 2,
+    title: 'Price: Low to High',
+  },
+  {
+    id: 3,
+    title: 'Oldest Items',
+  },
+  {
+    id: 4,
+    title: 'Sort by Name: A to Z',
+  },
+  {
+    id: 5,
+    title: 'Sort by Name: Z to A',
+  },
+];
 
 const OrderData = [
   {
@@ -273,4 +299,5 @@ export {
   categoryData,
   UserDashboardData,
   UserOrderData,
+  SheetData,
 };
