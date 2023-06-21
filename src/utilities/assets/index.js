@@ -72,4 +72,5 @@ export const appIcons = {
   fillHeart: require('../../assets/icons/fillHeart.png'),
   sort: require('../../assets/icons/sort.png'),
   filter: require('../../assets/icons/filter.png'),
+  viewIcon: require('../../assets/icons/viewIcon.png'),
 };

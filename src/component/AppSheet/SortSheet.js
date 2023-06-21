@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -14,11 +14,20 @@ import {SheetData, WP, appIcons, colors} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
 const SortSheet = ({refRBSheet}) => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const handleItemClick = item => {
+    setSelectedItem(item);
+  };
   const renderItem = ({item}) => (
     <>
-      <TouchableOpacity style={styles.rowContainer}>
-        <Image source={appIcons.click} style={styles.iconStyle} />
-        <Text style={styles.titleStyle}>{item?.title}</Text>
+      <TouchableOpacity
+        style={styles.rowContainer}
+        onPress={() => handleItemClick(item.id)}>
+        <Image
+          source={selectedItem === item.id ? appIcons.click : appIcons.unClick}
+          style={styles.iconStyle}
+        />
+        <Text style={[styles.titleStyle]}>{item?.title}</Text>
       </TouchableOpacity>
       <AppDivider />
     </>
@@ -77,5 +86,13 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     marginHorizontal: WP('3'),
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adjust the opacity (0.5 in this example)
   },
 });
