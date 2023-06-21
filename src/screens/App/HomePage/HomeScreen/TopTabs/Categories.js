@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   FlatList,
@@ -84,10 +85,10 @@ const Categories = ({navigation}) => {
         <AppTitle
           Title="Explore Top Category"
           secondTitle="See all"
-          // onPress={() => navigation.navigate('AllCategories')}
-          onPress={() =>
-            navigation.navigate('OtherScreensStack', {screen: 'ClickedItem'})
-          }
+          onPress={() => navigation.navigate('AllCategories')}
+          // onPress={() =>
+          //   navigation.navigate('OtherScreensStack', {screen: 'ClickedItem'})
+          // }
         />
         {/* <FlatList
           data={HCategoryData}

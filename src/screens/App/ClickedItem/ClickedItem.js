@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
 import styles from './styles';
 import {
@@ -6,13 +6,17 @@ import {
   AppDivider,
   AppHeader,
   AppTitle,
+  DistanceModal,
   FavouriteItemCard,
+  FilterModal,
   SortSheet,
 } from '../../../component';
 import {appImages, colors} from '../../../utilities';
 
 const ClickedItem = () => {
   const refRBSheet = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleModal = () => setIsVisible(!isVisible);
   const props = {
     imgBg: colors.pc,
     imgName: appImages.sneakers,
@@ -29,7 +33,10 @@ const ClickedItem = () => {
           Title="What’s Hot is Sneakers Right Now"
           mainContainer={styles.titleCon}
         />
-        <AppBar onPressSort={() => refRBSheet.current.open()} />
+        <AppBar
+          onPressSort={() => refRBSheet.current.open()}
+          onPressFilter={toggleModal}
+        />
 
         <AppTitle Title="Shop by PAK Size" mainContainer={styles.titleCon} />
         <FavouriteItemCard {...props} />
@@ -43,6 +50,8 @@ const ClickedItem = () => {
         <FavouriteItemCard {...props} />
         <AppDivider />
       </ScrollView>
+      <FilterModal isModalVisible={isVisible} onPress={toggleModal} />
+      {/* <DistanceModal isModalVisible={isVisible} onPress={toggleModal} /> */}
 
       <SortSheet refRBSheet={refRBSheet} />
     </SafeAreaView>

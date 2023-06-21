@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const AppBar = ({onPressSort}) => {
+const AppBar = ({onPressSort, onPressFilter}) => {
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity style={styles.rowContainer}>
@@ -26,7 +26,9 @@ const AppBar = ({onPressSort}) => {
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.rowContainer, {marginLeft: WP('4')}]}>
+        <TouchableOpacity
+          onPress={onPressFilter}
+          style={[styles.rowContainer, {marginLeft: WP('4')}]}>
           <Text style={[styles.textStyle, {marginRight: WP('1')}]}>Filter</Text>
           <Image
             source={appIcons.filter}

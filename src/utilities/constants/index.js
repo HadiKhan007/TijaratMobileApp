@@ -288,6 +288,12 @@ const UserOrderData = [
     onPress: 'UserOrderDetail',
   },
 ];
+const FilterData = [
+  {id: 0, firstText: 'Condition', secondText: 'New with Box'},
+  {id: 1, firstText: 'Category', secondText: 'New with Box'},
+  {id: 2, firstText: 'Price', secondText: 'New with Box'},
+  {id: 3, firstText: 'Brands', secondText: 'New with Box'},
+];
 
 export {
   drawerData,
@@ -300,4 +306,5 @@ export {
   UserDashboardData,
   UserOrderData,
   SheetData,
+  FilterData,
 };

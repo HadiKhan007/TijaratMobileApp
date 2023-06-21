@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
-import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const TopHeader = ({
   iconName,
@@ -10,13 +10,16 @@ const TopHeader = ({
   titleStyle,
   iconContainer,
   mainContainer,
+  rightText,
+  rTextStyle,
+  onPress,
 }) => {
   const navigation = useNavigation();
   return (
     <View style={[styles.mainContainer, mainContainer]}>
       <TouchableOpacity
         style={[styles.iconContainer, iconContainer]}
-        onPress={() => navigation.goBack()}>
+        onPress={onPress ? onPress : () => navigation.goBack()}>
         <Image
           source={iconName}
           style={[styles.iconStyle, iconStyle]}
@@ -28,7 +31,13 @@ const TopHeader = ({
       ) : (
         <View />
       )}
-      <View />
+      {rightText ? (
+        <TouchableOpacity>
+          <Text style={[styles.rTextStyle, rTextStyle]}>{rightText}</Text>
+        </TouchableOpacity>
+      ) : (
+        <View />
+      )}
     </View>
   );
 };
@@ -57,5 +66,10 @@ const styles = StyleSheet.create({
     color: colors.p3,
     fontFamily: family.workSans_bold,
     fontSize: size.medium,
+  },
+  rTextStyle: {
+    color: colors.p3,
+    fontFamily: family.morkSans_regular,
+    fontSize: size.normal,
   },
 });
