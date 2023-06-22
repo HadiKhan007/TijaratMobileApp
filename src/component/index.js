@@ -58,6 +58,7 @@ export * from './DrawerContent/DrawerContent';
 //AppBar
 export * from './AppBar/AppBar';
 export * from './AppBar/FilterBar';
+export * from './AppBar/TextWithInput';
 
 //BottomSheet
 

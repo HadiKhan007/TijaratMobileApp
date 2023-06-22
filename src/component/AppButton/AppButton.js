@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.p1,
     width: '100%',
     padding: 10,
-    borderRadius: 7,
     marginVertical: WP('1.5'),
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 100,
   },
   textStyle: {
     color: colors.w1,

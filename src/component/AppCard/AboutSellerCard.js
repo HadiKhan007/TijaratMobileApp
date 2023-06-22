@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     elevation: 2,
     backgroundColor: colors.w2,
-    padding: WP('2'),
+    padding: WP('3'),
   },
   titleStyle: {
     color: colors.b1,
