@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.p4,
     padding: WP('1.5'),
-    borderRadius: 5,
+    borderRadius: 100,
     marginVertical: WP('3'),
   },
   iconStyle: {

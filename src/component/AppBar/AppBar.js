@@ -2,10 +2,10 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const AppBar = ({onPressSort, onPressFilter}) => {
+const AppBar = ({onPressSort, onPressFilter, onPressSave}) => {
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity style={styles.rowContainer}>
+      <TouchableOpacity style={styles.rowContainer} onPress={onPressSave}>
         <Image
           source={appIcons.emptyHeart}
           style={styles.iconStyle}

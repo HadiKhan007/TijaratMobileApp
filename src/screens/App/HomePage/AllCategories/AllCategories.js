@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, SafeAreaView, FlatList} from 'react-native';
+import {View, SafeAreaView, FlatList} from 'react-native';
 import styles from './styles';
 import {CategoryCard, TopHeader} from '../../../../component';
 import {appIcons, categoryData} from '../../../../utilities';

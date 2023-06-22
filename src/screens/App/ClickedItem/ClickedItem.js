@@ -6,14 +6,13 @@ import {
   AppDivider,
   AppHeader,
   AppTitle,
-  DistanceModal,
   FavouriteItemCard,
   FilterModal,
   SortSheet,
 } from '../../../component';
 import {appImages, colors} from '../../../utilities';
 
-const ClickedItem = () => {
+const ClickedItem = ({navigation}) => {
   const refRBSheet = useRef();
   const [isVisible, setIsVisible] = useState(false);
   const toggleModal = () => setIsVisible(!isVisible);
@@ -36,6 +35,7 @@ const ClickedItem = () => {
         <AppBar
           onPressSort={() => refRBSheet.current.open()}
           onPressFilter={toggleModal}
+          onPressSave={() => navigation.navigate('BuyProduct')}
         />
 
         <AppTitle Title="Shop by PAK Size" mainContainer={styles.titleCon} />
@@ -51,7 +51,6 @@ const ClickedItem = () => {
         <AppDivider />
       </ScrollView>
       <FilterModal isModalVisible={isVisible} onPress={toggleModal} />
-      {/* <DistanceModal isModalVisible={isVisible} onPress={toggleModal} /> */}
 
       <SortSheet refRBSheet={refRBSheet} />
     </SafeAreaView>
