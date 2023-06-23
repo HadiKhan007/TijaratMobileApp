@@ -55,6 +55,21 @@ const styles = StyleSheet.create({
     width: WP('10'),
     height: WP('10'),
   },
+  textStyle: {
+    color: colors.p1,
+    fontSize: size.small,
+    fontFamily: family.workSans_semiBold,
+    width: '22%',
+  },
+  dropbg: {
+    width: '78%',
+  },
+  newRowCon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: WP('2'),
+  },
 });
 
 export default styles;
