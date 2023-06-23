@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const PostApi = createApi({
   reducerPath: 'postApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: 'https://www.tijarat.com/',
   }),
   tagTypes: ['Posts', 'postList'],
   endpoints: builder => ({
@@ -19,8 +19,8 @@ export const PostApi = createApi({
 
     createPost: builder.mutation({
       query: data => ({
-        url: 'posts',
-        method: 'post',
+        url: 'login',
+        method: 'POST',
         body: data,
       }),
       invalidatesTags: ['postList'],

@@ -10,12 +10,23 @@ import {
 import {appIcons, loginFormFields, loginVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
+import {useCreatePostMutation} from '../../../redux/API/postAPI';
 
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
+  const [createPost, {isLoading, isError}] = useCreatePostMutation();
 
-  const handleLogin = () => {
-    Alert.alert('Your Good to go');
+  const handleLogin = values => {
+    const email = values.email;
+    const password = values.password;
+    createPost({email, password})
+      .unwrap()
+      .then(response => {
+        console.log('response', response.json());
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   };
   return (
     <SafeAreaView style={styles.rootContainer}>
