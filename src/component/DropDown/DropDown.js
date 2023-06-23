@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {appIcons, colors, family, size, WP} from '../../utilities';
@@ -10,13 +11,11 @@ const DropDown = ({value, data, onSelect, title, dropbg}) => {
   };
   return (
     <View>
-      <Text style={styles.titleStyle}>{title}</Text>
+      {title && <Text style={styles.titleStyle}>{title}</Text>}
       <TouchableOpacity
         style={styles.mainContainer}
         onPress={() => setShow(!show)}>
-        <Text style={styles.textStyle}>
-          {value ? value?.name : 'Select Item'}
-        </Text>
+        <Text style={styles.textStyle}>{value ? value?.name : 'Select'}</Text>
         <Image
           source={appIcons.downArrow}
           style={styles.iconStyle}
