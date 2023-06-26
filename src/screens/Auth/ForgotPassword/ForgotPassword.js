@@ -5,13 +5,32 @@ import {AppButton, TaskInput, TopHeader} from '../../../component';
 import {appIcons, forgotPass, forgotVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
+import {useDispatch, useSelector} from 'react-redux';
+import {forgotPassword} from '../../../redux/Slices/authSlice';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({navigation}) => {
   const formikRef = useRef();
-  const handleForgot = () => {
-    Alert.alert('Your Good to go');
-  };
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
+  const error = useSelector(state => state.auth.error);
+  const success = useSelector(state => state.auth.success);
 
+  console.log('error---->', error);
+  console.log('loading---->', loading);
+  console.log('success---->', success);
+  const handleForgot = async values => {
+    console.log('Values--->', values);
+    const credentials = {
+      email: values.email,
+    };
+    try {
+      loading;
+      dispatch(forgotPassword(credentials));
+      // navigation.navigate('LogIn');
+    } catch (err) {
+      console.log('SignUp error:', err.message);
+    }
+  };
   return (
     <SafeAreaView style={styles.rootContainer}>
       <Formik
@@ -53,6 +72,8 @@ const ForgotPassword = () => {
                 title="Submit"
                 containerStyle={styles.btnStyle}
                 onPress={handleSubmit}
+                loading={loading}
+                disabled={loading}
               />
             </View>
           </KeyboardAwareScrollView>

@@ -1,24 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {persistReducer, persistStore} from 'redux-persist';
 import rootReducer from './Slices';
-import {PostApi} from './API/postAPI';
 
-const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  whitelist: ['authSlice'],
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// Import other reducers if needed
 
 const store = configureStore({
-  reducer: persistedReducer,
-  devTools: true,
-
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({}).concat([PostApi.middleware]),
+  reducer: rootReducer,
 });
 
-const persistor = persistStore(store);
-
-export {store, persistor};
+export default store;
