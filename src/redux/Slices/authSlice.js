@@ -1,10 +1,18 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {forgotPassApi, loginAPI, signUpApi} from '../API/authApi';
 
-export const logIn = createAsyncThunk('auth/login', async credentials => {
-  const response = await loginAPI(credentials);
-  return response.data;
-});
+export const loginUser = createAsyncThunk(
+  'auth/loginUser',
+  async ({username, password}, {rejectWithValue}) => {
+    try {
+      const response = await loginAPI(username, password);
+      return response.data; // Assuming the response contains user data or an access token
+    } catch (error) {
+      // Handle the error and return it using rejectWithValue
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
 export const signUp = createAsyncThunk('auth/signup', async userData => {
   const response = await signUpApi(userData);
@@ -38,21 +46,20 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       // Login
-      .addCase(logIn.pending, state => {
+      .addCase(loginUser.pending, state => {
         state.loading = true;
         state.error = null;
-        state.success = false;
       })
-      .addCase(logIn.fulfilled, state => {
+      .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
+        state.user = action.payload;
         state.error = null;
-        state.success = true;
       })
-      .addCase(logIn.rejected, (state, action) => {
+      .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
-        state.success = false;
+        state.error = action.payload;
       })
+
       // Signup
       .addCase(signUp.pending, state => {
         state.loading = true;

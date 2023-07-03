@@ -32,9 +32,9 @@ const SignUp = ({navigation}) => {
 
     try {
       await dispatch(signUp(credentials));
-      navigation.navigate('LogIn');
+      error && navigation.navigate('LogIn');
     } catch (err) {
-      console.log('SignUp error:', err.message);
+      Alert.alert('SignUp error:', err.message);
     }
   };
 

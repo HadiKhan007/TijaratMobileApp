@@ -9,6 +9,7 @@ import {
 } from '../../../../component';
 import {appIcons, colors} from '../../../../utilities';
 import {FloatingAction} from 'react-native-floating-action';
+import {DrawerActions} from '@react-navigation/native';
 
 const SellerDashboard = ({navigation}) => {
   const actions = [
@@ -38,7 +39,11 @@ const SellerDashboard = ({navigation}) => {
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
         <ScrollView>
-          <TopHeader iconName={appIcons.menuIcon} title="Seller Dashboard" />
+          <TopHeader
+            iconName={appIcons.menuIcon}
+            title="Seller Dashboard"
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+          />
           <AccountCard
             email="hamza1@gmail.com"
             title="Hamza Habib"

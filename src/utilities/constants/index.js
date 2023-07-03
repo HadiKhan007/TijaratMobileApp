@@ -71,13 +71,13 @@ const drawerData = [
     id: 7,
     title: 'Help & Contact',
     leftIcon: appIcons.phone,
-    // onPress: 'ResetPassword',
+    onPress: '',
   },
   {
     id: 10,
     title: 'LogOut',
     leftIcon: appIcons.logOut,
-    // onPress: 'PrivacyPolicy',
+    onPress: '',
   },
 ];
 

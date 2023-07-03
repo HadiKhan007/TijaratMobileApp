@@ -18,15 +18,17 @@ const ForgotPassword = ({navigation}) => {
   console.log('error---->', error);
   console.log('loading---->', loading);
   console.log('success---->', success);
+
   const handleForgot = async values => {
     console.log('Values--->', values);
     const credentials = {
-      email: values.email,
+      email: values.email.toLowerCase(),
     };
     try {
-      loading;
       dispatch(forgotPassword(credentials));
-      // navigation.navigate('LogIn');
+      Alert.alert('See Email', 'We have sent you a password on your email', [
+        {text: 'Proceed', onPress: () => navigation.navigate('LogIn')},
+      ]);
     } catch (err) {
       console.log('SignUp error:', err.message);
     }

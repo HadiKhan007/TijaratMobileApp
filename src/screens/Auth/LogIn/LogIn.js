@@ -11,7 +11,7 @@ import {appIcons, loginFormFields, loginVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
-import {logIn} from '../../../redux/Slices/authSlice';
+import {loginUser} from '../../../redux/Slices/authSlice';
 
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
@@ -21,17 +21,12 @@ const LogIn = ({navigation}) => {
   console.log('error---->', error);
   console.log('loading---->', loading);
 
-  const handleLogin = async values => {
-    const credentials = {
-      email: values.email,
-      password: values.password,
-    };
-    try {
-      dispatch(logIn({credentials}));
-      !!loading && navigation.navigate('HomeStack');
-    } catch (err) {
-      Alert.alert('Login error:', err.message);
-    }
+  const handleLogin = values => {
+    console.log('values===>', values);
+    const email = values.email;
+    const password = values.password;
+
+    dispatch(loginUser({email, password}));
   };
   return (
     <SafeAreaView style={styles.rootContainer}>
