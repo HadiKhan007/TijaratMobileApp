@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, Text, SafeAreaView, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, SafeAreaView, Alert} from 'react-native';
 import styles from './styles';
 import {
   AppButton,
@@ -10,11 +10,31 @@ import {
 import {appIcons, registerFormFields, registerVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
+import {useDispatch, useSelector} from 'react-redux';
+import {signUp} from '../../../redux/Slices/authSlice';
 
 const SignUp = ({navigation}) => {
   const formikRef = useRef();
-  const handleSignUp = () => {
-    Alert.alert('Your Good to go');
+  const dispatch = useDispatch();
+  const {loading} = useSelector(state => state.auth);
+
+  const handleSignUp = async values => {
+    const credentials = {
+      firstName: values.fname,
+      lastName: values.lname,
+      password: values.password,
+      email: values.email,
+    };
+    dispatch(signUp(credentials))
+      .unwrap()
+      .then(() => {
+        Alert.alert('SignUp SuccessFully', 'You can now login', [
+          {text: 'Proceed', onPress: () => navigation.navigate('LogIn')},
+        ]);
+      })
+      .catch(err => {
+        Alert.alert('Error', err.message);
+      });
   };
 
   return (
@@ -86,9 +106,11 @@ const SignUp = ({navigation}) => {
                 errorMessage={errors.password}
               />
               <AppButton
-                title="Log In"
+                title="Sign Up"
                 containerStyle={styles.btnStyle}
                 onPress={handleSubmit}
+                loading={loading}
+                disabled={loading}
               />
               <SocialButton />
               <Text style={styles.accountText}>

@@ -10,22 +10,24 @@ import {
 import {appIcons, loginFormFields, loginVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
-import {useCreatePostMutation} from '../../../redux/API/postAPI';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginUser} from '../../../redux/Slices/authSlice';
 
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
-  const [createPost, {isLoading, isError}] = useCreatePostMutation();
+  const dispatch = useDispatch();
+  const {loading} = useSelector(state => state.auth);
 
   const handleLogin = values => {
     const email = values.email;
     const password = values.password;
-    createPost({email, password})
+    dispatch(loginUser({email, password}))
       .unwrap()
-      .then(response => {
-        console.log('response', response.json());
+      .then(() => {
+        navigation.navigate('HomeStack');
       })
-      .catch(error => {
-        console.log('error', error);
+      .catch(err => {
+        Alert.alert('Error', err.message);
       });
   };
   return (
@@ -80,7 +82,12 @@ const LogIn = ({navigation}) => {
                 onPress={() => navigation.navigate('ForgotPassword')}>
                 <Text style={styles.forgotText}>Forgot Password?</Text>
               </TouchableOpacity>
-              <AppButton title="Log In" onPress={handleSubmit} />
+              <AppButton
+                title="Log In"
+                onPress={handleSubmit}
+                loading={loading}
+                disabled={loading}
+              />
               <SocialButton />
               <Text style={styles.accountText}>
                 Don’t have an account,

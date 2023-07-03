@@ -3,6 +3,7 @@ import {View, SafeAreaView, ImageBackground, Text} from 'react-native';
 import styles from './styles';
 import {AccountCard, TopHeader, UserDashboardCard} from '../../../../component';
 import {appIcons, appImages, colors} from '../../../../utilities';
+import {DrawerActions} from '@react-navigation/native';
 
 const UserDashboard = ({navigation}) => {
   return (
@@ -17,6 +18,7 @@ const UserDashboard = ({navigation}) => {
             title="User Dashboard"
             titleStyle={{color: colors.w1}}
             iconContainer={{colors: colors.p2}}
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           />
           <AccountCard
             iconName={appIcons.person}

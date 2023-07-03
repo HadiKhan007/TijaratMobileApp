@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {WP, colors, family, size} from '../../../../utilities';
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   rootContainer: {
