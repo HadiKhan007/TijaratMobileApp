@@ -16,17 +16,19 @@ import {loginUser} from '../../../redux/Slices/authSlice';
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-
-  const {error, loading} = useSelector(state => state.auth);
-  console.log('error---->', error);
-  console.log('loading---->', loading);
+  const {loading} = useSelector(state => state.auth);
 
   const handleLogin = values => {
-    console.log('values===>', values);
     const email = values.email;
     const password = values.password;
-
-    dispatch(loginUser({email, password}));
+    dispatch(loginUser({email, password}))
+      .unwrap()
+      .then(() => {
+        navigation.navigate('HomeStack');
+      })
+      .catch(err => {
+        Alert.alert('Error', err.message);
+      });
   };
   return (
     <SafeAreaView style={styles.rootContainer}>

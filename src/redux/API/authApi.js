@@ -28,3 +28,15 @@ export const forgotPassApi = async credentials => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const changePassApi = async credentials => {
+  try {
+    const response = await axios.post(
+      BASE_URL + ENDPOINTS.CHANGE_PASS,
+      credentials,
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

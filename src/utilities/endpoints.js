@@ -7,6 +7,7 @@ const ENDPOINTS = {
   LOGIN: 'login',
   SIGNUP: 'register',
   FORGOT_PASS: 'forgot-password',
+  CHANGE_PASS: 'change-password',
 };
 
 export {BASE_URL, ENDPOINTS};

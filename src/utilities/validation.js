@@ -26,11 +26,11 @@ export const forgotPass = {
 //   confirmPassword: '',
 // };
 
-// export const updatePassFormFields = {
-//   currentPassword: '',
-//   newPassword: '',
-//   confirmPassword: '',
-// };
+export const updatePassFormFields = {
+  currentPassword: '',
+  newPassword: '',
+  confirmPassword: '',
+};
 
 export const loginVS = yup.object().shape({
   email: yup

@@ -11,27 +11,21 @@ import {forgotPassword} from '../../../redux/Slices/authSlice';
 const ForgotPassword = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.loading);
-  const error = useSelector(state => state.auth.error);
-  const success = useSelector(state => state.auth.success);
-
-  console.log('error---->', error);
-  console.log('loading---->', loading);
-  console.log('success---->', success);
+  const {loading} = useSelector(state => state.auth);
 
   const handleForgot = async values => {
     console.log('Values--->', values);
-    const credentials = {
-      email: values.email.toLowerCase(),
-    };
-    try {
-      dispatch(forgotPassword(credentials));
-      Alert.alert('See Email', 'We have sent you a password on your email', [
-        {text: 'Proceed', onPress: () => navigation.navigate('LogIn')},
-      ]);
-    } catch (err) {
-      console.log('SignUp error:', err.message);
-    }
+    const email = values.email.toLowerCase();
+    dispatch(forgotPassword({email}))
+      .unwrap()
+      .then(() => {
+        Alert.alert('See Email', 'We have sent you a password on your email', [
+          {text: 'Proceed', onPress: () => navigation.navigate('LogIn')},
+        ]);
+      })
+      .catch(err => {
+        Alert.alert('Error', err.message);
+      });
   };
   return (
     <SafeAreaView style={styles.rootContainer}>

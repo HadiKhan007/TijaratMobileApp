@@ -11,31 +11,30 @@ import {appIcons, registerFormFields, registerVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
-import {signUpApi} from '../../../redux/API/authApi';
 import {signUp} from '../../../redux/Slices/authSlice';
 
 const SignUp = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.loading);
-  const error = useSelector(state => state.auth.error);
-  console.log('error---->', error);
-  console.log('loading---->', loading);
+  const {loading} = useSelector(state => state.auth);
+
   const handleSignUp = async values => {
-    console.log('values===>>', values);
     const credentials = {
       firstName: values.fname,
       lastName: values.lname,
       password: values.password,
       email: values.email,
     };
-
-    try {
-      await dispatch(signUp(credentials));
-      error && navigation.navigate('LogIn');
-    } catch (err) {
-      Alert.alert('SignUp error:', err.message);
-    }
+    dispatch(signUp(credentials))
+      .unwrap()
+      .then(() => {
+        Alert.alert('SignUp SuccessFully', 'You can now login', [
+          {text: 'Proceed', onPress: () => navigation.navigate('LogIn')},
+        ]);
+      })
+      .catch(err => {
+        Alert.alert('Error', err.message);
+      });
   };
 
   return (

@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {WP, colors, family, size} from '../../../../utilities';
-const {width, height} = Dimensions.get('window');
+import {WP, colors} from '../../../../utilities';
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -49,6 +49,12 @@ const styles = StyleSheet.create({
   },
   btn2Title: {
     color: colors.p3,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
+  main: {
+    flex: 1,
   },
 });
 
