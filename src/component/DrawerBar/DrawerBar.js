@@ -29,11 +29,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textStyle: {
-    color: colors.white,
+    color: colors.p1,
     fontFamily: family.workSans_medium,
     fontSize: size.large,
     marginLeft: hasNotch() ? WP('3') : WP('1.5'),
     width: '85%',
+    marginTop: -WP('0.5'),
   },
   iconStyle: {
     width: WP('4'),

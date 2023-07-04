@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     marginHorizontal: WP('3'),
+    color: colors.p2,
   },
   overlay: {
     position: 'absolute',
