@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -12,8 +12,15 @@ import {WP, appIcons, appImages, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
 const ProfileCard = () => {
+  const [count, setCount] = useState(1);
+  const incrementCount = () => {
+    setCount(2);
+  };
+  const decrementCount = () => {
+    setCount(1);
+  };
   return (
-    <ScrollView>
+    <ScrollView style={{marginBottom: WP('10')}}>
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <View style={{flex: 1}}>
@@ -100,7 +107,7 @@ const ProfileCard = () => {
         <AppDivider lineStyle={styles.dividerStyle} />
         <Text style={styles.testStyle}>Front of your CNIC</Text>
         <View style={styles.rowContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={decrementCount}>
             <Image
               source={appIcons.backArrow}
               style={styles.iconStyle}
@@ -108,11 +115,11 @@ const ProfileCard = () => {
             />
           </TouchableOpacity>
           <Image
-            source={appImages.frontId}
+            source={count === 1 ? appImages.frontId : appIcons.SDashboard}
             style={styles.cardStyle}
             resizeMode="cover"
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={incrementCount}>
             <Image
               source={appIcons.forwardArrow}
               style={styles.iconStyle}
@@ -120,7 +127,7 @@ const ProfileCard = () => {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.countStyle}>1/2</Text>
+        <Text style={styles.countStyle}>{count}/2</Text>
       </View>
     </ScrollView>
   );

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WP, colors} from '../../../../../../utilities';
+import {WP, colors, family, size} from '../../../../../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -10,7 +10,15 @@ const styles = StyleSheet.create({
     marginVertical: WP('6'),
   },
   titleContainer: {
-    paddingHorizontal: 0,
+    flexDirection: 'row',
+    marginVertical: WP('3'),
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  titleStyle: {
+    color: colors.p1,
+    fontSize: size.large,
+    fontFamily: family.workSans_bold,
   },
 });
 

@@ -41,7 +41,6 @@ export * from './AppCard/AboutSellerCard';
 
 export * from './AppInput/TaskInput';
 export * from './AppInput/AddSpecsInput';
-export * from './AppInput/OutLineInput';
 
 //AppModal
 
