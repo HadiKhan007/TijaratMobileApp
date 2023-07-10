@@ -36,6 +36,7 @@ export * from './AppCard/SummaryCard';
 export * from './AppCard/DeliveryCard';
 export * from './AppCard/FavouriteItemCard';
 export * from './AppCard/AboutSellerCard';
+export * from './AppCard/ArchiveCard';
 
 //AppInput
 

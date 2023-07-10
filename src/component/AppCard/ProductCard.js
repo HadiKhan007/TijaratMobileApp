@@ -44,8 +44,12 @@ const ProductCard = () => {
           />
           <Text style={styles.cloneStyle}>Edit</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.rowContainer, {marginLeft: WP('3')}]}>
-          <Text style={[styles.cloneStyle, {textDecorationLine: 'underline'}]}>
+        <TouchableOpacity style={[styles.rowContainer, {marginLeft: WP('1')}]}>
+          <Text
+            style={[
+              styles.cloneStyle,
+              {color: colors.r1, textDecorationLine: 'underline'},
+            ]}>
             Delete
           </Text>
         </TouchableOpacity>
@@ -58,11 +62,16 @@ export {ProductCard};
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: colors.w2,
+    backgroundColor: colors.w1,
     paddingHorizontal: WP('6'),
-    borderBottomColor: colors.p6,
-    borderBottomWidth: 2,
     paddingVertical: WP('2'),
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4,
+    borderRadius: 5,
+    marginVertical: WP('2'),
   },
   titleStyle: {
     color: colors.p3,
@@ -90,6 +99,6 @@ const styles = StyleSheet.create({
     color: colors.p4,
     fontFamily: family.workSans_medium,
     fontSize: size.small,
-    marginLeft: WP('2'),
+    marginLeft: WP('1'),
   },
 });

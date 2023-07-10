@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WP, colors, family} from '../../../../utilities';
+import {WP, colors} from '../../../../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -7,11 +7,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingHorizontal: WP('4'),
-    marginVertical: WP('6'),
-  },
-  subTextStyle: {
-    color: colors.r1,
-    fontFamily: family.morkSans_regular,
+    marginVertical: WP('0'),
   },
   titleContainer: {
     paddingHorizontal: 0,
