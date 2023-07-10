@@ -57,7 +57,7 @@ const SellerDashboard = ({navigation}) => {
             />
             <ResultCard
               iconName={appIcons.earn}
-              title="Total Earning"
+              title="Total Products"
               number="12,34567"
             />
             <ResultCard

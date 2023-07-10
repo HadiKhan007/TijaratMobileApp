@@ -10,8 +10,11 @@ const styles = StyleSheet.create({
     marginVertical: WP('6'),
   },
   subTextStyle: {
-    color: colors.p4,
+    color: colors.r1,
     fontFamily: family.morkSans_regular,
+  },
+  titleContainer: {
+    paddingHorizontal: 0,
   },
 });
 

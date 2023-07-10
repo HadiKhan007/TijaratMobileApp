@@ -4,19 +4,21 @@ import styles from './styles';
 import {AppTitle, ProductCard, TopHeader} from '../../../../component';
 import {appIcons} from '../../../../utilities';
 
-const SellerProducts = () => {
+const SellerProducts = ({navigation}) => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
         <TopHeader iconName={appIcons.menuIcon} title="Seller Dashboard" />
+        <AppTitle
+          Title="All Products"
+          secondTitle="Archive Product"
+          subTextStyle={styles.subTextStyle}
+          mainContainer={styles.titleContainer}
+          onPress={() => navigation.navigate('ArchiveProducts')}
+        />
+        <ProductCard />
+        <ProductCard />
       </View>
-      <AppTitle
-        Title="All Products"
-        secondTitle="Add Product"
-        subTextStyle={styles.subTextStyle}
-      />
-      <ProductCard />
-      <ProductCard />
     </SafeAreaView>
   );
 };

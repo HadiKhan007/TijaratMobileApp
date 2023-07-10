@@ -36,12 +36,12 @@ export * from './AppCard/SummaryCard';
 export * from './AppCard/DeliveryCard';
 export * from './AppCard/FavouriteItemCard';
 export * from './AppCard/AboutSellerCard';
+export * from './AppCard/ArchiveCard';
 
 //AppInput
 
 export * from './AppInput/TaskInput';
 export * from './AppInput/AddSpecsInput';
-export * from './AppInput/OutLineInput';
 
 //AppModal
 

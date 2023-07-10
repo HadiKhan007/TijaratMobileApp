@@ -13,6 +13,7 @@ const TopHeader = ({
   rightText,
   rTextStyle,
   onPress,
+  onPressRight,
 }) => {
   const navigation = useNavigation();
   return (
@@ -32,7 +33,7 @@ const TopHeader = ({
         <View />
       )}
       {rightText ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPressRight}>
           <Text style={[styles.rTextStyle, rTextStyle]}>{rightText}</Text>
         </TouchableOpacity>
       ) : (
