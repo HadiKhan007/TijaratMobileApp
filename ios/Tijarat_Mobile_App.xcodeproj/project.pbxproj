@@ -473,6 +473,9 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Tijarat_Mobile_App-Tijarat_Mobile_AppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5588RMQM32;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -491,6 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tijarat_Mobile_App.app/Tijarat_Mobile_App";
 			};
 			name = Debug;
@@ -500,7 +504,10 @@
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Tijarat_Mobile_App-Tijarat_Mobile_AppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 5588RMQM32;
 				INFOPLIST_FILE = Tijarat_Mobile_AppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -515,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tijarat_Mobile_App.app/Tijarat_Mobile_App";
 			};
 			name = Release;
@@ -524,16 +532,19 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Tijarat_Mobile_App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J8NRSW5535;
+				DEVELOPMENT_TEAM = 5588RMQM32;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Tijarat_Mobile_App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tijjarat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -552,15 +563,18 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Tijarat_Mobile_App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J8NRSW5535;
+				DEVELOPMENT_TEAM = 5588RMQM32;
 				INFOPLIST_FILE = Tijarat_Mobile_App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tijjarat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

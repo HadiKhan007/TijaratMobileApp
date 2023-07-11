@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {OrderData, WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
-const SellerOrderCard = ({orderId, firstTitle, SecondTitle}) => {
+const SellerOrderCard = ({orderId, firstTitle, SecondTitle, onPress}) => {
   const [data, setData] = useState(OrderData);
 
   return (
@@ -18,7 +18,7 @@ const SellerOrderCard = ({orderId, firstTitle, SecondTitle}) => {
       <FlatList
         data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
         renderItem={() => (
-          <>
+          <TouchableOpacity onPress={onPress}>
             <View style={styles.rowContainer}>
               <Text style={styles.idStyle}>10082-1</Text>
               <Text style={styles.textStyle}>Ali</Text>
@@ -33,7 +33,7 @@ const SellerOrderCard = ({orderId, firstTitle, SecondTitle}) => {
             <AppDivider
               lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
             />
-          </>
+          </TouchableOpacity>
         )}
       />
     </View>

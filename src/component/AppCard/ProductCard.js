@@ -6,26 +6,46 @@ const ProductCard = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Product Name:</Text>
-        <Text style={styles.secondText}>
-          House number, house name, streat name, city/town, country name...
-        </Text>
+        <View style={styles.column1}>
+          <Text style={styles.titleStyle}>Product Name:</Text>
+        </View>
+        <View style={styles.column2}>
+          <Text style={styles.secondText}>
+            House number, house name, streat name, city/town, country name...
+          </Text>
+        </View>
       </View>
       <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Category:</Text>
-        <Text style={styles.secondText}>Electronic </Text>
+        <View style={styles.column1}>
+          <Text style={styles.titleStyle}>Category:</Text>
+        </View>
+        <View style={styles.column2}>
+          <Text style={styles.secondText}>Electronic </Text>
+        </View>
       </View>
       <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Price:</Text>
-        <Text style={styles.secondText}>Rs 150.00</Text>
+        <View style={styles.column1}>
+          <Text style={styles.titleStyle}>Price:</Text>
+        </View>
+        <View style={styles.column2}>
+          <Text style={styles.secondText}>Rs 150.00</Text>
+        </View>
       </View>
       <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Stock:</Text>
-        <Text style={styles.secondText}>3</Text>
+        <View style={styles.column1}>
+          <Text style={styles.titleStyle}>Stock:</Text>
+        </View>
+        <View style={styles.column2}>
+          <Text style={styles.secondText}>3</Text>
+        </View>
       </View>
       <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>Status:</Text>
-        <Text style={styles.secondText}>3</Text>
+        <View style={styles.column1}>
+          <Text style={styles.titleStyle}>Status:</Text>
+        </View>
+        <View style={styles.column2}>
+          <Text style={styles.secondText}>3</Text>
+        </View>
       </View>
       <View style={styles.rowContainer}>
         <TouchableOpacity style={styles.rowContainer}>
@@ -63,7 +83,7 @@ export {ProductCard};
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: colors.w1,
-    paddingHorizontal: WP('6'),
+    paddingHorizontal: WP('4'),
     paddingVertical: WP('2'),
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -87,9 +107,7 @@ const styles = StyleSheet.create({
     color: colors.p2,
     fontFamily: family.workSans_medium,
     fontSize: size.tiny,
-    marginLeft: WP('3'),
     flexWrap: 'wrap',
-    flex: 1,
   },
   iconStyle: {
     width: WP('5'),
@@ -100,5 +118,11 @@ const styles = StyleSheet.create({
     fontFamily: family.workSans_medium,
     fontSize: size.small,
     marginLeft: WP('1'),
+  },
+  column1: {
+    flex: 0.4,
+  },
+  column2: {
+    flex: 0.6,
   },
 });

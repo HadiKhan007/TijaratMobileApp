@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import SellerDashboard from '../../../screens/App/SellerDashboard/SellerDashboard/SellerDashboard';
 import SellerOrdersList from '../../../screens/App/SellerDashboard/SellerOrdersList/SellerOrdersList';
+import SOrderDetails from '../../../screens/App/SellerDashboard/SellerOrdersList/SOrderDetails/SOrderDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ function SOrdersStack() {
         animation: 'slide_from_right',
       }}>
       <Stack.Screen name="SellerOrdersList" component={SellerOrdersList} />
+      <Stack.Screen name="SOrderDetails" component={SOrderDetails} />
     </Stack.Navigator>
   );
 }
