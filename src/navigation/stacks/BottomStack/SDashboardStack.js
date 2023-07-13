@@ -8,6 +8,8 @@ import ShippingRules from '../../../screens/App/SellerDashboard/SellerDashboard/
 import SUpdateprofile from '../../../screens/App/SellerDashboard/SellerDashboard/SellerMore/SUpdateprofile/SUpdateprofile';
 import EasyPaisa from '../../../screens/App/SellerDashboard/SellerDashboard/SellerMore/SellerPayment/EasyPaisa/EasyPaisa';
 import JazzCash from '../../../screens/App/SellerDashboard/SellerDashboard/SellerMore/SellerPayment/JazzCash/JazzCash';
+import SOffers from '../../../screens/App/SellerDashboard/SellerDashboard/SellerMore/SOffers/SOffers';
+import SOfferDetails from '../../../screens/App/SellerDashboard/SellerDashboard/SellerMore/SOffers/SOfferDetails/SOfferDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,8 @@ function SDashboardStack() {
       <Stack.Screen name="SUpdateprofile" component={SUpdateprofile} />
       <Stack.Screen name="EasyPaisa" component={EasyPaisa} />
       <Stack.Screen name="JazzCash" component={JazzCash} />
+      <Stack.Screen name="SOffers" component={SOffers} />
+      <Stack.Screen name="SOfferDetails" component={SOfferDetails} />
     </Stack.Navigator>
   );
 }
