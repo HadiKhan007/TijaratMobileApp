@@ -1,12 +1,13 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {WP, colors} from '../../../../../../utilities';
+import {ShippingAddressCard} from '../../../../../../component';
 
 const ShippingAddress = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <View>
-        <Text>ShippingAddress</Text>
+      <View style={styles.mainContainer}>
+        <ShippingAddressCard />
       </View>
     </SafeAreaView>
   );

@@ -14,24 +14,31 @@ import {DrawerActions} from '@react-navigation/native';
 const SellerDashboard = ({navigation}) => {
   const actions = [
     {
+      text: 'Offers',
+      icon: appIcons.Soffer,
+      name: 'SOffers',
+      position: 1,
+      color: colors.p1,
+    },
+    {
       text: 'Profile',
       icon: appIcons.person,
       name: 'SellerProfile',
-      position: 1,
+      position: 2,
       color: colors.p1,
     },
     {
       text: 'Payment Method',
       icon: appIcons.payment,
       name: 'SellerPayment',
-      position: 2,
+      position: 3,
       color: colors.p1,
     },
     {
       text: 'Shipping Rules',
       icon: appIcons.payment,
       name: 'ShippingRules',
-      position: 3,
+      position: 4,
       color: colors.p1,
     },
   ];

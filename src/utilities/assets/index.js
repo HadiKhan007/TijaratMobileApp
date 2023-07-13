@@ -73,4 +73,5 @@ export const appIcons = {
   sort: require('../../assets/icons/sort.png'),
   filter: require('../../assets/icons/filter.png'),
   viewIcon: require('../../assets/icons/viewIcon.png'),
+  Soffer: require('../../assets/icons/Soffer.png'),
 };
