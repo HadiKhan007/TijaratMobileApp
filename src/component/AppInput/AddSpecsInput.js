@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -11,19 +11,34 @@ import {
 import {WP, appIcons, colors, family, size} from '../../utilities';
 import {TaskInput} from './TaskInput';
 
-const AddSpecsInput = ({title, placeholder1, placeholder2}) => {
-  return (
-    <View style={styles.mainContainer}>
-      <View style={[styles.rowContainer, {justifyContent: 'space-between'}]}>
-        <Text style={styles.titleStyle}>{title}</Text>
-        <TouchableOpacity style={styles.imgCon}>
-          <Image
-            source={appIcons.plus}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
+const AddSpecsInput = ({
+  title,
+  placeholder1,
+  placeholder2,
+  onPressAdd,
+  onPressRemove,
+}) => {
+  const [items, setItems] = useState([
+    <View style={styles.rowContainer}>
+      <TaskInput
+        placeholder={placeholder1}
+        placeholderTextColor={colors.p2}
+        containerStyle={styles.inputCon}
+      />
+      <TaskInput
+        placeholder={placeholder2}
+        placeholderTextColor={colors.p2}
+        containerStyle={styles.inputCon}
+      />
+    </View>,
+  ]);
+
+  const handleRemoveItem = () => {
+    setItems(items.slice(0, items.length - 1));
+  };
+  const handleAddItem = () => {
+    setItems(prevComponents => [
+      ...prevComponents,
       <View style={styles.rowContainer}>
         <TaskInput
           placeholder={placeholder1}
@@ -35,8 +50,26 @@ const AddSpecsInput = ({title, placeholder1, placeholder2}) => {
           placeholderTextColor={colors.p2}
           containerStyle={styles.inputCon}
         />
+      </View>,
+    ]);
+  };
+  return (
+    <View style={styles.mainContainer}>
+      <View style={[styles.rowContainer, {justifyContent: 'space-between'}]}>
+        <Text style={styles.titleStyle}>{title}</Text>
+        <TouchableOpacity style={styles.imgCon} onPress={handleAddItem}>
+          <Image
+            source={appIcons.plus}
+            style={styles.iconStyle}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.removeCon}>
+      {items.map(item => item)}
+      <TouchableOpacity
+        style={styles.removeCon}
+        onPress={handleRemoveItem}
+        disabled={items.length === 1}>
         <Text style={styles.btnStyle}>Remove</Text>
       </TouchableOpacity>
     </View>
