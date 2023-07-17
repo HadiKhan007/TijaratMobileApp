@@ -31,7 +31,27 @@ export const updatePassFormFields = {
   newPassword: '',
   confirmPassword: '',
 };
-
+export const AddProductFormFields = {
+  productName: '',
+  price: '',
+  shortDetails: '',
+  description: '',
+  weight: '',
+  discount: '',
+  stock: '',
+  condition: '',
+  addBrand: '',
+  expectedDelivery: '',
+};
+export const addProductVS = yup.object().shape({
+  productName: yup.string().required('Product name required'),
+  price: yup.string().required('Price required'),
+  shortDetails: yup.string().required('ShortDetails required'),
+  description: yup.string().required('Description required'),
+  weight: yup.string().required('Weight required'),
+  expectedDelivery: yup.string().required('Expected Delivery'),
+  addBrand: yup.string().required('Brand Name Required'),
+});
 export const loginVS = yup.object().shape({
   email: yup
     .string()
