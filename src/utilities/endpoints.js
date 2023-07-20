@@ -10,6 +10,7 @@ const ENDPOINTS = {
   CHANGE_PASS: 'change-password',
   ADDPRODUCT: 'products/create',
   ARCHIVEPRODUCT: 'products/get-archived-products-by-seller',
+  DASHBOARD: 'seller/dashboard',
 };
 
 export {BASE_URL, ENDPOINTS};

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, SafeAreaView, FlatList, ScrollView} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import styles from './styles';
 import {
   AccountCard,
@@ -10,8 +10,28 @@ import {
 import {appIcons, colors} from '../../../../utilities';
 import {FloatingAction} from 'react-native-floating-action';
 import {DrawerActions} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {productdata} from '../../../../redux/Slices/SellerSlices/dashboardSlice';
+import {setUserId} from '../../../../redux/Slices/userSlice';
+import {recentOrderData} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
 
 const SellerDashboard = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.auth.user);
+  const data = useSelector(state => state.dashboard.data);
+  const {orders, error} = useSelector(state => state.recentOrder);
+  const userId = user.seller._id;
+
+  // const ProductDetails = orders[0].orders[0].product.shortDetails;
+  // const orderID = orders[0].masterOrderNumber;
+  // const orderStatus = orders[0].overAllOrderStatus;
+  const newData = data.data;
+  useEffect(() => {
+    dispatch(productdata(userId));
+    dispatch(setUserId(userId));
+    dispatch(recentOrderData(userId));
+  }, [dispatch, userId]);
+
   const actions = [
     {
       text: 'Offers',
@@ -60,17 +80,17 @@ const SellerDashboard = ({navigation}) => {
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Sale"
-              number="12,34567"
+              number={newData?.totalPriceOfOrder}
             />
             <ResultCard
               iconName={appIcons.earn}
               title="Total Products"
-              number="12,34567"
+              number={newData?.products}
             />
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Order"
-              number="12,34567"
+              number={newData?.orders}
             />
           </View>
           <OrderCard />
