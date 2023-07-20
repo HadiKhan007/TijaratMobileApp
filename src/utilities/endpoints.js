@@ -8,6 +8,8 @@ const ENDPOINTS = {
   SIGNUP: 'register',
   FORGOT_PASS: 'forgot-password',
   CHANGE_PASS: 'change-password',
+  ADDPRODUCT: 'products/create',
+  ARCHIVEPRODUCT: 'products/get-archived-products-by-seller',
 };
 
 export {BASE_URL, ENDPOINTS};

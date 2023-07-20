@@ -19,11 +19,17 @@ import {
 } from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
+import {useDispatch, useSelector} from 'react-redux';
+import {addProductNew} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
 
 const SellerAddProducts = () => {
   const formikRef = useRef();
-
+  const dispatch = useDispatch();
   const [selectItem, setSelectItem] = useState('');
+  const products = useSelector(state => state.products);
+  const {user} = useSelector(state => state.auth);
+  console.log('Products===>,', user.userid);
+
   let categoryData = [
     {id: 1, name: 'For Me', key: 'myself'},
     {id: 3, name: 'For Someone Else', key: 'someone'},
@@ -32,25 +38,15 @@ const SellerAddProducts = () => {
   const onSelect = item => {
     setSelectItem(item);
   };
-  const [items, setItems] = useState([]);
 
-  const handleAddItem = () => {
-    // Add a new item to the list of items
-    setItems([
-      ...items,
-      <AddSpecsInput
-        placeholder1="Size, Material, Color"
-        placeholder2="Value(L/M/S)"
-        key={items.length}
-      />,
-    ]);
+  const handleClick = values => {
+    console.log(values);
+    const newProduct = {
+      id: Date.now(), // You can use any unique identifier here
+      name: values?.productName,
+    };
+    dispatch(addProductNew(newProduct));
   };
-
-  const handleRemoveItem = () => {
-    // Remove the last item from the list of items
-    setItems(items.slice(0, items.length - 1));
-  };
-  const handleClick = () => {};
 
   return (
     <SafeAreaView style={styles.rootContainer}>
