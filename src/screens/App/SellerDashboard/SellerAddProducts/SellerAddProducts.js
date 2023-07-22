@@ -28,7 +28,8 @@ const SellerAddProducts = () => {
   const [selectItem, setSelectItem] = useState('');
   const products = useSelector(state => state.products);
   const {user} = useSelector(state => state.auth);
-  console.log('Products===>,', user.userid);
+  const {userId} = useSelector(state => state.userId);
+  console.log('Products===>,', userId);
 
   let categoryData = [
     {id: 1, name: 'For Me', key: 'myself'},

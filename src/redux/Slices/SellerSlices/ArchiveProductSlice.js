@@ -1,31 +1,50 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {archiveProductAPI} from '../../API/SellerAPI/sellerArchiveAPI';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
 
-export const archiveProductNew = createAsyncThunk(
-  'auth/archiveProduct',
-  async userData => {
-    const response = await archiveProductAPI(userData);
-    return response.data;
-  },
-);
 const initialState = {
-  archive: [],
+  archivedProducts: [],
+  loading: false,
+  error: null,
 };
 
-const productSlice = createSlice({
-  name: 'archive',
-  initialState,
-  reducers: {
-    addProduct: (state, action) => {
-      state.products.push(action.payload);
-    },
-    removeProduct: (state, action) => {
-      state.products = state.products.filter(
-        product => product.id !== action.payload,
+// Replace 'YOUR_API_URL' with the actual endpoint for archiving products
+const apiUrl = 'YOUR_API_URL';
+
+// Async thunk action to archive a product by its ID
+export const archiveProductAsync = createAsyncThunk(
+  'archiveProduct/archiveProduct',
+  async userID => {
+    try {
+      const response = await axios.get(
+        `https://api.tijarat.com/products/get-archived-products-by-seller/${userID}`,
       );
-    },
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to archive the product.');
+    }
+  },
+);
+
+const archiveProductSlice = createSlice({
+  name: 'archiveProduct',
+  initialState,
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(archiveProductAsync.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(archiveProductAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        // Add the archived product to the archivedProducts array
+        state.archivedProducts.push(action.payload);
+      })
+      .addCase(archiveProductAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const {addProduct, removeProduct} = productSlice.actions;
-export default productSlice.reducer;
+export default archiveProductSlice.reducer;
