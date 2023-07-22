@@ -10,11 +10,8 @@ const ArchiveProducts = () => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth);
   const userId = useSelector(state => state.userId);
-  const archivedProducts = useSelector(
-    state => state.archiveProduct.archivedProducts,
-  );
+  const archivedProducts = useSelector(state => state.archiveProduct);
   console.log('archivedProducts--->', archivedProducts);
-
   console.log('====================================');
   console.log('sellerId--->', userId.userId);
   console.log('====================================');

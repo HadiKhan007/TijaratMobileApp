@@ -25,6 +25,7 @@ const SellerDashboard = ({navigation}) => {
   // const ProductDetails = orders[0].orders[0].product.shortDetails;
   // const orderID = orders[0].masterOrderNumber;
   // const orderStatus = orders[0].overAllOrderStatus;
+
   const newData = data.data;
   useEffect(() => {
     dispatch(productdata(userId));
