@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, Text} from 'react-native';
 import styles from './styles';
 import {
   AddImage,
@@ -7,6 +7,7 @@ import {
   AppButton,
   AppTitle,
   ClickButton,
+  CustomDropdown,
   DropDown,
   TaskInput,
   TopHeader,
@@ -21,15 +22,23 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 import {addProductNew} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const SellerAddProducts = () => {
   const formikRef = useRef();
   const dispatch = useDispatch();
   const [selectItem, setSelectItem] = useState('');
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const products = useSelector(state => state.products);
   const {user} = useSelector(state => state.auth);
   const {userId} = useSelector(state => state.userId);
   console.log('Products===>,', userId);
+  const [items, setItems] = useState([
+    {label: 'For Me', value: 'mySelf'},
+    {label: 'For Someone Else', value: 'someone'},
+    {label: 'For My Business', value: 'business'},
+  ]);
 
   let categoryData = [
     {id: 1, name: 'For Me', key: 'myself'},
@@ -73,6 +82,7 @@ const SellerAddProducts = () => {
                 Title="Add Product"
                 mainContainer={styles.titleContainer}
               />
+              <CustomDropdown items={items} setItems={setItems} title="City" />
               <TaskInput
                 title="Product Name"
                 placeholder="Enter Product Name"

@@ -84,6 +84,7 @@ export * from './AddImage/AddImage';
 //DropDown
 
 export * from './DropDown/DropDown';
+export * from './DropDown/CustomDropDown';
 
 //TopTabs
 
