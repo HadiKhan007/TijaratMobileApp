@@ -1,13 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {WP, colors, family, size} from '../../../../utilities';
 const styles = StyleSheet.create({
-  rootContainer: {
+  mainContainer: {
     flex: 1,
     backgroundColor: colors.bgColor,
-  },
-  mainContainer: {
-    paddingHorizontal: WP('4'),
-    marginVertical: WP('6'),
   },
   fContainer: {
     backgroundColor: colors.s1,
@@ -43,13 +39,7 @@ const styles = StyleSheet.create({
   imgStyle: {
     width: '100%',
     height: '30%',
-  },
-  contentContainer: {
-    flexGrow: 1,
-  },
-  main: {
-    flex: 1,
-    // paddingHorizontal: WP('6'),
+    marginVertical: -WP('20'),
   },
 });
 
