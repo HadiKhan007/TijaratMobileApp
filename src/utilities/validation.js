@@ -12,6 +12,18 @@ export const registerFormFields = {
   password: '',
 };
 
+export const sRegisterFormFields = {
+  shopName: '',
+  streetAddress: '',
+  country: '',
+  city: '',
+  zipCode: '',
+  cnicName: '',
+  cnicNum: '',
+  about: '',
+  description: '',
+};
+
 // export const updateProfileFormFileds = {
 //   userName: '',
 //   phoneNumber: '',
@@ -131,4 +143,28 @@ export const updateProfileVS = yup.object().shape({
   twitter: yup.string().url().typeError('Invalid url'),
   instagram: yup.string().url().typeError('Invalid url'),
   facebook: yup.string().url().typeError('Invalid url'),
+});
+
+export const sRegisterVS = yup.object().shape({
+  shopName: yup.string().required('Shop Name Required').label('name'),
+  streetAddress: yup.string().required('Address Required').label('address'),
+  country: yup.string().required('Country Name Required').label('country'),
+  city: yup.string().required('City name Required').label('city'),
+  zipCode: yup
+    .string()
+    .required('Zip Code required')
+    .matches(/^[0-9]+$/, 'Must be only digits')
+    .min(5, 'Must be exactly 5 digits')
+    .max(5, 'Must be exactly 5 digits'),
+  cnicName: yup.string().required('CNIC name Required').label('name'),
+  cnicNum: yup
+    .string()
+    .required('CNIC number reuired')
+    .matches(/^[0-9]+$/, 'Must be only digits')
+    .min(13, 'Must be exactly 5 digits')
+    .max(13, 'Must be exactly 5 digits'),
+  description: yup
+    .string()
+    .required('Description Required')
+    .label('description'),
 });

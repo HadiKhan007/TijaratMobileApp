@@ -54,6 +54,7 @@ export * from './AppModal/AppLoader';
 export * from './AppModal/DistanceModal';
 export * from './AppModal/CityModal';
 export * from './AppModal/FilterModal';
+export * from './AppModal/ImagePiclerModal';
 
 //DrawerBar
 

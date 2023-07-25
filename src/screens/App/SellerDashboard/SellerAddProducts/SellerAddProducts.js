@@ -188,7 +188,7 @@ const SellerAddProducts = () => {
                 data={categoryData}
                 onSelect={onSelect}
               />
-              <AddImage />
+              <AddImage title="Add Feature Image" />
               <ClickButton title="Accept Offers" />
               <AppTitle
                 Title="Shipping Cost"

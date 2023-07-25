@@ -2,11 +2,11 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const AddImage = () => {
+const AddImage = ({title, onPress}) => {
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.titleStyle}>Add Feature Image</Text>
-      <TouchableOpacity style={styles.imgCon}>
+      <Text style={styles.titleStyle}>{title}</Text>
+      <TouchableOpacity style={styles.imgCon} onPress={onPress}>
         <Image
           source={appIcons.addImage}
           style={styles.iconStyle}
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   titleStyle: {
     color: colors.p3,
     fontFamily: family.workSans_medium,
-    fontSize: size.small,
     marginVertical: WP('1.5'),
   },
   textStyle: {
