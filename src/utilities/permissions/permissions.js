@@ -79,7 +79,7 @@ export const requestPermission = async (permissions, type) => {
     if (result === 'granted') {
       return true;
     } else if (result === 'blocked') {
-      Alert.alert('Permissions', `WinRate needs permission to access ${type}`, [
+      Alert.alert('Permissions', `Tijarat needs permission to access ${type}`, [
         {
           text: 'Ok',
           onPress: () => Linking.openSettings(),
@@ -94,7 +94,7 @@ export const requestPermission = async (permissions, type) => {
 
       return false;
     } else if (result === 'limited') {
-      Alert.alert('Permissions', `WinRate needs permission to access ${type}`, [
+      Alert.alert('Permissions', `Tijarat needs permission to access ${type}`, [
         {
           text: 'Ok',
           onPress: () => Linking.openSettings(),
@@ -108,7 +108,7 @@ export const requestPermission = async (permissions, type) => {
       ]);
       return false;
     } else if (result === 'unavailable') {
-      Alert.alert('Permissions', `WinRate needs permission to access ${type}`, [
+      Alert.alert('Permissions', `Tijarat needs permission to access ${type}`, [
         {
           text: 'Ok',
           onPress: () => Linking.openSettings(),
@@ -122,7 +122,7 @@ export const requestPermission = async (permissions, type) => {
       ]);
       return false;
     } else if (result === 'denied') {
-      Alert.alert('Permissions', `WinRate needs permission to access ${type}`, [
+      Alert.alert('Permissions', `Tijarat needs permission to access ${type}`, [
         {
           text: 'Ok',
           onPress: () => Linking.openSettings(),

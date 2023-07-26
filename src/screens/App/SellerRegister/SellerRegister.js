@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, SafeAreaView, Alert, Platform} from 'react-native';
+import {View, SafeAreaView, Alert, Platform} from 'react-native';
 import styles from './styles';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';

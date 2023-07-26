@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     justifyContent: 'center',
-    backgroundColor: colors.w,
+    backgroundColor: colors.w1,
     paddingVertical: WP('7'),
     borderRadius: WP('5'),
   },

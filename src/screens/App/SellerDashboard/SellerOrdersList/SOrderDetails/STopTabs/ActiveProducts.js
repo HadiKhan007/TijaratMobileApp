@@ -3,8 +3,11 @@ import {SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
 import {WP, colors, family, size} from '../../../../../../utilities';
 import {
   ActiveProductCard,
+  AppButton,
   AppTitle,
+  CustomDropdown,
   OrderSummaryCard,
+  TaskInput,
 } from '../../../../../../component';
 
 const ActiveProducts = () => {
@@ -12,17 +15,33 @@ const ActiveProducts = () => {
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView style={styles.mainContainer}>
         <ActiveProductCard />
+        <ActiveProductCard />
+        <CustomDropdown items={[]} title="Delivery Status" />
+        <CustomDropdown items={[]} title="Courier Service" />
+        <TaskInput
+          title="Tracking ID"
+          titleStyle={styles.titleStyle}
+          inputContainerStyle={styles.containerStyle}
+          inputStyle={styles.inputStyle}
+          placeholder="Tracking ID"
+          placeholderTextColor={colors.p2}
+          // value={values.email}
+          // onChangeText={handleChange('email')}
+          // errorMessage={errors.email}
+          // keyboardType={'email-address'}
+        />
         <Text style={styles.textStyle}>
           <Text style={styles.noteStyle}>Note:</Text> After receiving the order,
           you have 24 hours to ship the order and enter tracking information and
           change the order to shipped
         </Text>
-        <AppTitle Title="Summary" style={styles.titleContainer} />
+        <AppTitle Title="Summary" mainContainer={styles.titleContainer} />
         <OrderSummaryCard />
         <Text style={styles.cancleStyle}>
           <Text style={styles.noteStyle}>Note:</Text> Buyer can cancel the order
           within 30 minutes of placing the order
         </Text>
+        <AppButton title="Submit" containerStyle={styles.btnStyle} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -51,10 +70,14 @@ const styles = StyleSheet.create({
     fontFamily: family.morkSans_regular,
     fontSize: size.xsmall,
     lineHeight: WP('5'),
+    marginTop: WP('4'),
   },
   cancleStyle: {
     color: colors.r1,
     fontFamily: family.workSans_medium,
     fontSize: size.small,
+  },
+  btnStyle: {
+    marginVertical: WP('3'),
   },
 });
