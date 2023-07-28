@@ -17,21 +17,21 @@ import {recentOrderData} from '../../../../redux/Slices/SellerSlices/RecentOrder
 
 const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth.user);
-  const data = useSelector(state => state.dashboard.data);
+  // const {user} = useSelector(state => state.auth.user);
+  // const data = useSelector(state => state.dashboard.data);
   const {orders, error} = useSelector(state => state.recentOrder);
-  const userId = user.seller._id;
+  // const userId = user.seller._id;
 
   // const ProductDetails = orders[0].orders[0].product.shortDetails;
   // const orderID = orders[0].masterOrderNumber;
   // const orderStatus = orders[0].overAllOrderStatus;
 
-  const newData = data.data;
-  useEffect(() => {
-    dispatch(productdata(userId));
-    dispatch(setUserId(userId));
-    dispatch(recentOrderData(userId));
-  }, [dispatch, userId]);
+  // const newData = data.data;
+  // useEffect(() => {
+  //   dispatch(productdata(userId));
+  //   dispatch(setUserId(userId));
+  //   dispatch(recentOrderData(userId));
+  // }, [dispatch, userId]);
 
   const actions = [
     {
@@ -81,17 +81,17 @@ const SellerDashboard = ({navigation}) => {
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Sale"
-              number={newData?.totalPriceOfOrder}
+              // number={newData?.totalPriceOfOrder}
             />
             <ResultCard
               iconName={appIcons.earn}
               title="Total Products"
-              number={newData?.products}
+              // number={newData?.products}
             />
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Order"
-              number={newData?.orders}
+              // number={newData?.orders}
             />
           </View>
           <OrderCard />
