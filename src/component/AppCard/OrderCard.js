@@ -10,10 +10,8 @@ const OrderCard = () => {
     <View style={styles.mainContainer}>
       <Text style={styles.titleStyle}>Recent Order</Text>
       <View style={styles.rowContainer}>
-        <Text style={[styles.subTitle, {marginRight: WP('5')}]}>Order ID</Text>
-        <Text style={[styles.subTitle, {marginRight: WP('20')}]}>
-          Product Detail
-        </Text>
+        <Text style={[styles.subTitle]}>Order ID</Text>
+        <Text style={[styles.subTitle]}>Buyer</Text>
         <Text style={[styles.subTitle]}>Status</Text>
       </View>
       <AppDivider lineStyle={styles.lineStyle} />
@@ -24,7 +22,7 @@ const OrderCard = () => {
           <>
             <View style={styles.rowContainer}>
               <Text style={styles.idStyle}>10082-1</Text>
-              <Text style={styles.textStyle}>House number, house...</Text>
+              <Text style={styles.textStyle}>Ali Hamza</Text>
               <Text style={[styles.textStyle, {marginRight: WP('0')}]}>
                 Delivered
               </Text>
@@ -56,6 +54,8 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   titleStyle: {
     color: colors.p3,
