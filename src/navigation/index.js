@@ -6,6 +6,7 @@ import AuthStack from './stacks/AuthStack';
 import {LogBox} from 'react-native';
 import MyNewDrawer from './stacks/MyDrawerStack';
 import OtherScreensStack from './stacks/OtherScreensStack';
+import SellerRegisterStack from './stacks/SellerRegisterStack';
 
 const AppStack = createNativeStackNavigator();
 
@@ -23,6 +24,10 @@ const MainAppNav = () => {
         <AppStack.Screen name={'Splash'} component={Splash} />
         <AppStack.Screen name={'AuthStack'} component={AuthStack} />
         <AppStack.Screen name={'MyNewDrawer'} component={MyNewDrawer} />
+        <AppStack.Screen
+          name={'SellerRegisterStack'}
+          component={SellerRegisterStack}
+        />
         <AppStack.Screen
           name={'OtherScreensStack'}
           component={OtherScreensStack}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, FlatList} from 'react-native';
 import {
   AppTitle,
   SellerOfferCard,
@@ -13,8 +13,15 @@ const SOffers = ({navigation}) => {
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
         <TopHeader title="Offers" iconName={appIcons.backArrow} />
-        <AppTitle Title="Offers" mainContainer={styles.titleContainer} />
-        <SellerOfferCard onPress={() => navigation.navigate('SOfferDetails')} />
+        <AppTitle Title="All Offers" mainContainer={styles.titleContainer} />
+        <FlatList
+          data={[{}, {}, {}]}
+          renderItem={() => (
+            <SellerOfferCard
+              onPress={() => navigation.navigate('SOfferDetails')}
+            />
+          )}
+        />
       </View>
     </SafeAreaView>
   );

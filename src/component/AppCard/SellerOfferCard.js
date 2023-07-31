@@ -1,48 +1,59 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {OrderData, WP, appIcons, colors, family, size} from '../../utilities';
-import {AppDivider} from '../AppDivider/AppDivider';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {WP, appIcons, colors, family, size} from '../../utilities';
 
 const SellerOfferCard = ({onPress}) => {
   return (
-    <View style={styles.mainContainer}>
+    <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
       <View style={styles.rowContainer}>
-        <Text style={[styles.subTitle]}>Buyer</Text>
-        <Text style={[styles.subTitle]}>Buyer Offered</Text>
-        <Text style={[styles.subTitle]}>Item</Text>
-        <Text style={[styles.subTitle]}>Counter Offer</Text>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Buyer Name:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>M. Adnan Akhtar</Text>
+        </View>
       </View>
-      <AppDivider lineStyle={styles.lineStyle} />
-      <FlatList
-        data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
-        renderItem={() => (
-          <TouchableOpacity onPress={onPress}>
-            <View style={styles.rowContainer}>
-              <Text style={styles.idStyle}>Ali</Text>
-              <Text style={styles.textStyle}>1000</Text>
-              <Text style={[styles.textStyle]}>2</Text>
-              <TouchableOpacity style={styles.iconContainer}>
-                <Image
-                  source={appIcons.plus}
-                  style={styles.iconStyle}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-            </View>
-            <AppDivider
-              lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
-            />
-          </TouchableOpacity>
-        )}
-      />
-    </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Buyer Offered:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>Rs. 1,000</Text>
+        </View>
+      </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Item:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>Uta Spencer</Text>
+        </View>
+      </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Counter Offer:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>------</Text>
+        </View>
+      </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Quantity:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>2</Text>
+        </View>
+      </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Date:</Text>
+        </View>
+        <View style={styles.column}>
+          <Text style={styles.subStyle}>June 23, 2022 6:31 PM</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -50,55 +61,36 @@ export {SellerOfferCard};
 
 const styles = StyleSheet.create({
   mainContainer: {
-    paddingVertical: WP('4'),
     backgroundColor: colors.w1,
-    marginVertical: WP('5'),
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: colors.p5,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 0.6},
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    elevation: 2,
+    padding: WP('3'),
+    marginVertical: WP('3'),
+  },
+  column: {
+    flex: 1,
   },
   rowContainer: {
     flexDirection: 'row',
-    paddingHorizontal: WP('4'),
-    justifyContent: 'space-between',
     alignItems: 'center',
+    marginVertical: WP('2'),
   },
   titleStyle: {
     color: colors.p3,
-    fontFamily: family.workSans_bold,
-    fontSize: size.medium,
-  },
-  subTitle: {
-    color: colors.p3,
-    fontFamily: family.workSans_semiBold,
-    fontSize: size.xsmall,
-    // marginRight: WP('2'),
-  },
-  lineStyle: {
-    backgroundColor: colors.p5,
-  },
-  idStyle: {
-    color: colors.p3,
     fontFamily: family.workSans_medium,
-    fontSize: size.tiny,
-    // marginRight: WP('9'),
+    fontSize: size.small,
   },
-  textStyle: {
+  subStyle: {
     color: colors.p2,
     fontFamily: family.workSans_medium,
     fontSize: size.tiny,
-    // marginLeft: WP('5'),
   },
   iconStyle: {
-    width: WP('4'),
-    height: WP('4'),
-  },
-  iconContainer: {
-    width: WP('8'),
-    height: WP('8'),
-    alignItems: 'center',
-    backgroundColor: colors.gr,
-    justifyContent: 'center',
-    borderRadius: WP('4'),
+    width: WP('5'),
+    height: WP('5'),
   },
 });

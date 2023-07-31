@@ -2,9 +2,7 @@ import {appIcons} from '../assets';
 
 //TODO
 const isProduction = false;
-const SOCKET_URL = isProduction
-  ? 'https://api.winrateapp.com/'
-  : 'https://dev.winrateapp.com/';
+const SOCKET_URL = isProduction ? '' : '';
 
 let image_options = {
   title: 'Select Avatar',
