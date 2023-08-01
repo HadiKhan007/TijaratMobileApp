@@ -1,6 +1,7 @@
 //BASEURL
 //TODO:
-const BASE_URL = 'https://api.tijarat.com/';
+// const BASE_URL = 'https://api.tijarat.com/';
+const BASE_URL = 'https://api-dev.tijarat.com/';
 //Base Url
 
 const ENDPOINTS = {
@@ -11,6 +12,7 @@ const ENDPOINTS = {
   ADDPRODUCT: 'products/create',
   ARCHIVEPRODUCT: 'products/get-archived-products-by-seller',
   DASHBOARD: 'seller/dashboard',
+  ORDERS: 'order',
 };
 
 export {BASE_URL, ENDPOINTS};

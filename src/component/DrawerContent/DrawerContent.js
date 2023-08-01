@@ -3,9 +3,11 @@ import {View, Text, FlatList, ScrollView} from 'react-native';
 import {AccountCard, AppLoader, DrawerBar} from '..';
 import {appIcons, drawerData} from '../../utilities';
 import styles from './styles';
+import {useSelector} from 'react-redux';
 
 const DrawerContent = ({navigation}) => {
   const [loading, setLoading] = useState(false);
+  const {user} = useSelector(state => state.auth.user);
 
   const onPressBar = item => {
     navigation.closeDrawer();
@@ -51,9 +53,13 @@ const DrawerContent = ({navigation}) => {
   return (
     <View style={styles.rootContainer}>
       <AccountCard
-        iconName={appIcons.person}
-        title="Hamza Habib"
-        email="Madison, United State..."
+        iconName={user ? user.seller.shopImageUrl : appIcons.person}
+        title={
+          user
+            ? user.seller.firstName + ' ' + user.seller.lastName
+            : 'Login Now'
+        }
+        email={user ? user.seller.email : 'no'}
       />
       <View style={styles.secondContainer}>
         <ScrollView

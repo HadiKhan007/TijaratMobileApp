@@ -16,7 +16,7 @@ import {loginUser} from '../../../redux/Slices/authSlice';
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const {loading} = useSelector(state => state.auth);
+  const {user, loading} = useSelector(state => state.auth);
 
   const handleLogin = values => {
     const email = values.email;
