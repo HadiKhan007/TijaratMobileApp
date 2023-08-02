@@ -22,12 +22,8 @@ const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth.user);
   const {data} = useSelector(state => state.dashboard);
-  const {orders, status, error} = useSelector(state => state.orders);
+  const {orders} = useSelector(state => state.orders);
   const userId = user.seller._id;
-
-  console.log('====================================');
-  console.log('ordersNew--->', orders);
-  console.log('====================================');
 
   // const ProductDetails = orders[0].orders[0].product.shortDetails;
   // const orderID = orders[0].masterOrderNumber;

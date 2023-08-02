@@ -7,7 +7,8 @@ import {useSelector} from 'react-redux';
 
 const DrawerContent = ({navigation}) => {
   const [loading, setLoading] = useState(false);
-  const {user} = useSelector(state => state.auth.user);
+  const {user} = useSelector(state => state.auth);
+  console.log('user--====>', user);
 
   const onPressBar = item => {
     navigation.closeDrawer();
@@ -53,13 +54,13 @@ const DrawerContent = ({navigation}) => {
   return (
     <View style={styles.rootContainer}>
       <AccountCard
-        iconName={user ? user.seller.shopImageUrl : appIcons.person}
+        iconName={user ? user.user.seller.shopImageUrl : appIcons.person}
         title={
           user
-            ? user.seller.firstName + ' ' + user.seller.lastName
+            ? user.user.seller.firstName + ' ' + user.user.seller.lastName
             : 'Login Now'
         }
-        email={user ? user.seller.email : 'no'}
+        email={user ? user.user.seller.email : 'no'}
       />
       <View style={styles.secondContainer}>
         <ScrollView
