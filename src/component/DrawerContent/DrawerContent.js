@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux';
 const DrawerContent = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const {user} = useSelector(state => state.auth);
-  console.log('user--====>', user);
 
   const onPressBar = item => {
     navigation.closeDrawer();

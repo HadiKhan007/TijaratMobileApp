@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import {BASE_URL, ENDPOINTS} from '../../../utilities';
 
 const initialState = {
   archivedProducts: [],
@@ -7,17 +8,13 @@ const initialState = {
   error: null,
 };
 
-// Replace 'YOUR_API_URL' with the actual endpoint for archiving products
-const apiUrl = 'YOUR_API_URL';
+const apiUrl = BASE_URL + ENDPOINTS.ARCHIVEPRODUCT;
 
-// Async thunk action to archive a product by its ID
 export const archiveProductAsync = createAsyncThunk(
-  'archiveProduct/archiveProduct',
+  'archiveProduct/fetchArchiveProduct',
   async userID => {
     try {
-      const response = await axios.get(
-        `https://api.tijarat.com/products/get-archived-products-by-seller/${userID}`,
-      );
+      const response = await axios.get(`${apiUrl}${userID}`);
       return response.data;
     } catch (error) {
       throw new Error('Failed to archive the product.');
@@ -37,7 +34,6 @@ const archiveProductSlice = createSlice({
       })
       .addCase(archiveProductAsync.fulfilled, (state, action) => {
         state.loading = false;
-        // Add the archived product to the archivedProducts array
         state.archivedProducts.push(action.payload);
       })
       .addCase(archiveProductAsync.rejected, (state, action) => {

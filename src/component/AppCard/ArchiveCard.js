@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 
-const ArchiveCard = () => {
+const ArchiveCard = ({item, data}) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
@@ -10,7 +10,11 @@ const ArchiveCard = () => {
           <Text style={styles.titleStyle}>Product Name:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>New Bat for cricket</Text>
+          <Text style={styles.subStyle}>
+            {data[item]?.data[item]?.name
+              ? data[item]?.data[item]?.name
+              : 'Empty'}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -18,7 +22,11 @@ const ArchiveCard = () => {
           <Text style={styles.titleStyle}>Price:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Rs. 6,000</Text>
+          <Text style={styles.subStyle}>
+            {data[item]?.data[item]?.price
+              ? data[item]?.data[item]?.price
+              : 'Empty'}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -26,7 +34,9 @@ const ArchiveCard = () => {
           <Text style={styles.titleStyle}>Status:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Deleted by seller</Text>
+          <Text style={styles.subStyle}>
+            {data[item]?.data[item]?.isDeleted ? 'hello' : 'yellow'}
+          </Text>
         </View>
       </View>
     </View>

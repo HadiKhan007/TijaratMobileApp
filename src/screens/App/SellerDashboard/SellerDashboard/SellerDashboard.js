@@ -12,29 +12,19 @@ import {FloatingAction} from 'react-native-floating-action';
 import {DrawerActions} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {productdata} from '../../../../redux/Slices/SellerSlices/dashboardSlice';
-import {setUserId} from '../../../../redux/Slices/userSlice';
-import {
-  fetchOrders,
-  recentOrderData,
-} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
+import {recentOrdersAsync} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
 
 const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth.user);
-  const {data} = useSelector(state => state.dashboard);
-  const {orders} = useSelector(state => state.orders);
-  const userId = user.seller._id;
+  const data = useSelector(state => state.dashboard.data);
+  const sellerId = user?.seller?._id;
+  const newData = data?.data;
 
-  // const ProductDetails = orders[0].orders[0].product.shortDetails;
-  // const orderID = orders[0].masterOrderNumber;
-  // const orderStatus = orders[0].overAllOrderStatus;
-
-  const newData = data.data;
   useEffect(() => {
-    dispatch(productdata(userId));
-    dispatch(setUserId(userId));
-    dispatch(fetchOrders(userId));
-  }, [dispatch, userId]);
+    dispatch(productdata(sellerId));
+    dispatch(recentOrdersAsync(sellerId));
+  }, [dispatch, sellerId]);
 
   const actions = [
     {
@@ -76,13 +66,13 @@ const SellerDashboard = ({navigation}) => {
             onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           />
           <AccountCard
-            iconName={user ? user.seller.shopImageUrl : appIcons.person}
+            iconName={user ? user?.seller?.shopImageUrl : appIcons.person}
             title={
               user
-                ? user.seller.firstName + ' ' + user.seller.lastName
+                ? user?.seller?.firstName + ' ' + user?.seller?.lastName
                 : 'Login Now'
             }
-            email={user ? user.seller.email : 'no'}
+            email={user ? user?.seller?.email : 'no'}
           />
           <View style={{flexDirection: 'row'}}>
             <ResultCard
@@ -104,7 +94,6 @@ const SellerDashboard = ({navigation}) => {
           <OrderCard />
           <OrderCard />
         </ScrollView>
-
         {/* <View style={styles.positionCon}> */}
         <FloatingAction
           shadow={true}

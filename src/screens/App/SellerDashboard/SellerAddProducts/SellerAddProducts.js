@@ -33,7 +33,6 @@ const SellerAddProducts = () => {
   const products = useSelector(state => state.products);
   const {user} = useSelector(state => state.auth);
   const {userId} = useSelector(state => state.userId);
-  console.log('Products===>,', userId);
   const [items, setItems] = useState([
     {label: 'For Me', value: 'mySelf'},
     {label: 'For Someone Else', value: 'someone'},
@@ -50,7 +49,6 @@ const SellerAddProducts = () => {
   };
 
   const handleClick = values => {
-    console.log(values);
     const newProduct = {
       id: Date.now(), // You can use any unique identifier here
       name: values?.productName,

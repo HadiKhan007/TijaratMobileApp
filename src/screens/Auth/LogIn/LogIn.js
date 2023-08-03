@@ -12,15 +12,18 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../../redux/Slices/authSlice';
+import {setUserId} from '../../../redux/Slices/userSlice';
 
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const {loading} = useSelector(state => state.auth);
+  const {user, loading} = useSelector(state => state.auth.user);
+  const userId = user?.seller?._id;
 
   const handleLogin = values => {
     const email = values.email;
     const password = values.password;
+    dispatch(setUserId(userId));
     dispatch(loginUser({email, password}))
       .unwrap()
       .then(() => {

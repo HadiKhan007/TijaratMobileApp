@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, SafeAreaView, FlatList} from 'react-native';
 import styles from './styles';
 import {AppTitle, ArchiveCard, TopHeader} from '../../../../../component';
 import {appIcons} from '../../../../../utilities';
@@ -8,14 +8,22 @@ import {archiveProductAsync} from '../../../../../redux/Slices/SellerSlices/Arch
 
 const ArchiveProducts = () => {
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth);
-  const userId = useSelector(state => state.userId);
-  const archivedProducts = useSelector(state => state.archiveProduct);
-  console.log('archivedProducts--->', archivedProducts);
-  console.log('====================================');
-  console.log('sellerId--->', userId.userId);
-  console.log('====================================');
-  dispatch(archiveProductAsync(userId));
+  const archiveProducts = useSelector(
+    state => state.archiveProducts.archivedProducts,
+  );
+  const {user} = useSelector(state => state.auth.user);
+  const sellerId = user?.seller?._id;
+
+  // console.log('====================================');
+  // // console.log('----000----', archiveProducts[0]?.data);
+  // console.log('====================================');
+
+  useEffect(() => {
+    dispatch(archiveProductAsync(sellerId));
+  }, [dispatch, sellerId]);
+  const renderItem = ({item, index}) => (
+    <ArchiveCard item={index} data={archiveProducts} />
+  );
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -25,9 +33,7 @@ const ArchiveProducts = () => {
           Title="Archive Products"
           mainContainer={styles.titleContainer}
         />
-        <ArchiveCard />
-        <ArchiveCard />
-        <ArchiveCard />
+        <FlatList data={archiveProducts[0]?.data} renderItem={renderItem} />
       </View>
     </SafeAreaView>
   );

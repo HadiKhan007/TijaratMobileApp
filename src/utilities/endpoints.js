@@ -10,9 +10,9 @@ const ENDPOINTS = {
   FORGOT_PASS: 'forgot-password',
   CHANGE_PASS: 'change-password',
   ADDPRODUCT: 'products/create',
-  ARCHIVEPRODUCT: 'products/get-archived-products-by-seller',
+  ARCHIVEPRODUCT: 'mobile/product/get-archived-products-by-seller/',
   DASHBOARD: 'seller/dashboard',
-  ORDERS: 'order',
+  RECENT_ORDERS: 'mobile/order/get-recent-orders/',
 };
 
 export {BASE_URL, ENDPOINTS};
