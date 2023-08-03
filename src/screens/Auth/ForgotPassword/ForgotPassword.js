@@ -14,7 +14,6 @@ const ForgotPassword = ({navigation}) => {
   const {loading} = useSelector(state => state.auth);
 
   const handleForgot = async values => {
-    console.log('Values--->', values);
     const email = values.email.toLowerCase();
     dispatch(forgotPassword({email}))
       .unwrap()

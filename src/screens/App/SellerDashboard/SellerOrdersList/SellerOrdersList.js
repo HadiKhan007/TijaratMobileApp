@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import styles from './styles';
 import {AppTitle, SellerOrderCard, TopHeader} from '../../../../component';
 import {appIcons} from '../../../../utilities';

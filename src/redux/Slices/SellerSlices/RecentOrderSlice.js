@@ -1,46 +1,41 @@
-// ordersSlice.js
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import {BASE_URL, ENDPOINTS} from '../../../utilities';
 
-const initialState = {
-  orders: null,
-  loading: false,
-  error: null,
-};
+const API_ENDPOINT = BASE_URL + ENDPOINTS.RECENT_ORDERS;
 
-const apiUrl = 'https://api.tijarat.com/order/get-recent-orders/';
-
-export const recentOrderData = createAsyncThunk(
-  'orders/fetchOrders',
+export const recentOrdersAsync = createAsyncThunk(
+  'recentOrders/fetchOrders',
   async userId => {
-    try {
-      const response = await axios.get(`${apiUrl}${userId}`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch orders from the API.');
-    }
+    const response = await axios.get(`${API_ENDPOINT}${userId}`);
+    return response.data;
   },
 );
 
-const ordersSlice = createSlice({
-  name: 'orders',
+const initialState = {
+  orders: [],
+  status: 'idle',
+  error: null,
+};
+
+const orderSlice = createSlice({
+  name: 'recentOrder',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(recentOrderData.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(recentOrdersAsync.pending, state => {
+        state.status = 'loading';
       })
-      .addCase(recentOrderData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.orders = action.payload || [];
+      .addCase(recentOrdersAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.orders = action.payload;
       })
-      .addCase(recentOrderData.rejected, (state, action) => {
-        state.loading = false;
+      .addCase(recentOrdersAsync.rejected, (state, action) => {
+        state.status = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
-export default ordersSlice.reducer;
+export default orderSlice.reducer;

@@ -12,26 +12,19 @@ import {FloatingAction} from 'react-native-floating-action';
 import {DrawerActions} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {productdata} from '../../../../redux/Slices/SellerSlices/dashboardSlice';
-import {setUserId} from '../../../../redux/Slices/userSlice';
-import {recentOrderData} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
+import {recentOrdersAsync} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
 
 const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
-  // const {user} = useSelector(state => state.auth.user);
-  // const data = useSelector(state => state.dashboard.data);
-  const {orders, error} = useSelector(state => state.recentOrder);
-  // const userId = user.seller._id;
+  const {user} = useSelector(state => state.auth.user);
+  const data = useSelector(state => state.dashboard.data);
+  const sellerId = user?.seller?._id;
+  const newData = data?.data;
 
-  // const ProductDetails = orders[0].orders[0].product.shortDetails;
-  // const orderID = orders[0].masterOrderNumber;
-  // const orderStatus = orders[0].overAllOrderStatus;
-
-  // const newData = data.data;
-  // useEffect(() => {
-  //   dispatch(productdata(userId));
-  //   dispatch(setUserId(userId));
-  //   dispatch(recentOrderData(userId));
-  // }, [dispatch, userId]);
+  useEffect(() => {
+    dispatch(productdata(sellerId));
+    dispatch(recentOrdersAsync(sellerId));
+  }, [dispatch, sellerId]);
 
   const actions = [
     {
@@ -73,31 +66,34 @@ const SellerDashboard = ({navigation}) => {
             onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           />
           <AccountCard
-            email="hamza1@gmail.com"
-            title="Hamza Habib"
-            iconName={appIcons.person}
+            iconName={user ? user?.seller?.shopImageUrl : appIcons.person}
+            title={
+              user
+                ? user?.seller?.firstName + ' ' + user?.seller?.lastName
+                : 'Login Now'
+            }
+            email={user ? user?.seller?.email : 'no'}
           />
           <View style={{flexDirection: 'row'}}>
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Sale"
-              // number={newData?.totalPriceOfOrder}
+              number={newData?.totalPriceOfOrder}
             />
             <ResultCard
               iconName={appIcons.earn}
               title="Total Products"
-              // number={newData?.products}
+              number={newData?.products}
             />
             <ResultCard
               iconName={appIcons.promotion}
               title="Total Order"
-              // number={newData?.orders}
+              number={newData?.orders}
             />
           </View>
           <OrderCard />
           <OrderCard />
         </ScrollView>
-
         {/* <View style={styles.positionCon}> */}
         <FloatingAction
           shadow={true}

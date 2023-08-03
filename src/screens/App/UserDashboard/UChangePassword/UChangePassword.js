@@ -24,15 +24,12 @@ const UChangePassword = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
   const {loading, user} = useSelector(state => state.auth);
-  console.log('user--->', user.token);
   const handleChangePass = values => {
-    console.log('values--->', values);
     const currentPassword = values.currentPassword;
     const newPassword = values.newPassword;
     dispatch(changePassword(currentPassword, newPassword, user.token))
       .unwrap()
       .then(() => {
-        console.log('Succes');
         // navigation.navigate('HomeStack');
       })
       .catch(err => {

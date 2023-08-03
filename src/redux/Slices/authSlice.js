@@ -26,7 +26,6 @@ export const changePassword = createAsyncThunk(
   'auth/changePassword',
   async (passwordData, {getState}) => {
     const {user} = getState().auth; // Retrieve the token from the auth state in Redux
-    console.log('Token0000:', user.token);
     const token = user.token; // Check if the token is logged correctly
     const {currentPassword, newPassword} = passwordData;
 

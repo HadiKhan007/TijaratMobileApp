@@ -1,6 +1,7 @@
 //BASEURL
 //TODO:
-const BASE_URL = 'https://api.tijarat.com/';
+// const BASE_URL = 'https://api.tijarat.com/';
+const BASE_URL = 'https://api-dev.tijarat.com/';
 //Base Url
 
 const ENDPOINTS = {
@@ -9,8 +10,9 @@ const ENDPOINTS = {
   FORGOT_PASS: 'forgot-password',
   CHANGE_PASS: 'change-password',
   ADDPRODUCT: 'products/create',
-  ARCHIVEPRODUCT: 'products/get-archived-products-by-seller',
+  ARCHIVEPRODUCT: 'mobile/product/get-archived-products-by-seller/',
   DASHBOARD: 'seller/dashboard',
+  RECENT_ORDERS: 'mobile/order/get-recent-orders/',
 };
 
 export {BASE_URL, ENDPOINTS};

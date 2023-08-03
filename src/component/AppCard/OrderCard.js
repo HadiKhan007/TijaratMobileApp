@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import {OrderData, WP, colors, family, size} from '../../utilities';
+import {WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
+import {useSelector} from 'react-redux';
 
 const OrderCard = () => {
-  const [data, setData] = useState(OrderData);
+  const recentOrder = useSelector(state => state.recentOrder.orders);
 
   return (
     <View style={styles.mainContainer}>
@@ -18,13 +19,17 @@ const OrderCard = () => {
       <FlatList
         data={[{}, {}, {}]}
         keyExtractor={(item, index) => item + index.toString()}
-        renderItem={() => (
+        renderItem={({index}) => (
           <>
             <View style={styles.rowContainer}>
-              <Text style={styles.idStyle}>10082-1</Text>
-              <Text style={styles.textStyle}>Ali Hamza</Text>
-              <Text style={[styles.textStyle, {marginRight: WP('0')}]}>
-                Delivered
+              <Text style={styles.idStyle}>
+                {recentOrder?.orders[index]?.orderId}
+              </Text>
+              <Text style={styles.textStyle}>
+                {recentOrder?.orders[index]?.buyer}
+              </Text>
+              <Text style={[styles.textStyle]}>
+                {recentOrder?.orders[index]?.orderStatus}
               </Text>
             </View>
             <AppDivider
@@ -61,6 +66,7 @@ const styles = StyleSheet.create({
     color: colors.p3,
     fontFamily: family.workSans_bold,
     fontSize: size.medium,
+    marginVertical: WP('3'),
   },
   subTitle: {
     color: colors.p3,
@@ -82,6 +88,5 @@ const styles = StyleSheet.create({
     color: colors.p2,
     fontFamily: family.workSans_medium,
     fontSize: size.tiny,
-    marginRight: WP('12'),
   },
 });
