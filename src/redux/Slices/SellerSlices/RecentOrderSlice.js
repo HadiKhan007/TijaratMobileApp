@@ -18,7 +18,7 @@ const initialState = {
   error: null,
 };
 
-const orderSlice = createSlice({
+const recentOrderSlice = createSlice({
   name: 'recentOrder',
   initialState,
   reducers: {},
@@ -38,4 +38,4 @@ const orderSlice = createSlice({
   },
 });
 
-export default orderSlice.reducer;
+export default recentOrderSlice.reducer;

@@ -53,6 +53,14 @@ const SellerOfferCard = ({onPress}) => {
           <Text style={styles.subStyle}>June 23, 2022 6:31 PM</Text>
         </View>
       </View>
+      <View style={styles.rowContainer}>
+        <View style={styles.column}>
+          <Text style={styles.titleStyle}>Action:</Text>
+        </View>
+        <View style={styles.column}>
+          <Image source={appIcons.gEye} style={styles.iconStyle} />
+        </View>
+      </View>
     </TouchableOpacity>
   );
 };

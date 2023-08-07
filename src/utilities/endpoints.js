@@ -13,6 +13,7 @@ const ENDPOINTS = {
   ARCHIVEPRODUCT: 'mobile/product/get-archived-products-by-seller/',
   DASHBOARD: 'seller/dashboard',
   RECENT_ORDERS: 'mobile/order/get-recent-orders/',
+  SELLER_ORDER: 'order/',
 };
 
 export {BASE_URL, ENDPOINTS};

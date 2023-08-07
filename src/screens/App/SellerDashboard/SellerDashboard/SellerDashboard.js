@@ -16,7 +16,7 @@ import {recentOrdersAsync} from '../../../../redux/Slices/SellerSlices/RecentOrd
 
 const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth.user);
+  const {user} = useSelector(state => state.auth);
   const data = useSelector(state => state.dashboard.data);
   const sellerId = user?.seller?._id;
   const newData = data?.data;
@@ -91,8 +91,8 @@ const SellerDashboard = ({navigation}) => {
               number={newData?.orders}
             />
           </View>
-          <OrderCard />
-          <OrderCard />
+          {/* <OrderCard />
+          <OrderCard /> */}
         </ScrollView>
         {/* <View style={styles.positionCon}> */}
         <FloatingAction
