@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import styles from './styles';
 import {AppTitle, TopHeader} from '../../../../../../../component';

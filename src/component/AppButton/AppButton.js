@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: colors.w1,
     textAlign: 'center',
-    fontFamily: family.roboto_bold,
+    fontFamily: family.workSans_medium,
     marginLeft: WP('2'),
     fontSize: Platform.OS === 'ios' ? size.large : size.normal,
   },

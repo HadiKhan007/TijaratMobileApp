@@ -1,65 +1,34 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {WP, appIcons, colors, family, size} from '../../utilities';
+import {WP, appIcons, appImages, colors, family, size} from '../../utilities';
 
 const SellerOfferCard = ({onPress}) => {
   return (
     <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
       <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Buyer Name:</Text>
+        <View style={styles.imgContainer}>
+          <Image
+            source={appImages.sneakers}
+            style={styles.imgStyle}
+            resizeMode="contain"
+          />
         </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>M. Adnan Akhtar</Text>
-        </View>
-      </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Buyer Offered:</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>Rs. 1,000</Text>
-        </View>
-      </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Item:</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>Uta Spencer</Text>
+        <View>
+          <Text style={styles.titleStyle}>
+            Brilliant things happen, When you...
+          </Text>
+          <Text style={styles.textStyle}>Buyer name: M,Adnan Akhtar</Text>
+          <Text style={styles.textStyle}>
+            Buyer Offered: <Text style={styles.priceText}>Rs</Text> 2000
+          </Text>
+          <Text style={styles.textStyle}>Date: June 20,2022 06:30pm</Text>
+          <Text style={styles.textStyle}>Quantity: 02</Text>
         </View>
       </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Counter Offer:</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>------</Text>
-        </View>
-      </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Quantity:</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>2</Text>
-        </View>
-      </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Date:</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.subStyle}>June 23, 2022 6:31 PM</Text>
-        </View>
-      </View>
-      <View style={styles.rowContainer}>
-        <View style={styles.column}>
-          <Text style={styles.titleStyle}>Action:</Text>
-        </View>
-        <View style={styles.column}>
-          <Image source={appIcons.gEye} style={styles.iconStyle} />
-        </View>
+      <View>
+        <Text style={styles.statusText}>
+          Status: Counter offer rejected by buyer
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -72,33 +41,49 @@ const styles = StyleSheet.create({
     backgroundColor: colors.w1,
     borderRadius: 8,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 0.6},
-    shadowOpacity: 0.5,
+    shadowOffset: {width: 0, height: 0.1},
+    shadowOpacity: 0.1,
     shadowRadius: 1,
-    elevation: 2,
+    elevation: 4,
     padding: WP('3'),
     marginVertical: WP('3'),
   },
-  column: {
-    flex: 1,
+  imgContainer: {
+    backgroundColor: colors.pc,
+    width: WP('30'),
+    height: WP('32'),
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: WP('3'),
+  },
+  imgStyle: {
+    width: WP('26'),
+    height: WP('26'),
   },
   rowContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: WP('2'),
   },
   titleStyle: {
-    color: colors.p3,
-    fontFamily: family.workSans_medium,
+    color: colors.p1,
+    fontFamily: family.workSans_semiBold,
     fontSize: size.small,
+    width: WP('45'),
   },
-  subStyle: {
+  textStyle: {
     color: colors.p2,
-    fontFamily: family.workSans_medium,
-    fontSize: size.tiny,
+    fontFamily: family.morkSans_regular,
+    fontSize: size.xxsmall,
   },
-  iconStyle: {
-    width: WP('5'),
-    height: WP('5'),
+  priceText: {
+    color: colors.p2,
+    fontFamily: family.morkSans_regular,
+    fontSize: size.xxtiny,
+  },
+  statusText: {
+    color: colors.p2,
+    fontFamily: family.morkSans_regular,
+    fontSize: size.xxsmall,
+    marginVertical: WP('2'),
   },
 });

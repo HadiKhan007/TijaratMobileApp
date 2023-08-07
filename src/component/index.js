@@ -55,6 +55,9 @@ export * from './AppModal/DistanceModal';
 export * from './AppModal/CityModal';
 export * from './AppModal/FilterModal';
 export * from './AppModal/ImagePiclerModal';
+export * from './AppModal/AcceptOfferModal';
+export * from './AppModal/RejectOfferModal';
+export * from './AppModal/CounterOfferModal';
 
 //DrawerBar
 
