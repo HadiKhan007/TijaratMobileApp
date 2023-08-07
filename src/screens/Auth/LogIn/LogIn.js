@@ -11,19 +11,20 @@ import {appIcons, loginFormFields, loginVS} from '../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUser} from '../../../redux/Slices/authSlice';
+import {loginUser, setToken} from '../../../redux/Slices/authSlice';
 import {setUserId} from '../../../redux/Slices/userSlice';
 
 const LogIn = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const {user, loading} = useSelector(state => state.auth.user);
+  const {user, loading, token} = useSelector(state => state.auth);
   const userId = user?.seller?._id;
 
   const handleLogin = values => {
     const email = values.email;
     const password = values.password;
     dispatch(setUserId(userId));
+    // dispatch(setToken(user?.token));
     dispatch(loginUser({email, password}))
       .unwrap()
       .then(() => {

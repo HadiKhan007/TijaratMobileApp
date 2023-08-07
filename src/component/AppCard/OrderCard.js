@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
-import {useSelector} from 'react-redux';
 
-const OrderCard = () => {
-  const recentOrder = useSelector(state => state.recentOrder.orders);
-
+const OrderCard = ({recentOrderData}) => {
+  console.log('====================================');
+  console.log('====>', recentOrderData);
+  console.log('====================================');
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.titleStyle}>Recent Order</Text>
@@ -23,13 +23,13 @@ const OrderCard = () => {
           <>
             <View style={styles.rowContainer}>
               <Text style={styles.idStyle}>
-                {recentOrder?.orders[index]?.orderId}
+                {recentOrderData?.orders[index]?.orderId}
               </Text>
               <Text style={styles.textStyle}>
-                {recentOrder?.orders[index]?.buyer}
+                {recentOrderData?.orders[index]?.buyer}
               </Text>
               <Text style={[styles.textStyle]}>
-                {recentOrder?.orders[index]?.orderStatus}
+                {recentOrderData?.orders[index]?.orderStatus}
               </Text>
             </View>
             <AppDivider
