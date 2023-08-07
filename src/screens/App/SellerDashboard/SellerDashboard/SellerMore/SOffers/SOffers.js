@@ -6,7 +6,7 @@ import {
   TopHeader,
 } from '../../../../../../component';
 import styles from './styles';
-import {appIcons} from '../../../../../../utilities';
+import {WP, appIcons} from '../../../../../../utilities';
 
 const SOffers = ({navigation}) => {
   return (
@@ -16,6 +16,8 @@ const SOffers = ({navigation}) => {
         <AppTitle Title="All Offers" mainContainer={styles.titleContainer} />
         <FlatList
           data={[{}, {}, {}]}
+          style={{marginBottom: WP('23')}}
+          showsVerticalScrollIndicator={false}
           renderItem={() => (
             <SellerOfferCard
               onPress={() => navigation.navigate('SOfferDetails')}

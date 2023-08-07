@@ -3,6 +3,7 @@ import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import styles from './styles';
 import {
   AccountCard,
+  AppLoader,
   OrderCard,
   ResultCard,
   TopHeader,
@@ -15,10 +16,13 @@ import {productdata} from '../../../../redux/Slices/SellerSlices/dashboardSlice'
 import {recentOrdersAsync} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
 
 const SellerDashboard = ({navigation}) => {
+  const useRecent = state => state.recentOrder.orders;
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth);
   const data = useSelector(state => state.dashboard.data);
-  const sellerId = user?.seller?._id;
+  const recentOrder = useSelector(useRecent);
+
+  const sellerId = user?.user?.seller?._id;
   const newData = data?.data;
 
   useEffect(() => {
@@ -69,10 +73,12 @@ const SellerDashboard = ({navigation}) => {
             iconName={user ? user?.seller?.shopImageUrl : appIcons.person}
             title={
               user
-                ? user?.seller?.firstName + ' ' + user?.seller?.lastName
+                ? user?.user?.seller?.firstName +
+                  ' ' +
+                  user?.user?.seller?.lastName
                 : 'Login Now'
             }
-            email={user ? user?.seller?.email : 'no'}
+            email={user ? user?.user?.seller?.email : 'no'}
           />
           <View style={{flexDirection: 'row'}}>
             <ResultCard
@@ -91,8 +97,8 @@ const SellerDashboard = ({navigation}) => {
               number={newData?.orders}
             />
           </View>
-          {/* <OrderCard />
-          <OrderCard /> */}
+          <OrderCard recentOrderData={recentOrder} />
+          <OrderCard recentOrderData={recentOrder} />
         </ScrollView>
         {/* <View style={styles.positionCon}> */}
         <FloatingAction

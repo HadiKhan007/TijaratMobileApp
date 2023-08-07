@@ -16,6 +16,7 @@ const initialState = {
   orders: [],
   status: 'idle',
   error: null,
+  loading: false,
 };
 
 const recentOrderSlice = createSlice({
@@ -25,13 +26,16 @@ const recentOrderSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(recentOrdersAsync.pending, state => {
+        state.loading = true;
         state.status = 'loading';
       })
       .addCase(recentOrdersAsync.fulfilled, (state, action) => {
+        state.loading = false;
         state.status = 'succeeded';
         state.orders = action.payload;
       })
       .addCase(recentOrdersAsync.rejected, (state, action) => {
+        state.loading = false;
         state.status = 'failed';
         state.error = action.error.message;
       });
