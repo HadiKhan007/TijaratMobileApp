@@ -75,4 +75,5 @@ export const appIcons = {
   viewIcon: require('../../assets/icons/viewIcon.png'),
   Soffer: require('../../assets/icons/Soffer.png'),
   gEye: require('../../assets/icons/gEye.png'),
+  empty: require('../../assets/icons/empty.png'),
 };

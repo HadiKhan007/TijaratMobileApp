@@ -1,11 +1,13 @@
 import {Platform, StyleSheet} from 'react-native';
 import {colors, family, size, WP} from '../../utilities';
+import {hasNotch} from 'react-native-device-info';
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: colors.bgColor,
     paddingHorizontal: WP('4'),
+    marginTop: hasNotch() ? WP('12') : WP('1.5'),
   },
   firstContainer: {
     backgroundColor: colors.bgColor,

@@ -55,6 +55,13 @@ export const AddProductFormFields = {
   addBrand: '',
   expectedDelivery: '',
 };
+
+export const CounterOfferFormField = {
+  amount: '',
+};
+export const counterOfferVS = yup.object().shape({
+  amount: yup.string().required('Amount required'),
+});
 export const addProductVS = yup.object().shape({
   productName: yup.string().required('Product name required'),
   price: yup.string().required('Price required'),

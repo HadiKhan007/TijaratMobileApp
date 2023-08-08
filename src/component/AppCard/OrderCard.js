@@ -21,7 +21,7 @@ const OrderCard = ({recentOrderData}) => {
         keyExtractor={(item, index) => item + index.toString()}
         renderItem={({index}) => (
           <>
-            <View style={styles.rowContainer}>
+            {/* <View style={styles.rowContainer}>
               <Text style={styles.idStyle}>
                 {recentOrderData?.orders[index]?.orderId}
               </Text>
@@ -34,7 +34,7 @@ const OrderCard = ({recentOrderData}) => {
             </View>
             <AppDivider
               lineStyle={[styles.lineStyle, {backgroundColor: colors.p6}]}
-            />
+            /> */}
           </>
         )}
       />
