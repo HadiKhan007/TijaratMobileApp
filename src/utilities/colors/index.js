@@ -21,6 +21,7 @@ export const colors = {
   //Secondary Colours
   s1: '#F1D4C9',
   s2: '#BA6924',
+  s3: '#FFD6D9',
 
   //Green
   gr: '#9DCC2D',

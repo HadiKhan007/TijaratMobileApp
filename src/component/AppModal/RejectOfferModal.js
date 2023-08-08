@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     margin: 0,
     backgroundColor: colors.w1,
     width: '100%',
-    height: '33%',
+    height: '37%',
     alignSelf: 'center',
     borderRadius: 8,
-    padding: WP('3'),
+    padding: WP('5'),
   },
 
   iconStyle: {
@@ -55,5 +55,6 @@ const styles = StyleSheet.create({
   },
   btnStyle: {
     backgroundColor: colors.r1,
+    marginVertical: WP('3'),
   },
 });

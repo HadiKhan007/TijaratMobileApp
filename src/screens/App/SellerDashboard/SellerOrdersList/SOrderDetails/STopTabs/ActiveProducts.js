@@ -5,6 +5,7 @@ import {
   ActiveProductCard,
   AppButton,
   AppTitle,
+  CancelOrderCard,
   CustomDropdown,
   OrderSummaryCard,
   TaskInput,
@@ -18,6 +19,7 @@ const ActiveProducts = () => {
         <ActiveProductCard />
         <CustomDropdown items={[]} title="Delivery Status" />
         <CustomDropdown items={[]} title="Courier Service" />
+        <CancelOrderCard />
         <TaskInput
           title="Tracking ID"
           titleStyle={styles.titleStyle}

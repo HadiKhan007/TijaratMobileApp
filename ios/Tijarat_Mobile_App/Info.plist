@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+<string>We need access to your camera to take photos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Bold.otf</string>

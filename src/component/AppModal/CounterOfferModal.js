@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     height: '42%',
     alignSelf: 'center',
     borderRadius: 8,
-    padding: WP('3'),
+    padding: WP('5'),
   },
 
   iconStyle: {

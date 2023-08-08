@@ -5,6 +5,7 @@ import {OrdersTabsBar} from '../../../component';
 import ActiveProducts from '../../../screens/App/SellerDashboard/SellerOrdersList/SOrderDetails/STopTabs/ActiveProducts';
 import ShippingAddress from '../../../screens/App/SellerDashboard/SellerOrdersList/SOrderDetails/STopTabs/ShippingAddress';
 import {StyleSheet} from 'react-native';
+import CancelProducts from '../../../screens/App/SellerDashboard/SellerOrdersList/SOrderDetails/STopTabs/CancelProducts';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -20,6 +21,7 @@ const OrdersTopTabs = () => {
       tabBar={props => <OrdersTabsBar {...props} />}>
       <Tab.Screen name="Active Product(s)" component={ActiveProducts} />
       <Tab.Screen name="Shipping Address" component={ShippingAddress} />
+      <Tab.Screen name="CancelProducts" component={CancelProducts} />
     </Tab.Navigator>
   );
 };
