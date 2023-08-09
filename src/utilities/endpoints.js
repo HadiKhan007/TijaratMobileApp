@@ -14,6 +14,8 @@ const ENDPOINTS = {
   DASHBOARD: 'seller/dashboard',
   RECENT_ORDERS: 'mobile/order/get-recent-orders/',
   SELLER_ORDER: 'order/',
+  OFFERS: 'offer/seller/',
+  OFFERS_DETAILS: 'offer/',
 };
 
 export {BASE_URL, ENDPOINTS};

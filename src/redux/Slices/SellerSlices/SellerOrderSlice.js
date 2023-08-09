@@ -24,6 +24,7 @@ export const sellerOrdersAsync = createAsyncThunk(
 
 const initialState = {
   orders: [],
+  loading: false,
 };
 
 const sellerOrderSlice = createSlice({
@@ -34,14 +35,17 @@ const sellerOrderSlice = createSlice({
     builder
       .addCase(sellerOrdersAsync.pending, state => {
         state.status = 'loading';
+        state.loading = true;
       })
       .addCase(sellerOrdersAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.orders = action.payload;
+        state.loading = false;
       })
       .addCase(sellerOrdersAsync.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+        state.loading = false;
       });
   },
 });

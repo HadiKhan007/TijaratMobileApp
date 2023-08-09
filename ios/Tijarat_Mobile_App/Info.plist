@@ -35,8 +35,15 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-<string>We need access to your camera to take photos.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>This app requires access to the photo library for update profile</string>
+<key>NSCameraUsageDescription</key>
+<string>This app requires access to the camera for update profile</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>location for order delivery information</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>location for order delivery information</string>
+
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Bold.otf</string>

@@ -5,14 +5,17 @@ import {AppButton} from '../AppButton/AppButton';
 import {AcceptOfferModal} from '../AppModal/AcceptOfferModal';
 import {RejectOfferModal} from '../AppModal/RejectOfferModal';
 import {CounterOfferModal} from '../AppModal/CounterOfferModal';
+import moment from 'moment';
 
-const OfferDetailCard = () => {
+const OfferDetailCard = ({detailData}) => {
   const [isVisibleAccept, setIsVisibleAccept] = useState(false);
   const [isVisibleReject, setIsVisibleReject] = useState(false);
   const [isVisibleCO, setIsVisibleCO] = useState(false);
   const toggleAcceptModal = () => setIsVisibleAccept(!isVisibleAccept);
   const toggleRejectModal = () => setIsVisibleReject(!isVisibleReject);
   const toggleCO = () => setIsVisibleCO(!isVisibleCO);
+  const currentDate = new Date(detailData?.createdAt);
+  const formattedDate = moment(currentDate).format('MMMM Do YYYY, h:mm');
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
@@ -24,15 +27,16 @@ const OfferDetailCard = () => {
           />
         </View>
         <View>
-          <Text style={styles.titleStyle}>
-            Brilliant things happen, When you...
-          </Text>
-          <Text style={styles.textStyle}>Buyer name: M,Adnan Akhtar</Text>
+          <Text style={styles.titleStyle}>{detailData?.item?.name}</Text>
           <Text style={styles.textStyle}>
-            Buyer Offered: <Text style={styles.priceText}>Rs</Text> 2000
+            Buyer name:{detailData?.buyer?.firstName}
           </Text>
-          <Text style={styles.textStyle}>Date: June 20,2022 06:30pm</Text>
-          <Text style={styles.textStyle}>Quantity: 02</Text>
+          <Text style={styles.textStyle}>
+            Buyer Offered: <Text style={styles.priceText}>Rs</Text>{' '}
+            {detailData?.priceOfferedFromBuyer}
+          </Text>
+          <Text style={styles.textStyle}>Date: {formattedDate}</Text>
+          <Text style={styles.textStyle}>Quantity: {detailData?.quantity}</Text>
         </View>
       </View>
       <View>
