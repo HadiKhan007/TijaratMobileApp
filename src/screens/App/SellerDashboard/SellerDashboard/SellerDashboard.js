@@ -24,9 +24,6 @@ const SellerDashboard = ({navigation}) => {
 
   const sellerId = user?.user?.seller?._id;
   const newData = data?.data;
-  console.log('====================================');
-  console.log('load--->', user?.user?.seller?.shopImageUrl);
-  console.log('====================================');
 
   useEffect(() => {
     dispatch(productdata(sellerId));

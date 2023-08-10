@@ -2,18 +2,25 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../../../../../utilities';
 import {
+  AppLoader,
   AppTitle,
   CustomDropdown,
   OrderSummaryCard,
   ShippingAddressCard,
   TaskInput,
 } from '../../../../../../component';
+import {useSelector} from 'react-redux';
 
 const ShippingAddress = () => {
+  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
+  const loading = useSelector(state => state.orderDetails?.loading);
+  const totalAmount = orderDetails?.order[0]?.orders[0]?.total;
+  console.log('totalAmount,', totalAmount);
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView style={styles.mainContainer}>
-        <ShippingAddressCard />
+        <ShippingAddressCard data={orderDetails} />
         <CustomDropdown items={[]} title="Delivery Status" />
         <CustomDropdown items={[]} title="Courier Service" />
         <TaskInput
@@ -21,8 +28,9 @@ const ShippingAddress = () => {
           titleStyle={styles.titleStyle}
           inputContainerStyle={styles.containerStyle}
           inputStyle={styles.inputStyle}
-          placeholder="Tracking ID"
+          placeholder={orderDetails?.order[0]?.orders[0]?.trackingId}
           placeholderTextColor={colors.p2}
+          editable={false}
           // value={values.email}
           // onChangeText={handleChange('email')}
           // errorMessage={errors.email}
@@ -34,11 +42,12 @@ const ShippingAddress = () => {
           change the order to shipped
         </Text>
         <AppTitle Title="Summary" mainContainer={styles.titleContainer} />
-        <OrderSummaryCard />
+        <OrderSummaryCard data={totalAmount} />
         <Text style={styles.cancleStyle}>
           <Text style={styles.noteStyle}>Note:</Text> Buyer can cancel the order
           within 30 minutes of placing the order
         </Text>
+        <AppLoader loading={loading} />
       </ScrollView>
     </SafeAreaView>
   );

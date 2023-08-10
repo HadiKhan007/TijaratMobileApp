@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, SafeAreaView, FlatList} from 'react-native';
+import {View, SafeAreaView, FlatList, Alert} from 'react-native';
 import {
   AppLoader,
   AppTitle,
@@ -24,7 +24,7 @@ const SOffers = ({navigation}) => {
       try {
         await dispatch(fetchOffersAsync(sellerId));
       } catch (error) {
-        console.error('Error fetching offers:', error.message);
+        Alert.alert('Error fetching offers:', error.message);
       }
     }
 

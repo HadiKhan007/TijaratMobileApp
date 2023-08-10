@@ -10,13 +10,17 @@ import {
   OrderSummaryCard,
   TaskInput,
 } from '../../../../../../component';
+import {useSelector, useDispatch} from 'react-redux';
 
 const ActiveProducts = () => {
+  const dispatch = useDispatch();
+  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView style={styles.mainContainer}>
-        <ActiveProductCard />
-        <ActiveProductCard />
+        <ActiveProductCard data={orderDetails} />
+        <ActiveProductCard data={orderDetails} />
         <CustomDropdown items={[]} title="Delivery Status" />
         <CustomDropdown items={[]} title="Courier Service" />
         <CancelOrderCard />

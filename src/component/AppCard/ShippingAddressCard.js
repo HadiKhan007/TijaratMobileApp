@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 
-const ShippingAddressCard = () => {
+const ShippingAddressCard = ({data}) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
@@ -10,7 +10,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Name:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Hamza Basra</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.firstName}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -18,7 +20,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Address:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>House 1 Lahore</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.address}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -26,7 +30,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Email:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>hamzabasra@66loop.com</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.email}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -34,7 +40,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Phone:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>923123456789</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.phone}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -42,7 +50,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>City:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Lahore</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.city}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -50,7 +60,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Country:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Pakistan</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.country}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -58,7 +70,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Zip:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>5400</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.shippingInformation?.zip}
+          </Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -66,7 +80,9 @@ const ShippingAddressCard = () => {
           <Text style={styles.titleStyle}>Delivery Status:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>Received</Text>
+          <Text style={styles.subStyle}>
+            {data?.order[0]?.orders[0]?.orderStatus}
+          </Text>
         </View>
       </View>
     </View>

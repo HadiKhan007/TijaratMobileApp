@@ -8,6 +8,7 @@ import recentOrderReducer from './SellerSlices/RecentOrderSlice';
 import sellerOrderReducer from './SellerSlices/SellerOrderSlice';
 import offersReducer from './SellerSlices/SellerOfferSlice';
 import offerDetailsReducer from './SellerSlices/OfferDetailSlice';
+import orderDetailsReducer from './SellerSlices/orderDetailSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   sellerOrder: sellerOrderReducer,
   offers: offersReducer,
   offerDetails: offerDetailsReducer,
+  orderDetails: orderDetailsReducer,
   // Add other reducers here
 });
 
