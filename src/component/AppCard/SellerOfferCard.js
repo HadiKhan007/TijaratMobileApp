@@ -1,13 +1,20 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {WP, appImages, colors, family, size} from '../../utilities';
+import {
+  BASE_URL_IMG,
+  WP,
+  appImages,
+  colors,
+  family,
+  size,
+} from '../../utilities';
 import moment from 'moment';
 
 const SellerOfferCard = ({data, onPress, index}) => {
   const currentDate = new Date(data[0]?.createdAt);
   const formattedDate = moment(currentDate).format('MMMM Do YYYY, h:mm');
   console.log('====================================');
-  console.log(data[0]?._id);
+  console.log('thumbnailImage', data[0]?.item?.thumbnailImage);
   console.log('====================================');
 
   return (
@@ -15,7 +22,7 @@ const SellerOfferCard = ({data, onPress, index}) => {
       <View style={styles.rowContainer}>
         <View style={styles.imgContainer}>
           <Image
-            source={appImages.sneakers}
+            source={{uri: BASE_URL_IMG + data[0]?.item?.thumbnailImage}}
             style={styles.imgStyle}
             resizeMode="contain"
           />

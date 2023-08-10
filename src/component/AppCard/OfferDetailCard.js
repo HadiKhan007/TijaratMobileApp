@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {WP, appImages, colors, family, size} from '../../utilities';
+import {
+  BASE_URL_IMG,
+  WP,
+  appImages,
+  colors,
+  family,
+  size,
+} from '../../utilities';
 import {AppButton} from '../AppButton/AppButton';
 import {AcceptOfferModal} from '../AppModal/AcceptOfferModal';
 import {RejectOfferModal} from '../AppModal/RejectOfferModal';
@@ -16,12 +23,15 @@ const OfferDetailCard = ({detailData}) => {
   const toggleCO = () => setIsVisibleCO(!isVisibleCO);
   const currentDate = new Date(detailData?.createdAt);
   const formattedDate = moment(currentDate).format('MMMM Do YYYY, h:mm');
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
         <View style={styles.imgContainer}>
           <Image
-            source={appImages.sneakers}
+            source={{
+              uri: BASE_URL_IMG + detailData?.item?.thumbnailImage,
+            }}
             style={styles.imgStyle}
             resizeMode="contain"
           />
@@ -40,37 +50,41 @@ const OfferDetailCard = ({detailData}) => {
         </View>
       </View>
       <View>
-        <Text style={styles.statusText}>
-          Status: Counter offer rejected by buyer
-        </Text>
+        <Text style={styles.statusText}>Status: {detailData?.status}</Text>
       </View>
-      <View style={styles.rowContainer}>
-        <AppButton
-          title="Accept"
-          containerStyle={styles.btnStyle}
-          onPress={toggleAcceptModal}
-        />
-        <AppButton
-          title="Reject"
-          containerStyle={styles.rejectBtn}
-          titleStyle={styles.rBtnText}
-          onPress={toggleRejectModal}
-        />
-      </View>
-      <AppButton
-        title="Counter Offer"
-        containerStyle={styles.cBtn}
-        onPress={toggleCO}
-      />
-      <AcceptOfferModal
-        isModalVisible={isVisibleAccept}
-        onPress={toggleAcceptModal}
-      />
-      <RejectOfferModal
-        isModalVisible={isVisibleReject}
-        onPress={toggleRejectModal}
-      />
-      <CounterOfferModal isModalVisible={isVisibleCO} onPress={toggleCO} />
+      {detailData?.status === 'offered' ? (
+        <>
+          <View style={styles.rowContainer}>
+            <AppButton
+              title="Accept"
+              containerStyle={styles.btnStyle}
+              onPress={toggleAcceptModal}
+            />
+            <AppButton
+              title="Reject"
+              containerStyle={styles.rejectBtn}
+              titleStyle={styles.rBtnText}
+              onPress={toggleRejectModal}
+            />
+          </View>
+          <AppButton
+            title="Counter Offer"
+            containerStyle={styles.cBtn}
+            onPress={toggleCO}
+          />
+          <AcceptOfferModal
+            isModalVisible={isVisibleAccept}
+            onPress={toggleAcceptModal}
+          />
+          <RejectOfferModal
+            isModalVisible={isVisibleReject}
+            onPress={toggleRejectModal}
+          />
+          <CounterOfferModal isModalVisible={isVisibleCO} onPress={toggleCO} />
+        </>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };

@@ -8,7 +8,7 @@ import {
   ResultCard,
   TopHeader,
 } from '../../../../component';
-import {appIcons, colors} from '../../../../utilities';
+import {BASE_URL_IMG, appIcons, colors} from '../../../../utilities';
 import {FloatingAction} from 'react-native-floating-action';
 import {DrawerActions} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -25,7 +25,7 @@ const SellerDashboard = ({navigation}) => {
   const sellerId = user?.user?.seller?._id;
   const newData = data?.data;
   console.log('====================================');
-  console.log('load--->', loading);
+  console.log('load--->', user?.user?.seller?.shopImageUrl);
   console.log('====================================');
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const SellerDashboard = ({navigation}) => {
             onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           />
           <AccountCard
-            iconName={user ? user?.seller?.shopImageUrl : appIcons.person}
+            imageURL={BASE_URL_IMG + user?.user?.seller?.shopImageUrl}
             title={
               user
                 ? user?.user?.seller?.firstName +

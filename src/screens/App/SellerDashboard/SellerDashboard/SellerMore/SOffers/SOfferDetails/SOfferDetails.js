@@ -12,6 +12,7 @@ const SOfferDetails = ({route}) => {
   const offerId = route?.params?.offerId;
   const offerDetails = useSelector(state => state.offerDetails.offerDetails);
   const loading = useSelector(state => state.offerDetails.loading);
+  const data = offerDetails;
 
   useEffect(() => {
     dispatch(fetchOfferDetailsAsync(offerId));
@@ -28,7 +29,7 @@ const SOfferDetails = ({route}) => {
           mainContainer={styles.titleContainer}
         />
         <FlatList
-          data={[{}, {}]}
+          data={[offerDetails]}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
         />

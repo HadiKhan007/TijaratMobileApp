@@ -5,7 +5,7 @@ import {WP, appIcons, colors, family, size} from '../../utilities';
 const AccountCard = ({
   title,
   email,
-  iconName,
+  imageURL,
   titleStyle,
   mailStyle,
   iconStyle,
@@ -14,7 +14,9 @@ const AccountCard = ({
   return (
     <View style={[styles.mainContainer, mainContainer]}>
       <Image
-        source={iconName ? iconName : appIcons.person}
+        source={{
+          uri: imageURL ? imageURL : appIcons.person,
+        }}
         style={[styles.iconStyle, iconStyle]}
       />
       <View>

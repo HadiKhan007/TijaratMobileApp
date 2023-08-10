@@ -2,6 +2,7 @@
 //TODO:
 // const BASE_URL = 'https://api.tijarat.com/';
 const BASE_URL = 'https://api-dev.tijarat.com/';
+const BASE_URL_IMG = 'https://d3jlztp2s39q5k.cloudfront.net/';
 //Base Url
 
 const ENDPOINTS = {
@@ -16,6 +17,7 @@ const ENDPOINTS = {
   SELLER_ORDER: 'order/',
   OFFERS: 'offer/seller/',
   OFFERS_DETAILS: 'offer/',
+  COUNTER_OFFERS: 'offer/counter-offer/',
 };
 
-export {BASE_URL, ENDPOINTS};
+export {BASE_URL, ENDPOINTS, BASE_URL_IMG};
