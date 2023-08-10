@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, FlatList, ScrollView} from 'react-native';
 import {AccountCard, AppLoader, DrawerBar} from '..';
-import {appIcons, drawerData} from '../../utilities';
+import {BASE_URL_IMG, appIcons, drawerData} from '../../utilities';
 import styles from './styles';
 import {useSelector} from 'react-redux';
 
@@ -53,7 +53,7 @@ const DrawerContent = ({navigation}) => {
   return (
     <View style={styles.rootContainer}>
       <AccountCard
-        iconName={user ? user.user.seller.shopImageUrl : appIcons.person}
+        imageURL={BASE_URL_IMG + user?.user?.seller?.shopImageUrl}
         title={
           user
             ? user.user.seller.firstName + ' ' + user.user.seller.lastName

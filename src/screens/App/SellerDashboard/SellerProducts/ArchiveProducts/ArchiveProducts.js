@@ -14,10 +14,6 @@ const ArchiveProducts = () => {
   const {user} = useSelector(state => state.auth.user);
   const sellerId = user?.seller?._id;
 
-  // console.log('====================================');
-  // // console.log('----000----', archiveProducts[0]?.data);
-  // console.log('====================================');
-
   useEffect(() => {
     dispatch(archiveProductAsync(sellerId));
   }, [dispatch, sellerId]);

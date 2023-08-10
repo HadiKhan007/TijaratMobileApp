@@ -8,7 +8,7 @@ import {
   ResultCard,
   TopHeader,
 } from '../../../../component';
-import {appIcons, colors} from '../../../../utilities';
+import {BASE_URL_IMG, appIcons, colors} from '../../../../utilities';
 import {FloatingAction} from 'react-native-floating-action';
 import {DrawerActions} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -16,14 +16,17 @@ import {productdata} from '../../../../redux/Slices/SellerSlices/dashboardSlice'
 import {recentOrdersAsync} from '../../../../redux/Slices/SellerSlices/RecentOrderSlice';
 
 const SellerDashboard = ({navigation}) => {
-  const useRecent = state => state.recentOrder.orders;
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth);
-  const data = useSelector(state => state.dashboard.data);
-  const recentOrder = useSelector(useRecent);
+  const {user} = useSelector(state => state?.auth);
+  const data = useSelector(state => state?.dashboard?.data);
+  const recentOrder = useSelector(state => state?.recentOrder?.orders);
+  const loading = useSelector(state => state?.recentOrder?.loading);
 
   const sellerId = user?.user?.seller?._id;
   const newData = data?.data;
+  console.log('====================================');
+  console.log('load--->', user?.user?.seller?.shopImageUrl);
+  console.log('====================================');
 
   useEffect(() => {
     dispatch(productdata(sellerId));
@@ -70,7 +73,7 @@ const SellerDashboard = ({navigation}) => {
             onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           />
           <AccountCard
-            iconName={user ? user?.seller?.shopImageUrl : appIcons.person}
+            imageURL={BASE_URL_IMG + user?.user?.seller?.shopImageUrl}
             title={
               user
                 ? user?.user?.seller?.firstName +
@@ -98,7 +101,7 @@ const SellerDashboard = ({navigation}) => {
             />
           </View>
           <OrderCard recentOrderData={recentOrder} />
-          <OrderCard recentOrderData={recentOrder} />
+          {/* <OrderCard recentOrderData={recentOrder} /> */}
         </ScrollView>
         {/* <View style={styles.positionCon}> */}
         <FloatingAction
@@ -109,6 +112,7 @@ const SellerDashboard = ({navigation}) => {
           onPressItem={name => navigation.navigate(`${name}`)}
         />
         {/* </View> */}
+        <AppLoader loading={loading} />
       </View>
     </SafeAreaView>
   );
