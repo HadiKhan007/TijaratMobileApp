@@ -1,21 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import styles from './styles';
-import {AppTitle, TopHeader} from '../../../../../component';
+import {AppLoader, AppTitle, TopHeader} from '../../../../../component';
 import {appIcons} from '../../../../../utilities';
 import OrdersTopTabs from '../../../../../navigation/stacks/TopTabs/OrdersTopTabs';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchOrderDetailsAsync} from '../../../../../redux/Slices/SellerSlices/orderDetailSlice';
 
-const SOrderDetails = () => {
+const SOrderDetails = ({route}) => {
+  const dispatch = useDispatch();
+  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
+  const loading = useSelector(state => state.orderDetails?.loading);
+  const orderID = route.params.orderID;
+
+  useEffect(() => {
+    dispatch(fetchOrderDetailsAsync(orderID));
+  }, [dispatch, orderID]);
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
-        <TopHeader iconName={appIcons.menuIcon} title="Order Detail" />
+        <TopHeader iconName={appIcons.backArrow} title="Order Detail" />
         <AppTitle
           Title="Your Order Detail"
           mainContainer={styles.titleContainer}
         />
       </View>
       <OrdersTopTabs />
+      <AppLoader loading={loading} />
     </SafeAreaView>
   );
 };

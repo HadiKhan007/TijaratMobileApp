@@ -18,7 +18,6 @@ export const productdata = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.error('Error fetching data from the API:', error.message);
       throw new Error('Failed to fetch data new from the API.');
     }
   },

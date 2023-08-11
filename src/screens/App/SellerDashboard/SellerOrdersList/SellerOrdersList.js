@@ -14,11 +14,8 @@ import {sellerOrdersAsync} from '../../../../redux/Slices/SellerSlices/SellerOrd
 const SellerOrdersList = ({navigation}) => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth.user);
-  const sellerOrder = useSelector(state => state.sellerOrder.orders);
+  const sellerOrder = useSelector(state => state.sellerOrder?.orders);
   const loading = useSelector(state => state.sellerOrder.loading);
-  console.log('====================================');
-  console.log('hehehe-->', loading);
-  console.log('====================================');
 
   const sellerId = user?.seller?._id;
 
@@ -33,7 +30,7 @@ const SellerOrdersList = ({navigation}) => {
         <AppTitle Title="Order" mainContainer={styles.titleContainer} />
         <SellerOrderCard
           sellerOrderData={sellerOrder}
-          onPress={() => navigation.navigate('SOrderDetails')}
+          navigation={navigation}
         />
         <AppLoader loading={loading} />
       </View>

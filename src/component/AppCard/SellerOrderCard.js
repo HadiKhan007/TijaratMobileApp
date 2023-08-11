@@ -4,7 +4,7 @@ import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
-const SellerOrderCard = ({sellerOrderData, onPress}) => {
+const SellerOrderCard = ({sellerOrderData, navigation}) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
@@ -16,7 +16,12 @@ const SellerOrderCard = ({sellerOrderData, onPress}) => {
       <FlatList
         data={sellerOrderData?.order}
         renderItem={({item, index}) => (
-          <TouchableOpacity onPress={onPress}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('SOrderDetails', {
+                orderID: sellerOrderData.order[index]?._id,
+              })
+            }>
             <View style={styles.rowContainer}>
               <Text style={styles.idStyle}>
                 {sellerOrderData?.order[index]?.orders[0]?.childOrderNumber}

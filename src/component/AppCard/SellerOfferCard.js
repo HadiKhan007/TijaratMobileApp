@@ -13,9 +13,6 @@ import moment from 'moment';
 const SellerOfferCard = ({data, onPress, index}) => {
   const currentDate = new Date(data[0]?.createdAt);
   const formattedDate = moment(currentDate).format('MMMM Do YYYY, h:mm');
-  console.log('====================================');
-  console.log('thumbnailImage', data[0]?.item?.thumbnailImage);
-  console.log('====================================');
 
   return (
     <TouchableOpacity style={styles.mainContainer} onPress={onPress}>

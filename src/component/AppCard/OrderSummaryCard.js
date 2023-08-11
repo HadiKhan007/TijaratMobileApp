@@ -1,8 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
+import {useSelector} from 'react-redux';
 
-const OrderSummaryCard = () => {
+const OrderSummaryCard = ({data}) => {
+  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
+  const totalAmount = orderDetails?.order[0]?.orders[0]?.total;
+
+  console.log('dsts', data);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>
@@ -10,7 +15,7 @@ const OrderSummaryCard = () => {
           <Text style={styles.titleStyle}>Subtotal:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.subStyle}>194,000</Text>
+          <Text style={styles.subStyle}>{totalAmount}</Text>
         </View>
       </View>
       <View style={styles.rowContainer}>
@@ -34,7 +39,9 @@ const OrderSummaryCard = () => {
           <Text style={styles.titleStyle}>Total:</Text>
         </View>
         <View style={styles.column}>
-          <Text style={[styles.subStyle, {color: colors.p1}]}>194,000</Text>
+          <Text style={[styles.subStyle, {color: colors.p1}]}>
+            {totalAmount}
+          </Text>
         </View>
       </View>
     </View>
