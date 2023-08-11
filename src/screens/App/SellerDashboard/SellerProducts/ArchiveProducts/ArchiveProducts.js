@@ -11,8 +11,8 @@ const ArchiveProducts = () => {
   const archiveProducts = useSelector(
     state => state.archiveProducts.archivedProducts,
   );
-  const {user} = useSelector(state => state.auth.user);
-  const sellerId = user?.seller?._id;
+  const {user} = useSelector(state => state.auth);
+  const sellerId = user?.user?.seller?._id;
 
   useEffect(() => {
     dispatch(archiveProductAsync(sellerId));

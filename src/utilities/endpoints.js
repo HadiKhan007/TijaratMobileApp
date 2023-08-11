@@ -19,6 +19,7 @@ const ENDPOINTS = {
   OFFERS_DETAILS: 'offer/',
   COUNTER_OFFERS: 'offer/counter-offer/',
   ORDER_DETAILS: 'order/get-by-id/',
+  SELLER_ALL_PRODUCTS: 'products/by-seller/',
 };
 
 export {BASE_URL, ENDPOINTS, BASE_URL_IMG};
