@@ -1,68 +1,30 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {WP, appImages, colors, family, size} from '../../utilities';
+import {BASE_URL_IMG, WP, colors, family, size} from '../../utilities';
 
 const ArchiveCard = ({item, data}) => {
   return (
-    // <View style={styles.mainContainer}>
-    //   <View style={styles.rowContainer}>
-    //     <View style={styles.column}>
-    //       <Text style={styles.titleStyle}>Product Name:</Text>
-    //     </View>
-    //     <View style={styles.column}>
-    //       <Text style={styles.subStyle}>
-    //         {data[item]?.data[item]?.name
-    //           ? data[item]?.data[item]?.name
-    //           : 'Empty'}
-    //       </Text>
-    //     </View>
-    //   </View>
-    //   <View style={styles.rowContainer}>
-    //     <View style={styles.column}>
-    //       <Text style={styles.titleStyle}>Price:</Text>
-    //     </View>
-    //     <View style={styles.column}>
-    //       <Text style={styles.subStyle}>
-    //         {data[item]?.data[item]?.price
-    //           ? data[item]?.data[item]?.price
-    //           : 'Empty'}
-    //       </Text>
-    //     </View>
-    //   </View>
-    //   <View style={styles.rowContainer}>
-    //     <View style={styles.column}>
-    //       <Text style={styles.titleStyle}>Status:</Text>
-    //     </View>
-    //     <View style={styles.column}>
-    //       <Text style={styles.subStyle}>
-    //         {data[item]?.data[item]?.isDeleted ? 'hello' : 'yellow'}
-    //       </Text>
-    //     </View>
-    //   </View>
-    // </View>
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
         <Image
-          source={appImages.sneakers}
+          source={{uri: BASE_URL_IMG + data[0]?.data[0]?.thumbnailImage}}
           style={styles.imgStyle}
           resizeMode="contain"
         />
       </View>
       <View>
         <Text style={styles.titleStyle}>
-          {data[item]?.data[item]?.name ? data[item]?.data[item]?.name : '-'}
+          {data[item]?.data[0]?.name ? data[item]?.data[0]?.name : '-'}
         </Text>
         <Text style={styles.priceText}>
           Rs{' '}
           <Text style={styles.numText}>
-            {data[item]?.data[item]?.price
-              ? data[item]?.data[item]?.price
-              : 'Empty'}
+            {data[item]?.data[0]?.price ? data[item]?.data[0]?.price : 'Empty'}
           </Text>
         </Text>
         <Text style={styles.textStyle}>
           Status:
-          {data[item]?.data[item]?.isDeleted ? '-' : ' delete'}
+          {data[item]?.data[0]?.isDeleted ? 'delete' : '-'}
         </Text>
       </View>
     </View>
@@ -75,13 +37,13 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: colors.w1,
     borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 0.6},
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
+    shadowColor: '#ffffff60',
+    shadowOffset: {width: 0, height: 0.2},
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
     elevation: 2,
     padding: WP('3'),
-    marginVertical: WP('3'),
+    marginVertical: WP('1.5'),
     flexDirection: 'row',
   },
   column: {

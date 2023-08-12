@@ -1,7 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Text, SafeAreaView, FlatList} from 'react-native';
 import styles from './styles';
-import {AppTitle, ArchiveCard, TopHeader} from '../../../../../component';
+import {
+  AppLoader,
+  AppTitle,
+  ArchiveCard,
+  TopHeader,
+} from '../../../../../component';
 import {appIcons} from '../../../../../utilities';
 import {useDispatch, useSelector} from 'react-redux';
 import {archiveProductAsync} from '../../../../../redux/Slices/SellerSlices/ArchiveProductSlice';
@@ -9,10 +14,12 @@ import {archiveProductAsync} from '../../../../../redux/Slices/SellerSlices/Arch
 const ArchiveProducts = () => {
   const dispatch = useDispatch();
   const archiveProducts = useSelector(
-    state => state.archiveProducts.archivedProducts,
+    state => state.archiveProducts?.archivedProducts,
   );
+  const loading = useSelector(state => state.archiveProducts?.loading);
   const {user} = useSelector(state => state.auth);
   const sellerId = user?.user?.seller?._id;
+  console.log('load', loading);
 
   useEffect(() => {
     dispatch(archiveProductAsync(sellerId));
@@ -29,8 +36,13 @@ const ArchiveProducts = () => {
           Title="Archive Products"
           mainContainer={styles.titleContainer}
         />
-        <FlatList data={archiveProducts[0]?.data} renderItem={renderItem} />
+        <FlatList
+          data={archiveProducts}
+          renderItem={renderItem}
+          style={styles.columnStyle}
+        />
       </View>
+      <AppLoader loading={loading} />
     </SafeAreaView>
   );
 };

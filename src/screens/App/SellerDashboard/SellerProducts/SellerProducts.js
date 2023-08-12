@@ -20,7 +20,6 @@ const SellerProducts = ({navigation}) => {
     state => state.sellerAllProducts?.sellerProducts,
   );
   const loading = useSelector(state => state.sellerAllProducts?.loading);
-  console.log('heeheheh', sellerProducts[0]?.stock);
 
   useEffect(() => {
     dispatch(sellerAllProductsAsync(sellerId));
@@ -39,7 +38,11 @@ const SellerProducts = ({navigation}) => {
           mainContainer={styles.titleContainer}
           onPress={() => navigation.navigate('ArchiveProducts')}
         />
-        <FlatList data={sellerProducts} renderItem={renderItem} />
+        <FlatList
+          data={sellerProducts}
+          renderItem={renderItem}
+          style={styles.columnStyle}
+        />
         <AppLoader loading={loading} />
       </View>
     </SafeAreaView>
