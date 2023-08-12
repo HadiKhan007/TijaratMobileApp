@@ -1,34 +1,46 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {WP, appIcons, appImages, colors, family, size} from '../../utilities';
+import {
+  BASE_URL_IMG,
+  WP,
+  appIcons,
+  colors,
+  family,
+  size,
+} from '../../utilities';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-const ProductCard = () => {
+const ProductCard = ({apiData, index}) => {
   const [switchOn, setSwitchOn] = useState(false);
+  const [state, setState] = useState(false);
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
         <Image
-          source={appImages.sneakers}
+          source={{uri: BASE_URL_IMG + apiData[index].pictures}}
           style={styles.imgStyle}
           resizeMode="contain"
         />
       </View>
       <View>
         <View style={styles.rowContainer}>
-          <Text style={styles.titleStyle}>
-            Brilliant things happen,When you buy ...
-          </Text>
-          <View style={styles.iconContainer}>
-            <Image source={appIcons.downArrow} style={styles.iconStyle} />
-          </View>
+          <Text style={styles.titleStyle}>{apiData[index].name}</Text>
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => setState(!state)}>
+            <Image
+              source={state ? appIcons.cross : appIcons.dots}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
-        <Text style={styles.textStyle}>Electronic</Text>
+        <Text style={styles.textStyle}>{apiData[index]?.category?.name}</Text>
         <Text style={styles.priceText}>
-          Rs <Text style={styles.numText}>14,000.00</Text>
+          Rs <Text style={styles.numText}>{apiData[index].price}</Text>
         </Text>
-        <Text style={styles.textStyle}>Stock: 03</Text>
+        <Text style={styles.textStyle}>Stock: {apiData[index].stock}</Text>
         <View style={styles.rowContainer}>
           <Text style={styles.textStyle}>Status:</Text>
           <ToggleSwitch
@@ -50,12 +62,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: colors.w1,
     paddingHorizontal: WP('3'),
-    paddingVertical: WP('2'),
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.5,
+    paddingVertical: WP('4'),
+    shadowColor: '#ffffff60',
+    shadowOffset: {width: 0, height: 0.2},
+    shadowOpacity: 0.2,
     shadowRadius: 2,
-    elevation: 4,
+    elevation: 2,
     borderRadius: 5,
     marginVertical: WP('2'),
     flexDirection: 'row',
@@ -83,6 +95,7 @@ const styles = StyleSheet.create({
     color: colors.p2,
     fontFamily: family.morkSans_regular,
     fontSize: size.xsmall,
+    marginRight: WP('2'),
   },
   priceText: {
     color: colors.p2,
@@ -96,6 +109,7 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
+    marginTop: WP('2'),
   },
   iconStyle: {
     width: WP('6'),

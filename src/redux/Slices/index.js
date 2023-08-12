@@ -9,6 +9,7 @@ import sellerOrderReducer from './SellerSlices/SellerOrderSlice';
 import offersReducer from './SellerSlices/SellerOfferSlice';
 import offerDetailsReducer from './SellerSlices/OfferDetailSlice';
 import orderDetailsReducer from './SellerSlices/orderDetailSlice';
+import sellerAllProductsReducer from './SellerSlices/sellerAllProductsSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -21,6 +22,8 @@ const rootReducer = combineReducers({
   offers: offersReducer,
   offerDetails: offerDetailsReducer,
   orderDetails: orderDetailsReducer,
+  sellerAllProducts: sellerAllProductsReducer,
+
   // Add other reducers here
 });
 

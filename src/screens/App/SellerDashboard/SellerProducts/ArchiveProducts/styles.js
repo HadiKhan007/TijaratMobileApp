@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     paddingHorizontal: 0,
   },
+  columnStyle: {
+    marginBottom: WP('25'),
+  },
 });
 
 export default styles;
