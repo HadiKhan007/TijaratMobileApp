@@ -1,9 +1,9 @@
 import React, {Fragment, useState} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {WP, colors, family} from '../../utilities';
+import {WP, colors, family, size} from '../../utilities';
 
-const CustomDropdown = ({items, setItems, title}) => {
+const CustomDropdown = ({items, setItems, title, onSelectItem, error}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
 
@@ -19,7 +19,9 @@ const CustomDropdown = ({items, setItems, title}) => {
         setItems={setItems}
         style={styles.dropDownStyle}
         dropDownContainerStyle={styles.dropDownContainerStyle}
+        onSelectItem={onSelectItem}
       />
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </Fragment>
   );
 };
@@ -38,5 +40,10 @@ const styles = StyleSheet.create({
   },
   dropDownContainerStyle: {
     backgroundColor: colors.w1,
+  },
+  errorText: {
+    color: colors.r1,
+    fontSize: size.xxsmall,
+    marginTop: WP('.5'),
   },
 });

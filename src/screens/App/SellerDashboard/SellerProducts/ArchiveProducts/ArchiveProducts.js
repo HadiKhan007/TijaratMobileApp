@@ -19,7 +19,6 @@ const ArchiveProducts = () => {
   const loading = useSelector(state => state.archiveProducts?.loading);
   const {user} = useSelector(state => state.auth);
   const sellerId = user?.user?.seller?._id;
-  console.log('load', loading);
 
   useEffect(() => {
     dispatch(archiveProductAsync(sellerId));

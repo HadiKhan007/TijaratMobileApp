@@ -15,7 +15,6 @@ const ShippingAddress = () => {
   const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
   const loading = useSelector(state => state.orderDetails?.loading);
   const totalAmount = orderDetails?.order[0]?.orders[0]?.total;
-  console.log('totalAmount,', totalAmount);
 
   return (
     <SafeAreaView style={styles.rootContainer}>

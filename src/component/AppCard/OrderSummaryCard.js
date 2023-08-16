@@ -7,7 +7,6 @@ const OrderSummaryCard = ({data}) => {
   const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
   const totalAmount = orderDetails?.order[0]?.orders[0]?.total;
 
-  console.log('dsts', data);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.rowContainer}>

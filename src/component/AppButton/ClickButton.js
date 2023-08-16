@@ -2,19 +2,16 @@ import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const ClickButton = ({title, secondIcon}) => {
-  const [state, setState] = useState(false);
+const ClickButton = ({title, secondIcon, selected, onPress}) => {
   return (
-    <TouchableOpacity
-      style={styles.mainContainer}
-      onPress={() => setState(!state)}>
+    <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
       <View style={styles.rowContainer}>
         <Image
-          source={state ? appIcons.click : appIcons.unClick}
+          source={selected ? appIcons.click : appIcons.unClick}
           style={styles.iconStyle}
         />
         <Text
-          style={[styles.textStyle, {color: state ? colors.p3 : colors.p2}]}>
+          style={[styles.textStyle, {color: selected ? colors.p3 : colors.p2}]}>
           {title}
         </Text>
       </View>

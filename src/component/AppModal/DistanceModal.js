@@ -1,76 +1,102 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
-import {appIcons, colors, family, size, WP} from '../../utilities';
+import {
+  appIcons,
+  colors,
+  distanceFormFiled,
+  distanceVS,
+  family,
+  size,
+  WP,
+} from '../../utilities';
 import {TaskInput} from '../AppInput/TaskInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppButton} from '../AppButton/AppButton';
+import {Formik} from 'formik';
 
 const DistanceModal = ({isModalVisible, onPress}) => {
+  const formikRef = useRef();
+  const handleSave = () => {};
+
   return (
-    <KeyboardAwareScrollView
-      style={styles.main}
-      enableOnAndroid
-      contentContainerStyle={styles.contentContainer}
-      enableAutomaticScroll
-      showsVerticalScrollIndicator={false}>
-      <Modal isVisible={isModalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={styles.rowContainer}>
-            <Text style={styles.titleStyle}>Add Rules by Distance</Text>
-            <TouchableOpacity style={styles.iconContainer} onPress={onPress}>
-              <Image
-                source={appIcons.crossIcon}
-                style={styles.iconStyle}
-                resizeMode="contain"
+    <Formik
+      innerRef={formikRef}
+      initialValues={distanceFormFiled}
+      onSubmit={values => {
+        handleSave(values);
+      }}
+      validateOnChange={false}
+      validateOnBlur={false}
+      validationSchema={distanceVS}>
+      {({values, errors, handleSubmit, handleChange}) => (
+        <KeyboardAwareScrollView
+          style={styles.main}
+          enableOnAndroid
+          contentContainerStyle={styles.contentContainer}
+          enableAutomaticScroll
+          showsVerticalScrollIndicator={false}>
+          <Modal isVisible={isModalVisible}>
+            <View style={styles.modalContainer}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.titleStyle}>Add Rules by Distance</Text>
+                <TouchableOpacity
+                  style={styles.iconContainer}
+                  onPress={onPress}>
+                  <Image
+                    source={appIcons.crossIcon}
+                    style={styles.iconStyle}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+              <TaskInput
+                title="Distance in KM"
+                titleStyle={styles.inputTitle}
+                inputContainerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                placeholder="Distance in KM"
+                placeholderTextColor={colors.p2}
+                value={values.distance}
+                onChangeText={handleChange('distance')}
+                errorMessage={errors.distance}
+                keyboardType={'numeric'}
               />
-            </TouchableOpacity>
-          </View>
-          <TaskInput
-            title="Distance in KM"
-            titleStyle={styles.inputTitle}
-            inputContainerStyle={styles.containerStyle}
-            inputStyle={styles.inputStyle}
-            placeholder="Distance in KM"
-            placeholderTextColor={colors.p2}
-            // value={values.email}
-            // onChangeText={handleChange('email')}
-            // errorMessage={errors.email}
-            keyboardType={'numeric'}
-          />
-          <TaskInput
-            title="Flat Rate"
-            titleStyle={styles.inputTitle}
-            inputContainerStyle={styles.containerStyle}
-            inputStyle={styles.inputStyle}
-            placeholder="Cost"
-            placeholderTextColor={colors.p2}
-            // value={values.email}
-            // onChangeText={handleChange('email')}
-            // errorMessage={errors.email}
-            keyboardType={'numeric'}
-          />
-          <View
-            style={[
-              styles.rowContainer,
-              {justifyContent: 'center', marginVertical: WP('3')},
-            ]}>
-            <AppButton
-              containerStyle={styles.btnStyle}
-              title="Save"
-              // onPress={() => navigation.navigate('UMyAccount')}
-            />
-            <AppButton
-              containerStyle={styles.btn2Style}
-              title="Cancel"
-              titleStyle={styles.btn2Title}
-              onPress={onPress}
-            />
-          </View>
-        </View>
-      </Modal>
-    </KeyboardAwareScrollView>
+              <TaskInput
+                title="Flat Rate"
+                titleStyle={styles.inputTitle}
+                inputContainerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                placeholder="Cost"
+                placeholderTextColor={colors.p2}
+                value={values.cost}
+                onChangeText={handleChange('cost')}
+                errorMessage={errors.cost}
+                keyboardType={'numeric'}
+              />
+              <View
+                style={[
+                  styles.rowContainer,
+                  {justifyContent: 'center', marginVertical: WP('3')},
+                ]}>
+                <AppButton
+                  containerStyle={styles.btnStyle}
+                  title="Save"
+                  onPress={handleSubmit}
+                />
+                <AppButton
+                  containerStyle={styles.btn2Style}
+                  title="Cancel"
+                  titleStyle={styles.btn2Title}
+                  onPress={onPress}
+                />
+              </View>
+            </View>
+          </Modal>
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
 
@@ -85,7 +111,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     backgroundColor: colors.w2,
-    height: '45%',
+    height: '55%',
     paddingHorizontal: WP('5'),
   },
   iconStyle: {
