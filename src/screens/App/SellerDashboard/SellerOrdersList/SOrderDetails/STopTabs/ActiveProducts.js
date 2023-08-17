@@ -10,10 +10,9 @@ import {
   OrderSummaryCard,
   TaskInput,
 } from '../../../../../../component';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const ActiveProducts = () => {
-  const dispatch = useDispatch();
   const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
 
   return (

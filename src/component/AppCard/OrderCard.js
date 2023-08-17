@@ -4,6 +4,9 @@ import {WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
 const OrderCard = ({recentOrderData}) => {
+  console.log('====================================');
+  console.log('recentOrderData', recentOrderData);
+  console.log('====================================');
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.titleStyle}>Recent Order</Text>
@@ -14,7 +17,7 @@ const OrderCard = ({recentOrderData}) => {
       </View>
       <AppDivider lineStyle={styles.lineStyle} />
       <FlatList
-        data={recentOrderData}
+        data={recentOrderData?.orders?.slice(0, 3)}
         keyExtractor={(item, index) => item + index.toString()}
         renderItem={({index}) => (
           <>

@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
   },
   positionCon: {
     position: 'absolute',
-    right: -WP('3'),
-    bottom: -WP('45'),
+    right: WP('0'),
+    bottom: WP('0'),
+    zIndex: WP('2'),
   },
 });
 

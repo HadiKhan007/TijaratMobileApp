@@ -11,7 +11,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.firstName}
+            {data?.order?.[0]?.shippingInformation?.firstName}
           </Text>
         </View>
       </View>
@@ -21,7 +21,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.address}
+            {data?.order?.[0]?.shippingInformation?.address}
           </Text>
         </View>
       </View>
@@ -31,7 +31,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.email}
+            {data?.order?.[0]?.shippingInformation?.email}
           </Text>
         </View>
       </View>
@@ -41,7 +41,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.phone}
+            {data?.order?.[0]?.shippingInformation?.phone}
           </Text>
         </View>
       </View>
@@ -51,7 +51,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.city}
+            {data?.order?.[0]?.shippingInformation?.city}
           </Text>
         </View>
       </View>
@@ -61,7 +61,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.country}
+            {data?.order?.[0]?.shippingInformation?.country}
           </Text>
         </View>
       </View>
@@ -71,7 +71,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.shippingInformation?.zip}
+            {data?.order?.[0]?.shippingInformation?.zip}
           </Text>
         </View>
       </View>
@@ -81,7 +81,7 @@ const ShippingAddressCard = ({data}) => {
         </View>
         <View style={styles.column}>
           <Text style={styles.subStyle}>
-            {data?.order[0]?.orders[0]?.orderStatus}
+            {data?.order?.[0]?.orders[0]?.orderStatus}
           </Text>
         </View>
       </View>

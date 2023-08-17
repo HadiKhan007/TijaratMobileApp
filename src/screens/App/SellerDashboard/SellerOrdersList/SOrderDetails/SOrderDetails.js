@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import styles from './styles';
 import {AppLoader, AppTitle, TopHeader} from '../../../../../component';
 import {appIcons} from '../../../../../utilities';
@@ -9,7 +9,6 @@ import {fetchOrderDetailsAsync} from '../../../../../redux/Slices/SellerSlices/o
 
 const SOrderDetails = ({route}) => {
   const dispatch = useDispatch();
-  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
   const loading = useSelector(state => state.orderDetails?.loading);
   const orderID = route.params.orderID;
 

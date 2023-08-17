@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, SafeAreaView, ScrollView} from 'react-native';
 import styles from './styles';
 import {
   AccountCard,
@@ -19,7 +19,7 @@ const SellerDashboard = ({navigation}) => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state?.auth);
   const data = useSelector(state => state?.dashboard?.data);
-  const recentOrder = useSelector(state => state?.recentOrder?.orders);
+  const orders = useSelector(state => state.recentOrder?.orders);
   const loading = useSelector(state => state?.recentOrder?.loading);
 
   const sellerId = user?.user?.seller?._id;
@@ -97,20 +97,20 @@ const SellerDashboard = ({navigation}) => {
               number={newData?.orders}
             />
           </View>
-          <OrderCard recentOrderData={recentOrder} />
-          {/* <OrderCard recentOrderData={recentOrder} /> */}
+          <OrderCard recentOrderData={orders} />
+          <OrderCard recentOrderData={orders} />
         </ScrollView>
-        {/* <View style={styles.positionCon}> */}
         <FloatingAction
           shadow={true}
           color={colors.p1}
           position="right"
           actions={actions}
           onPressItem={name => navigation.navigate(`${name}`)}
+          showBackground
+          style={styles.positionCon}
         />
-        {/* </View> */}
-        <AppLoader loading={loading} />
       </View>
+      <AppLoader loading={loading} />
     </SafeAreaView>
   );
 };

@@ -3,9 +3,8 @@ import React from 'react';
 import {
   BASE_URL_IMG,
   WP,
-  appIcons,
-  appImages,
   colors,
+  default_img,
   family,
   size,
 } from '../../utilities';
@@ -17,10 +16,10 @@ const ActiveProductCard = ({data}) => {
         <View style={styles.imgContainer}>
           <Image
             source={{
-              uri: BASE_URL_IMG
+              uri: data?.order?.[0]?.orders?.[0]?.product?.thumbnailImage
                 ? BASE_URL_IMG +
-                  data?.order[0]?.orders[0]?.product?.thumbnailImage
-                : BASE_URL_IMG,
+                  data?.order?.[0]?.orders?.[0]?.product?.thumbnailImage
+                : default_img,
             }}
             style={styles.imgStyle}
             resizeMode="contain"
@@ -28,32 +27,35 @@ const ActiveProductCard = ({data}) => {
         </View>
         <View style={styles.secondCon}>
           <Text style={styles.titleStyle}>
-            {data?.order[0]?.orders[0]?.product?.name}
+            {data?.order?.[0]?.orders[0]?.product?.name}
           </Text>
           <Text style={styles.idText}>
-            {data?.order[0]?.orders[0]?.childOrderNumber}
+            {data?.order?.[0]?.orders[0]?.childOrderNumber}
           </Text>
           <View style={styles.rowContainer}>
             <Text style={styles.priceText}>
               Rs{' '}
               <Text style={styles.numText}>
-                {data?.order[0]?.orders[0]?.price}
+                {data?.order?.[0]?.orders[0]?.price}
               </Text>
             </Text>
             <Text style={styles.qtyStyle}>
-              Qty: {data?.order[0]?.orders[0]?.quantity}
+              Qty: {data?.order?.[0]?.orders[0]?.quantity}
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.rowContainer}>
         <Text style={styles.paymentStyle}>
-          Payment: {data?.order[0]?.orders[0]?.seller?.paymentMethods[0].method}
+          Payment:{' '}
+          {data?.order?.[0]?.orders[0]?.seller?.paymentMethods[0].method}
         </Text>
         <Text style={styles.priceText}>
           <Text style={styles.paymentStyle}>Total: </Text>
           Rs{' '}
-          <Text style={styles.numText}>{data?.order[0]?.orders[0]?.total}</Text>
+          <Text style={styles.numText}>
+            {data?.order?.[0]?.orders[0]?.total}
+          </Text>
         </Text>
       </View>
     </View>
