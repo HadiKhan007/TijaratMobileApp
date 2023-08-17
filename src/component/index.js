@@ -48,6 +48,7 @@ export * from './AppCard/CancelOrderCard';
 
 export * from './AppInput/TaskInput';
 export * from './AppInput/AddSpecsInput';
+export * from './AppInput/VariationsInput';
 
 //AppModal
 

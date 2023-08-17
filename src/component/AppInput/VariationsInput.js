@@ -4,19 +4,28 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 import {TaskInput} from './TaskInput';
 
-const AddSpecsInput = ({title, placeholder1, placeholder2}) => {
+const VariationsInput = ({title, placeholder1, placeholder2}) => {
   const [items, setItems] = useState([
-    <View style={styles.rowContainer}>
+    <View>
       <TaskInput
         placeholder={placeholder1}
         placeholderTextColor={colors.p2}
-        containerStyle={styles.inputCon}
+        containerStyle={styles.inputCon2}
       />
-      <TaskInput
-        placeholder={placeholder2}
-        placeholderTextColor={colors.p2}
-        containerStyle={styles.inputCon}
-      />
+      <View style={styles.rowCon}>
+        <TaskInput
+          placeholder={placeholder2}
+          placeholderTextColor={colors.p2}
+          containerStyle={styles.inputCon}
+        />
+        <TouchableOpacity style={styles.imgCon} onPress={handleAddItem}>
+          <Image
+            source={appIcons.plus}
+            style={styles.iconStyle}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
     </View>,
   ]);
 
@@ -27,11 +36,6 @@ const AddSpecsInput = ({title, placeholder1, placeholder2}) => {
     setItems(prevComponents => [
       ...prevComponents,
       <View style={styles.rowContainer}>
-        <TaskInput
-          placeholder={placeholder1}
-          placeholderTextColor={colors.p2}
-          containerStyle={styles.inputCon}
-        />
         <TaskInput
           placeholder={placeholder2}
           placeholderTextColor={colors.p2}
@@ -63,7 +67,7 @@ const AddSpecsInput = ({title, placeholder1, placeholder2}) => {
   );
 };
 
-export {AddSpecsInput};
+export {VariationsInput};
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -72,6 +76,12 @@ const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  rowCon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-start',
   },
   titleStyle: {
     color: colors.p4,
@@ -91,8 +101,12 @@ const styles = StyleSheet.create({
     height: WP('4'),
   },
   inputCon: {
-    width: WP('38'),
-    marginLeft: WP('2.5'),
+    width: WP('42'),
+    marginTop: 0,
+    paddingTop: 0,
+  },
+  inputCon2: {
+    width: '100%',
     marginTop: 0,
     paddingTop: 0,
   },

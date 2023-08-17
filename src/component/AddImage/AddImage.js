@@ -2,14 +2,14 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 
-const AddImage = ({title, onPress}) => {
+const AddImage = ({title, onPress, selectedImage}) => {
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.titleStyle}>{title}</Text>
       <TouchableOpacity style={styles.imgCon} onPress={onPress}>
         <Image
-          source={appIcons.addImage}
-          style={styles.iconStyle}
+          source={selectedImage ? {uri: selectedImage.uri} : appIcons.addImage}
+          style={selectedImage ? styles.imgStyle : styles.iconStyle}
           resizeMode="contain"
         />
         <Text style={styles.textStyle}>Add Image</Text>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginTop: WP('6'),
   },
   imgCon: {
-    width: '100%',
+    // width: '100%',
     borderWidth: 1,
     borderColor: colors.p4,
     borderRadius: 8,
@@ -48,5 +48,9 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: WP('8'),
     height: WP('8'),
+  },
+  imgStyle: {
+    width: '100%',
+    height: '30%',
   },
 });

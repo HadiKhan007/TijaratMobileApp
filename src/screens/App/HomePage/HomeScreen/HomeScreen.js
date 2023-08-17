@@ -67,7 +67,7 @@ const HomeScreen = ({navigation}) => {
       {/* <View style={styles.mainContainer}> */}
       <ScrollView
         contentContainerStyle={{
-          paddingBottom: WP('54'),
+          paddingBottom: WP('14'),
         }}>
         <View style={{paddingHorizontal: 10, paddingVertical: 20}}>
           <AppHeader />

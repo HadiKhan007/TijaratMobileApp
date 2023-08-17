@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WP, colors} from '../../../../utilities';
+import {WP, colors, size} from '../../../../utilities';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
   },
   btnStyle: {
     borderRadius: 100,
+    marginTop: WP('10'),
+    marginBottom: WP('3'),
   },
   btn2Style: {
     backgroundColor: colors.bgColor,
@@ -37,6 +39,20 @@ const styles = StyleSheet.create({
   },
   btn2Title: {
     color: colors.p3,
+  },
+  errorMessage: {
+    color: colors.r1,
+    fontSize: size.xxsmall,
+  },
+  cardStyle: {
+    borderRadius: 10,
+    shadowColor: '#ffffff60',
+    shadowOffset: {width: 0, height: 0.2},
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+    backgroundColor: colors.w1,
+    padding: WP('2.5'),
   },
 });
 

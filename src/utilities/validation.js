@@ -24,6 +24,11 @@ export const sRegisterFormFields = {
   description: '',
 };
 
+export const distanceFormFiled = {
+  distance: '',
+  cost: '',
+};
+
 // export const updateProfileFormFileds = {
 //   userName: '',
 //   phoneNumber: '',
@@ -44,16 +49,20 @@ export const updatePassFormFields = {
   confirmPassword: '',
 };
 export const AddProductFormFields = {
-  productName: '',
+  name: '',
   price: '',
   shortDetails: '',
   description: '',
   weight: '',
-  discount: '',
+  discount: '0',
   stock: '',
-  condition: '',
+  // condition: '',
+  // category: '',
+  // subcategory: '',
   addBrand: '',
   expectedDelivery: '',
+  // deliveryOptions: '',
+  featureImage: '',
 };
 
 export const CounterOfferFormField = {
@@ -62,14 +71,26 @@ export const CounterOfferFormField = {
 export const counterOfferVS = yup.object().shape({
   amount: yup.string().required('Amount required'),
 });
+export const distanceVS = yup.object().shape({
+  distance: yup.string().required('Distance required'),
+  cost: yup.string().required('Cost required'),
+});
+
 export const addProductVS = yup.object().shape({
-  productName: yup.string().required('Product name required'),
+  name: yup.string().required('Product name required'),
   price: yup.string().required('Price required'),
   shortDetails: yup.string().required('ShortDetails required'),
   description: yup.string().required('Description required'),
   weight: yup.string().required('Weight required'),
-  expectedDelivery: yup.string().required('Expected Delivery'),
   addBrand: yup.string().required('Brand Name Required'),
+  discount: yup.string().required('Discount Required'),
+  stock: yup.string().required('Stock Required'),
+  // condition: yup.string().required('Condition Required'),
+  // deliveryOptions: yup.string().required('Delivery Options Required'),
+  expectedDelivery: yup.string().required('Expected Delivery Required'),
+  // category: yup.string().required('Category Required'),
+  // subcategory: yup.string().required('Sub Category Delivery'),
+  // featureImage: yup.mixed().required('Image is required'),
 });
 export const loginVS = yup.object().shape({
   email: yup

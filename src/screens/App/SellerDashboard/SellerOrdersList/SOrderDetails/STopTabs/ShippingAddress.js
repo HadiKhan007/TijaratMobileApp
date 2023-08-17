@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
 import {WP, colors, family, size} from '../../../../../../utilities';
 import {
   AppLoader,
@@ -14,8 +14,7 @@ import {useSelector} from 'react-redux';
 const ShippingAddress = () => {
   const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
   const loading = useSelector(state => state.orderDetails?.loading);
-  const totalAmount = orderDetails?.order[0]?.orders[0]?.total;
-  console.log('totalAmount,', totalAmount);
+  const totalAmount = orderDetails?.order?.[0]?.orders[0]?.total;
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -28,7 +27,7 @@ const ShippingAddress = () => {
           titleStyle={styles.titleStyle}
           inputContainerStyle={styles.containerStyle}
           inputStyle={styles.inputStyle}
-          placeholder={orderDetails?.order[0]?.orders[0]?.trackingId}
+          placeholder={orderDetails?.order?.[0]?.orders[0]?.trackingId}
           placeholderTextColor={colors.p2}
           editable={false}
           // value={values.email}

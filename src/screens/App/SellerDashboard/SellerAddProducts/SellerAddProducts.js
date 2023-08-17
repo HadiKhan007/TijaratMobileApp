@@ -1,59 +1,192 @@
-import React, {useRef, useState} from 'react';
-import {View, SafeAreaView, Text} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, SafeAreaView, Text, Alert, Platform} from 'react-native';
 import styles from './styles';
 import {
   AddImage,
   AddSpecsInput,
   AppButton,
+  AppLoader,
   AppTitle,
   ClickButton,
   CustomDropdown,
-  DropDown,
+  ImagePickerModal,
   TaskInput,
   TopHeader,
+  VariationsInput,
 } from '../../../../component';
 import {
   AddProductFormFields,
   addProductVS,
   appIcons,
+  checkPermission,
   colors,
+  image_options,
 } from '../../../../utilities';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
-import {addProductNew} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {addProductAsync} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
+import {fetchCategoriesAsync} from '../../../../redux/Slices/SellerSlices/categoriesSlice';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const SellerAddProducts = () => {
   const formikRef = useRef();
   const dispatch = useDispatch();
-  const [selectItem, setSelectItem] = useState('');
+  const addedProduct = useSelector(state => state.addProduct?.addedProduct);
+  const loading = useSelector(state => state.addProduct?.loading);
+  const {categories} = useSelector(state => state.categories);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+  const [show, setshow] = useState(false);
+  const [offer, setOffer] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [condition, setCondition] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const {user} = useSelector(state => state?.auth);
+  const sellerId = user?.user?.seller?._id;
+  const token = user?.token;
+  const [selectedButton, setSelectedButton] = useState(null);
+  const [error, setError] = useState(null);
+  const [attribute, setAttribute] = useState(false);
+  const [variations, setVariations] = useState(false);
 
-  const products = useSelector(state => state.products);
-  const {user} = useSelector(state => state.auth);
-  const {userId} = useSelector(state => state.userId);
-  const [items, setItems] = useState([
-    {label: 'For Me', value: 'mySelf'},
-    {label: 'For Someone Else', value: 'someone'},
-    {label: 'For My Business', value: 'business'},
-  ]);
-
-  let categoryData = [
-    {id: 1, name: 'For Me', key: 'myself'},
-    {id: 3, name: 'For Someone Else', key: 'someone'},
-    {id: 2, name: 'For My Business', key: 'business'},
-  ];
-  const onSelect = item => {
-    setSelectItem(item);
+  const handleButtonClick = buttonName => {
+    buttonName === 'Accept Offers' ? setOffer(!offer) : null;
+    setSelectedButton(buttonName === selectedButton ? null : buttonName);
   };
 
-  const handleClick = values => {
-    const newProduct = {
-      id: Date.now(), // You can use any unique identifier here
-      name: values?.productName,
-    };
-    dispatch(addProductNew(newProduct));
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+  }, [dispatch]);
+  const handleItemSelected = itemId => {
+    setSelectedItem(itemId);
+    setCondition(itemId);
+  };
+  const handleCategoryChange = item => {
+    setSelectedCategory(item.value);
+    setSelectedSubCategory(null);
+  };
+
+  const handleSubCategoryChange = item => {
+    setSelectedSubCategory(item.value);
+  };
+  useEffect(() => {
+    if (addedProduct) {
+    }
+  }, [addedProduct]);
+  const uploadImage = selectedImage => {
+    try {
+      if (selectedImage) {
+        const data = new FormData();
+
+        data.append('image', {
+          name: selectedImage?.fileName,
+          type: selectedImage?.type,
+          uri:
+            Platform.OS === 'ios'
+              ? selectedImage?.uri.replace('file://', '')
+              : selectedImage?.uri,
+        });
+      }
+    } catch (error) {
+      Alert.alert('Error', error);
+    }
+  };
+  const showCamera = async () => {
+    setshow(false);
+    const result = await checkPermission('camera');
+
+    setTimeout(() => {
+      try {
+        if (result) {
+          launchCamera(image_options, response => {
+            if (response.didCancel) {
+              Alert.alert('User cancelled image picker');
+            } else if (response.error) {
+              Alert.alert('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+              Alert.alert('User tapped custom button: ', response.customButton);
+            } else {
+              if (response) {
+                uploadImage(response?.assets[0]);
+              }
+            }
+          });
+        }
+      } catch (error) {
+        //do something
+      }
+    }, 800);
+  };
+  const showGallery = async () => {
+    try {
+      launchImageLibrary({}, response => {
+        if (response.didCancel) {
+          Alert.alert('User cancelled image picker');
+        } else if (response.error) {
+          Alert.alert('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          Alert.alert('User tapped custom button: ', response.customButton);
+        } else {
+          if (response.assets && response.assets.length > 0) {
+            setSelectedImage(response.assets[0]);
+          }
+        }
+      });
+    } catch (err) {
+      console.error('Error in showGallery:', err);
+    }
+  };
+  const selectedCategoryId = categories.find(
+    cat => cat.category._id === selectedCategory,
+  )?.category._id;
+
+  const selectedSubCategoryId = categories
+    .find(cat => cat.category._id === selectedCategory)
+    ?.subCategories.find(subCat => subCat._id === selectedSubCategory)?._id;
+
+  const handleClick = async values => {
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('price', values.price);
+    formData.append('shortDetails', values.shortDetails);
+    formData.append('weight', values.weight);
+    formData.append('discount', values.discount);
+    formData.append('description', values.description);
+    formData.append('stock', values.stock);
+    formData.append('condition', 'used');
+    formData.append('category', selectedCategoryId);
+    formData.append('subCategory', selectedSubCategoryId);
+    formData.append('rating', '5');
+    formData.append('salePrice', '100');
+    formData.append('addBrand', values.addBrand);
+    formData.append('expectedDelivery', values.expectedDelivery);
+    formData.append('deliveryOptions', selectedItem.label);
+    formData.append('hasShippingRules', selectedButton);
+    formData.append('serllerId', sellerId);
+    formData.append('applyMakeAnOffer', offer);
+    formData.append('pictures', selectedImage?.fileName);
+    formData.append('sale', true);
+
+    if (selectedImage) {
+      formData.append('featureImage', '');
+    }
+    try {
+      setError(null);
+      console.log('Dispatching addProductAsync');
+      await dispatch(addProductAsync({productData: formData, token}));
+      console.log('addProductAsync dispatched successfully');
+      Alert.alert('Done Dispatch');
+    } catch (err) {
+      if (err.message) {
+        setError(err.message);
+        console.log('Error message:', err.message);
+      } else {
+        setError('An error occurred');
+        console.log('An error occurred');
+      }
+      console.error('Error dispatching addProductAsync:', err);
+    }
   };
 
   return (
@@ -80,15 +213,14 @@ const SellerAddProducts = () => {
                 Title="Add Product"
                 mainContainer={styles.titleContainer}
               />
-              <CustomDropdown items={items} setItems={setItems} title="City" />
               <TaskInput
                 title="Product Name"
                 placeholder="Enter Product Name"
                 placeholderTextColor={colors.p2}
                 titleStyle={styles.inputTitle}
-                value={values.productName}
-                onChangeText={handleChange('productName')}
-                errorMessage={errors.productName}
+                value={values.name}
+                onChangeText={handleChange('name')}
+                errorMessage={errors.name}
               />
               <TaskInput
                 title="Price"
@@ -133,34 +265,59 @@ const SellerAddProducts = () => {
               />
               <TaskInput
                 title="Discount (%)"
-                placeholder="Optional"
+                placeholder="0"
                 placeholderTextColor={colors.p2}
                 titleStyle={styles.inputTitle}
+                value={values.discount}
+                onChangeText={handleChange('discount')}
+                errorMessage={errors.discount}
               />
               <TaskInput
                 title="Stock"
-                placeholder="Optional"
+                placeholder="Stock"
                 placeholderTextColor={colors.p2}
                 titleStyle={styles.inputTitle}
+                value={values.stock}
+                onChangeText={handleChange('stock')}
+                errorMessage={errors.stock}
               />
-              <DropDown
+              <CustomDropdown
+                items={[
+                  {label: 'Used', value: 0},
+                  {label: 'New', value: 1},
+                ]}
+                onSelectItem={handleItemSelected}
                 title="Condition"
-                value={selectItem}
-                data={categoryData}
-                onSelect={onSelect}
+                error={errors.condition}
               />
-              <DropDown
+
+              <CustomDropdown
+                items={categories.map(category => ({
+                  label: category.category.name,
+                  value: category.category._id,
+                }))}
+                setItems={selectedCategory}
                 title="Select Category"
-                value={selectItem}
-                data={categoryData}
-                onSelect={onSelect}
+                onSelectItem={item => handleCategoryChange(item)}
+                error={errors.category}
               />
-              <DropDown
-                title="Select Subcategory"
-                value={selectItem}
-                data={categoryData}
-                onSelect={onSelect}
-              />
+              {selectedCategory &&
+                categories.find(
+                  cat => cat.category._id === selectedCategory,
+                ) && (
+                  <CustomDropdown
+                    items={categories
+                      .find(cat => cat.category._id === selectedCategory)
+                      .subCategories.map(subCategory => ({
+                        label: subCategory.name,
+                        value: subCategory._id,
+                      }))}
+                    setItems={selectedSubCategory}
+                    title="Select Subcategory"
+                    onSelectItem={item => handleSubCategoryChange(item)}
+                    error={errors.subcategory}
+                  />
+                )}
 
               <TaskInput
                 title="Add Brand"
@@ -180,32 +337,97 @@ const SellerAddProducts = () => {
                 onChangeText={handleChange('expectedDelivery')}
                 errorMessage={errors.expectedDelivery}
               />
-              <DropDown
-                title="Delivery Options"
-                value={selectItem}
-                data={categoryData}
-                onSelect={onSelect}
+              <CustomDropdown
+                items={[
+                  {
+                    label: 'All Over Pakistan',
+                    value: 0,
+                  },
+                  {
+                    label: 'Worldwide/Globally',
+                    value: 1,
+                  },
+                  {
+                    label: 'Locally',
+                    value: 2,
+                  },
+                ]}
+                onSelectItem={handleItemSelected}
+                title="Delivery Option"
+                error={errors.deliveryOptions}
               />
-              <AddImage title="Add Feature Image" />
-              <ClickButton title="Accept Offers" />
+              <AddImage
+                title="Add Feature Image"
+                onPress={() => setshow(!show)}
+                selectedImage={selectedImage}
+              />
+              {errors.featureImage && (
+                <Text style={styles.errorMessage}>{errors.featureImage}</Text>
+              )}
+              <ClickButton
+                title="Accept Offers"
+                selected={offer}
+                onPress={() => handleButtonClick('Accept Offers')}
+              />
               <AppTitle
                 Title="Shipping Cost"
                 mainContainer={styles.titleContainer}
               />
+              <View style={styles.cardStyle}>
+                <ClickButton
+                  title="Free Shipping"
+                  selected={selectedButton === 'Free Shipping'}
+                  onPress={() => handleButtonClick('Free Shipping')}
+                />
+                <ClickButton
+                  title="General Shipping Rules"
+                  selected={selectedButton === 'General Shipping Rules'}
+                  onPress={() => handleButtonClick('General Shipping Rules')}
+                />
+                <ClickButton
+                  title={`Special shipping rules for this ${'\n'} product only`}
+                  selected={
+                    selectedButton ===
+                    'Special shipping rules for this product only'
+                  }
+                  onPress={() =>
+                    handleButtonClick(
+                      'Special shipping rules for this product only',
+                    )
+                  }
+                />
+              </View>
+              <AppTitle
+                Title="Variations"
+                mainContainer={styles.titleContainer}
+              />
+              <View style={styles.cardStyle}>
+                <ClickButton
+                  title="Attributes/Specs"
+                  selected={attribute}
+                  onPress={() => setAttribute(!attribute)}
+                />
 
-              <ClickButton title="Free Shipping" />
-              <ClickButton title="General Shipping Rules" />
-              <ClickButton title="Special shipping rules for this product only" />
-              <AddSpecsInput
-                title="Attributes/Specs"
-                placeholder1="Space Name"
-                placeholder2="Value"
-              />
-              <AddSpecsInput
-                title="Product Variations"
-                placeholder1="Size, Material, Color"
-                placeholder2="Value(L/M/S)"
-              />
+                {attribute && (
+                  <AddSpecsInput
+                    title="Attributes/Specs"
+                    placeholder1="Space Name"
+                    placeholder2="Value"
+                  />
+                )}
+                <ClickButton
+                  title="Product/Variations"
+                  selected={variations}
+                  onPress={() => setVariations(!variations)}
+                />
+                {variations && (
+                  <VariationsInput
+                    title="Product Variations"
+                    placeholder1="Size, Material, Color"
+                    placeholder2="Value(L/M/S)"
+                  />
+                )}
+              </View>
 
               <AppButton
                 title="Add Now"
@@ -217,6 +439,13 @@ const SellerAddProducts = () => {
                 containerStyle={styles.btn2Style}
                 titleStyle={styles.btn2Title}
               />
+              <ImagePickerModal
+                show={show}
+                onPressHide={() => setshow(false)}
+                onPressCamera={() => showCamera()}
+                onPressGallery={() => showGallery()}
+              />
+              <AppLoader loading={loading} />
             </View>
           </KeyboardAwareScrollView>
         )}

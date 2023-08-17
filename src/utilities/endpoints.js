@@ -10,7 +10,6 @@ const ENDPOINTS = {
   SIGNUP: 'register',
   FORGOT_PASS: 'forgot-password',
   CHANGE_PASS: 'change-password',
-  ADDPRODUCT: 'products/create',
   ARCHIVEPRODUCT: 'mobile/product/get-archived-products-by-seller/',
   DASHBOARD: 'seller/dashboard',
   RECENT_ORDERS: 'mobile/order/get-recent-orders/',
@@ -20,6 +19,8 @@ const ENDPOINTS = {
   COUNTER_OFFERS: 'offer/counter-offer/',
   ORDER_DETAILS: 'order/get-by-id/',
   SELLER_ALL_PRODUCTS: 'products/by-seller/',
+  ADD_PRODUCTS: 'products/create',
+  CATEGORIES: 'categories/list',
 };
 
 export {BASE_URL, ENDPOINTS, BASE_URL_IMG};
