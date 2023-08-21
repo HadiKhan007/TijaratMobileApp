@@ -1,16 +1,29 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import {WP, appIcons, colors, size} from '../../utilities';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const AppHeader = () => {
   const navigation = useNavigation();
+  const {user} = useSelector(state => state.auth);
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.leftContainer}
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+        onPress={() =>
+          user
+            ? navigation.dispatch(DrawerActions.openDrawer())
+            : Alert.alert('Please login with Seller Account')
+        }>
         <Image
           source={appIcons.menuIcon}
           style={styles.leftIcon}

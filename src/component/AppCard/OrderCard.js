@@ -1,12 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 import {AppDivider} from '../AppDivider/AppDivider';
 
 const OrderCard = ({recentOrderData}) => {
-  console.log('====================================');
-  console.log('recentOrderData', recentOrderData);
-  console.log('====================================');
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.titleStyle}>Recent Order</Text>

@@ -9,7 +9,7 @@ import {AppButton} from '../AppButton/AppButton';
 import {CustomDropdown} from '../DropDown/CustomDropDown';
 import {ClickButton} from '../AppButton/ClickButton';
 
-const CityModal = ({isModalVisible, onPress}) => {
+const CountriesModal = ({isModalVisible, onPress}) => {
   const [state, setState] = useState(false);
   return (
     <KeyboardAwareScrollView
@@ -41,7 +41,7 @@ const CityModal = ({isModalVisible, onPress}) => {
             // onChangeText={handleChange('email')}
             // errorMessage={errors.email}
           />
-          <CustomDropdown items={[]} title="Zone" />
+          <CustomDropdown items={[]} title="Countries" />
 
           <TaskInput
             title="Add cost"
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {CityModal};
+export {CountriesModal};

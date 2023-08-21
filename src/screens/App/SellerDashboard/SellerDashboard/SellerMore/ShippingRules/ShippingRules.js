@@ -34,8 +34,6 @@ const ShippingRules = () => {
           mainContainer={{marginBottom: 15}}
         />
         <RulesCard {...distanceProps} />
-        <RulesCard {...cityProps} />
-        <RulesCard {...countryProps} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -26,15 +26,52 @@ const ProductCard = ({apiData, index}) => {
       <View>
         <View style={styles.rowContainer}>
           <Text style={styles.titleStyle}>{apiData[index].name}</Text>
-          <TouchableOpacity
-            style={styles.iconContainer}
-            onPress={() => setState(!state)}>
-            <Image
-              source={state ? appIcons.cross : appIcons.dots}
-              style={styles.iconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => setState(!state)}>
+              <Image
+                source={state ? appIcons.cross : appIcons.dots}
+                style={styles.iconStyle}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            {state && (
+              <View style={styles.viewCon}>
+                <TouchableOpacity
+                  style={styles.rowContainer2}
+                  activeOpacity={0.8}
+                  onPress={() => {}}>
+                  <Image
+                    source={appIcons.cloneIcone}
+                    style={[styles.iconStyle2]}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.viewText}>Clone</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.rowContainer2}
+                  activeOpacity={0.8}>
+                  <Image
+                    source={appIcons.edit2}
+                    style={[styles.iconStyle2]}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.viewText}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.rowContainer2]}
+                  activeOpacity={0.8}>
+                  <Image
+                    source={appIcons.delete2}
+                    style={[styles.iconStyle2]}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.viewText}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
         </View>
         <Text style={styles.textStyle}>{apiData[index]?.category?.name}</Text>
         <Text style={styles.priceText}>
@@ -71,6 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: WP('2'),
     flexDirection: 'row',
+    zIndex: 0, // Higher zIndex value
   },
   imgContainer: {
     backgroundColor: colors.pc,
@@ -122,5 +160,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: WP('5'),
+  },
+  viewCon: {
+    shadowColor: '#ffffff60',
+    shadowOffset: {width: 0, height: 0.4},
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+    borderRadius: 5,
+    position: 'absolute',
+    bottom: -WP('24'),
+    right: WP('3'),
+    backgroundColor: colors.r1,
+    width: WP('27'),
+    paddingHorizontal: WP('1'),
+  },
+  viewText: {
+    color: colors.p2,
+    fontFamily: family.workSans_medium,
+    fontSize: size.small,
+  },
+  rowContainer2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: WP('1'),
+    paddingHorizontal: WP('3'),
+  },
+  iconStyle2: {
+    width: WP('4'),
+    height: WP('4'),
+    alignSelf: 'center',
+    marginRight: WP('3'),
   },
 });

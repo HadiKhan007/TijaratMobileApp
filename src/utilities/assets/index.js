@@ -78,4 +78,7 @@ export const appIcons = {
   empty: require('../../assets/icons/empty.png'),
   dots: require('../../assets/icons/dots.png'),
   cross: require('../../assets/icons/cross.png'),
+  edit2: require('../../assets/icons/edit2.png'),
+  delete2: require('../../assets/icons/delete2.png'),
+  neg: require('../../assets/icons/neg.png'),
 };

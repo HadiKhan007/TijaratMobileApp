@@ -4,181 +4,208 @@ import {WP, appIcons, colors, family, size} from '../../utilities';
 import {DistanceModal} from '../AppModal/DistanceModal';
 import {CityModal} from '../AppModal/CityModal';
 import {AppDivider} from '../AppDivider/AppDivider';
+import {CountriesModal} from '../AppModal/CountriesModal';
 
 const RulesCard = ({...props}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleModal = () => setIsVisible(!isVisible);
-
-  const {note, title, detail, onPress} = props;
+  const [isVisibleDis, setIsVisibleDis] = useState(false);
+  const [isVisibleCity, setIsVisibleCity] = useState(false);
+  const [isVisibleCon, setIsVisibleCon] = useState(false);
+  const toggleModalDis = () => {
+    setIsVisibleDis(!isVisibleDis);
+  };
+  const toggleModalCity = () => {
+    setIsVisibleCity(!isVisibleCity);
+  };
+  const toggleModalCon = () => {
+    setIsVisibleCon(!isVisibleCon);
+  };
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.rowContainer}>
-        <Text style={styles.titleStyle}>{title}</Text>
-        <TouchableOpacity onPress={toggleModal}>
-          <Image
-            source={appIcons.plus}
-            style={styles.iconContainer}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-      {note && (
+    <View>
+      <View style={styles.mainContainer}>
+        <View style={styles.rowContainer}>
+          <Text style={styles.titleStyle}>Add Rules by Distance</Text>
+          <TouchableOpacity onPress={toggleModalDis}>
+            <Image
+              source={appIcons.plus}
+              style={styles.iconContainer}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.noteText}>
           Note*:{' '}
           <Text style={{color: colors.r1}}>
             Cost Doubles based on the last rule added
           </Text>
         </Text>
-      )}
-      <Text style={styles.noteText}>{detail}</Text>
-      <DistanceModal isModalVisible={isVisible} onPress={toggleModal} />
-      {/* <View style={styles.distanceView}>
-        <View style={styles.rowCon}>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-            Distance
-          </Text>
-          <Text
-            style={[
-              styles.titleStyle,
-              {fontSize: size.xsmall, marginLeft: -WP('15')},
-            ]}>
-            Cost
-          </Text>
-          <Text />
-        </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>100 Km</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <View style={styles.rowStyle}>
-            <TouchableOpacity style={styles.deleteCon}>
-              <Image
-                source={appIcons.delete}
-                style={styles.iconStyle}
-                resizeMode="center"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.editCon}>
-              <Image
-                source={appIcons.edit}
-                style={styles.iconStyle}
-                resizeMode="center"
-              />
-            </TouchableOpacity>
+
+        <Text style={styles.noteText}>
+          -- Please Add Shipment Details by distance in (KM) from your origin
+        </Text>
+        <DistanceModal isModalVisible={isVisibleDis} onPress={toggleModalDis} />
+        <View style={styles.distanceView}>
+          <View style={styles.rowCon}>
+            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+              Distance
+            </Text>
+            <Text
+              style={[
+                styles.titleStyle,
+                {fontSize: size.xsmall, marginLeft: -WP('15')},
+              ]}>
+              Cost
+            </Text>
+            <Text />
           </View>
-        </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>100 Km</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <View style={styles.rowStyle}>
-            <TouchableOpacity style={styles.deleteCon}>
-              <Image
-                source={appIcons.delete}
-                style={styles.iconStyle}
-                resizeMode="center"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.editCon}>
-              <Image
-                source={appIcons.edit}
-                style={styles.iconStyle}
-                resizeMode="center"
-              />
-            </TouchableOpacity>
+          <AppDivider />
+          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+            <Text style={styles.noteText}>100 Km</Text>
+            <Text style={styles.noteText}>Rs. 100</Text>
+            <View style={styles.rowStyle}>
+              <TouchableOpacity style={styles.deleteCon}>
+                <Image
+                  source={appIcons.delete}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.editCon}>
+                <Image
+                  source={appIcons.edit}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </View> */}
-      <View style={styles.cityView}>
-        <View style={styles.rowCon}>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>Name</Text>
-          <Text
-            style={[
-              styles.titleStyle,
-              {fontSize: size.xsmall, marginLeft: -WP('10')},
-            ]}>
-            Countries
-          </Text>
-          <Text
-            style={[
-              styles.titleStyle,
-              {fontSize: size.xsmall, marginLeft: -WP('5')},
-            ]}>
-            Cost
-          </Text>
-          <Text />
-        </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Pakistan</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <TouchableOpacity style={styles.addCon}>
-            <Image
-              source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="center"
-            />
-          </TouchableOpacity>
-        </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Pakistan</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <TouchableOpacity style={styles.addCon}>
-            <Image
-              source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="center"
-            />
-          </TouchableOpacity>
+          <AppDivider />
+          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+            <Text style={styles.noteText}>100 Km</Text>
+            <Text style={styles.noteText}>Rs. 100</Text>
+            <View style={styles.rowStyle}>
+              <TouchableOpacity style={styles.deleteCon}>
+                <Image
+                  source={appIcons.delete}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.editCon}>
+                <Image
+                  source={appIcons.edit}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </View>
-      {/* <View style={styles.cityView}>
-        <View style={styles.rowCon}>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>Name</Text>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-            Region
+      <View style={styles.mainContainer}>
+        <View style={styles.rowContainer}>
+          <Text style={styles.titleStyle}>
+            Set Flat or Free Shipping Rates for Specific Cities
           </Text>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-            Cities
-          </Text>
-          <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>Cost</Text>
-          <Text />
-        </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Pakistan</Text>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <TouchableOpacity style={styles.addCon}>
+          <TouchableOpacity onPress={toggleModalCity}>
             <Image
               source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="center"
+              style={styles.iconContainer}
+              resizeMode="contain"
             />
           </TouchableOpacity>
         </View>
-        <AppDivider />
-        <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Pakistan</Text>
-          <Text style={styles.noteText}>adilpur</Text>
-          <Text style={styles.noteText}>Rs. 100</Text>
-          <TouchableOpacity style={styles.addCon}>
-            <Image
-              source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="center"
-            />
-          </TouchableOpacity>
-        </View>
-      </View> */}
+        <Text style={styles.noteText}>
+          -- Please Add Shipment Details in (Countries, Cities , All over world
+          , All over Pakistan) different areas for shipping your orders
+        </Text>
 
-      {/* <CityModal isModalVisible={isVisible} onPress={toggleModal} /> */}
+        <CityModal isModalVisible={isVisibleCity} onPress={toggleModalCity} />
+      </View>
+      <View style={styles.mainContainer}>
+        <View style={styles.rowContainer}>
+          <Text style={styles.titleStyle}>
+            Set Flat or Free Shipping Rates for Specific Countries
+          </Text>
+          <TouchableOpacity onPress={toggleModalCon}>
+            <Image
+              source={appIcons.plus}
+              style={styles.iconContainer}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.noteText}>
+          -- Please Add Shipment Details in (Countries, Cities , All over world
+          , All over Pakistan) different areas for shipping your orders
+        </Text>
+        <CountriesModal
+          isModalVisible={isVisibleCon}
+          onPress={toggleModalCon}
+        />
+        <View style={styles.cityView}>
+          <View style={styles.rowCon}>
+            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+              Name
+            </Text>
+            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+              Countries
+            </Text>
+            <Text
+              style={[
+                styles.titleStyle,
+                {fontSize: size.xsmall, marginRight: WP('24')},
+              ]}>
+              Cost
+            </Text>
+            <View />
+          </View>
+          <AppDivider />
+          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+            <Text style={styles.noteText}>adilpur</Text>
+            <Text style={styles.noteText}>adilpur</Text>
+            <Text style={styles.noteText}>Rs. 100</Text>
+            <View style={styles.rowStyle}>
+              <TouchableOpacity style={styles.deleteCon}>
+                <Image
+                  source={appIcons.delete}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.editCon}>
+                <Image
+                  source={appIcons.edit}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <AppDivider />
+          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+            <Text style={styles.noteText}>adilpur</Text>
+            <Text style={styles.noteText}>adilpur</Text>
+            <Text style={styles.noteText}>Rs. 100</Text>
+            <View style={styles.rowStyle}>
+              <TouchableOpacity style={styles.deleteCon}>
+                <Image
+                  source={appIcons.delete}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.editCon}>
+                <Image
+                  source={appIcons.edit}
+                  style={styles.iconStyle}
+                  resizeMode="center"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
@@ -225,8 +252,8 @@ const styles = StyleSheet.create({
     color: colors.p1,
     fontFamily: family.workSans_semiBold,
     fontSize: size.normal,
-    flex: 1,
-    flexWrap: 'wrap',
+    // flex: 1,
+    // flexWrap: 'wrap',
   },
   distanceView: {
     borderWidth: 0.5,

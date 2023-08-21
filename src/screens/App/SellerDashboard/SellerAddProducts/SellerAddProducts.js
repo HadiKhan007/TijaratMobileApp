@@ -401,6 +401,29 @@ const SellerAddProducts = () => {
                 Title="Variations"
                 mainContainer={styles.titleContainer}
               />
+              <VariationsInput
+                title="Product Variations"
+                placeholder1="Size, Material, Color"
+                placeholder2="Value(L/M/S)"
+              />
+              <View style={styles.cardStyle}>
+                <ClickButton
+                  title="Product/Variations"
+                  selected={variations}
+                  onPress={() => setVariations(!variations)}
+                />
+                {variations && (
+                  <VariationsInput
+                    title="Product Variations"
+                    placeholder1="Size, Material, Color"
+                    placeholder2="Value(L/M/S)"
+                  />
+                )}
+              </View>
+              <AppTitle
+                Title="Attributes"
+                mainContainer={styles.titleContainer}
+              />
               <View style={styles.cardStyle}>
                 <ClickButton
                   title="Attributes/Specs"
@@ -413,18 +436,6 @@ const SellerAddProducts = () => {
                     title="Attributes/Specs"
                     placeholder1="Space Name"
                     placeholder2="Value"
-                  />
-                )}
-                <ClickButton
-                  title="Product/Variations"
-                  selected={variations}
-                  onPress={() => setVariations(!variations)}
-                />
-                {variations && (
-                  <VariationsInput
-                    title="Product Variations"
-                    placeholder1="Size, Material, Color"
-                    placeholder2="Value(L/M/S)"
                   />
                 )}
               </View>
