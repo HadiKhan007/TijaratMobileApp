@@ -25,16 +25,16 @@ const UChangePassword = ({navigation}) => {
   const dispatch = useDispatch();
   const {loading, user} = useSelector(state => state.auth);
   const handleChangePass = values => {
-    const currentPassword = values.currentPassword;
-    const newPassword = values.newPassword;
-    dispatch(changePassword(currentPassword, newPassword, user.token))
-      .unwrap()
-      .then(() => {
-        // navigation.navigate('HomeStack');
-      })
-      .catch(err => {
-        Alert.alert('Error', err.message);
-      });
+    // const currentPassword = values.currentPassword;
+    // const newPassword = values.newPassword;
+    // dispatch(changePassword(currentPassword, newPassword, user.token))
+    //   .unwrap()
+    //   .then(() => {
+    //     // navigation.navigate('HomeStack');
+    //   })
+    //   .catch(err => {
+    //     Alert.alert('Error', err.message);
+    //   });
   };
 
   return (

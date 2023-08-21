@@ -3,6 +3,7 @@ import {View, SafeAreaView, Text, Alert, Platform} from 'react-native';
 import styles from './styles';
 import {
   AddImage,
+  AddPictures,
   AddSpecsInput,
   AppButton,
   AppLoader,
@@ -27,9 +28,14 @@ import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 import {addProductAsync} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
 import {fetchCategoriesAsync} from '../../../../redux/Slices/SellerSlices/categoriesSlice';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {
+  launchCamera,
+  launchImageLibrary,
+  ImagePicker,
+} from 'react-native-image-picker';
+import {DrawerActions} from '@react-navigation/native';
 
-const SellerAddProducts = () => {
+const SellerAddProducts = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
   const addedProduct = useSelector(state => state.addProduct?.addedProduct);
@@ -49,7 +55,19 @@ const SellerAddProducts = () => {
   const [error, setError] = useState(null);
   const [attribute, setAttribute] = useState(false);
   const [variations, setVariations] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const handleImagesSelected = images => {
+    // Update the selected images state
+    setSelectedImages(images);
+  };
+  const handleDeleteImage = index => {
+    // Create a copy of the array and remove the selected image
+    const updatedImages = [...selectedImages];
+    updatedImages.splice(index, 1);
 
+    // Update the state with the updated array
+    setSelectedImages(updatedImages);
+  };
   const handleButtonClick = buttonName => {
     buttonName === 'Accept Offers' ? setOffer(!offer) : null;
     setSelectedButton(buttonName === selectedButton ? null : buttonName);
@@ -165,11 +183,11 @@ const SellerAddProducts = () => {
     formData.append('hasShippingRules', selectedButton);
     formData.append('serllerId', sellerId);
     formData.append('applyMakeAnOffer', offer);
-    formData.append('pictures', selectedImage?.fileName);
+    formData.append('pictures', selectedImages);
     formData.append('sale', true);
 
     if (selectedImage) {
-      formData.append('featureImage', '');
+      formData.append('featureImage', selectedImage);
     }
     try {
       setError(null);
@@ -208,7 +226,11 @@ const SellerAddProducts = () => {
             enableAutomaticScroll
             showsVerticalScrollIndicator={false}>
             <View style={styles.mainContainer}>
-              <TopHeader iconName={appIcons.menuIcon} title="Add a Product" />
+              <TopHeader
+                iconName={appIcons.menuIcon}
+                title="Add a Product"
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+              />
               <AppTitle
                 Title="Add Product"
                 mainContainer={styles.titleContainer}
@@ -356,10 +378,22 @@ const SellerAddProducts = () => {
                 title="Delivery Option"
                 error={errors.deliveryOptions}
               />
+              <AppTitle
+                Title="Add Feature Image"
+                mainContainer={styles.titleContainer}
+              />
               <AddImage
-                title="Add Feature Image"
                 onPress={() => setshow(!show)}
                 selectedImage={selectedImage}
+              />
+              <AppTitle
+                Title="Pictures"
+                mainContainer={styles.titleContainer}
+              />
+              <AddPictures
+                images={selectedImages}
+                onImagesSelected={handleImagesSelected}
+                onDeleteImage={handleDeleteImage}
               />
               {errors.featureImage && (
                 <Text style={styles.errorMessage}>{errors.featureImage}</Text>
@@ -401,11 +435,6 @@ const SellerAddProducts = () => {
                 Title="Variations"
                 mainContainer={styles.titleContainer}
               />
-              <VariationsInput
-                title="Product Variations"
-                placeholder1="Size, Material, Color"
-                placeholder2="Value(L/M/S)"
-              />
               <View style={styles.cardStyle}>
                 <ClickButton
                   title="Product/Variations"
@@ -439,7 +468,6 @@ const SellerAddProducts = () => {
                   />
                 )}
               </View>
-
               <AppButton
                 title="Add Now"
                 containerStyle={styles.btnStyle}

@@ -88,6 +88,7 @@ export * from './AppDivider/AppDivider';
 //AddImage
 
 export * from './AddImage/AddImage';
+export * from './AddImage/AddPictures';
 
 //DropDown
 

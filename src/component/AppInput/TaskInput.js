@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     fontSize: 14,
     borderBottomWidth: 0,
-    color: colors.g5,
+    color: colors.b1,
     paddingHorizontal: WP('3'),
   },
   containerStyle: {

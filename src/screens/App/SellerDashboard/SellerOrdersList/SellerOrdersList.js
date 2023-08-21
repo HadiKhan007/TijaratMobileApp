@@ -10,6 +10,7 @@ import {
 import {appIcons} from '../../../../utilities';
 import {useDispatch, useSelector} from 'react-redux';
 import {sellerOrdersAsync} from '../../../../redux/Slices/SellerSlices/SellerOrderSlice';
+import {DrawerActions} from '@react-navigation/native';
 
 const SellerOrdersList = ({navigation}) => {
   const dispatch = useDispatch();
@@ -26,7 +27,11 @@ const SellerOrdersList = ({navigation}) => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
-        <TopHeader iconName={appIcons.menuIcon} title="Orders" />
+        <TopHeader
+          iconName={appIcons.menuIcon}
+          title="Orders"
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        />
         <AppTitle Title="Order" mainContainer={styles.titleContainer} />
         <SellerOrderCard
           sellerOrderData={sellerOrder}

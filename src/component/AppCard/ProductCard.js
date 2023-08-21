@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   BASE_URL_IMG,
   WP,
@@ -13,7 +20,15 @@ import ToggleSwitch from 'toggle-switch-react-native';
 const ProductCard = ({apiData, index}) => {
   const [switchOn, setSwitchOn] = useState(false);
   const [state, setState] = useState(false);
-
+  const [selectedOption, setSelectedOption] = useState(null);
+  const options = [
+    {title: 'Option 1', content: 'Content for option 1'},
+    {title: 'Option 2', content: 'Content for option 2'},
+    {title: 'Option 3', content: 'Content for option 3'},
+  ];
+  const handleOptionClick = optionIndex => {
+    setSelectedOption(options[optionIndex]);
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
@@ -41,7 +56,7 @@ const ProductCard = ({apiData, index}) => {
                 <TouchableOpacity
                   style={styles.rowContainer2}
                   activeOpacity={0.8}
-                  onPress={() => {}}>
+                  onPress={() => Alert.alert('Clone button pressed')}>
                   <Image
                     source={appIcons.cloneIcone}
                     style={[styles.iconStyle2]}
@@ -51,7 +66,8 @@ const ProductCard = ({apiData, index}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.rowContainer2}
-                  activeOpacity={0.8}>
+                  activeOpacity={0.8}
+                  onPress={() => Alert.alert('Edit button pressed')}>
                   <Image
                     source={appIcons.edit2}
                     style={[styles.iconStyle2]}
@@ -61,7 +77,8 @@ const ProductCard = ({apiData, index}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.rowContainer2]}
-                  activeOpacity={0.8}>
+                  activeOpacity={0.8}
+                  onPress={() => Alert.alert('Delete button pressed')}>
                   <Image
                     source={appIcons.delete2}
                     style={[styles.iconStyle2]}
@@ -164,14 +181,14 @@ const styles = StyleSheet.create({
   viewCon: {
     shadowColor: '#ffffff60',
     shadowOffset: {width: 0, height: 0.4},
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 2,
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
     borderRadius: 5,
     position: 'absolute',
     bottom: -WP('24'),
     right: WP('3'),
-    backgroundColor: colors.r1,
+    backgroundColor: colors.w1,
     width: WP('27'),
     paddingHorizontal: WP('1'),
   },

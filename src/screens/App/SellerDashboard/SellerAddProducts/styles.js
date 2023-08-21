@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     paddingHorizontal: WP('0'),
+    marginVertical: WP('2'),
   },
   inputTitle: {
     color: colors.p3,
