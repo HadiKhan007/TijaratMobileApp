@@ -3,8 +3,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import {WP, colors, family, size} from '../../utilities';
 import {useSelector} from 'react-redux';
 
-const OrderSummaryCard = ({data}) => {
-  const orderDetails = useSelector(state => state.orderDetails);
+const OrderSummaryCard = () => {
+  const orderDetails = useSelector(state => state.orderDetails?.orderDetails);
   const totalAmount = orderDetails?.order?.[0]?.orders[0]?.total;
 
   return (
