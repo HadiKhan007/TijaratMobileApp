@@ -8,14 +8,7 @@ import {
   Text,
   Alert,
 } from 'react-native';
-import {
-  BASE_URL_IMG,
-  WP,
-  appIcons,
-  colors,
-  family,
-  size,
-} from '../../utilities';
+import {WP, appIcons, colors, family, size} from '../../utilities';
 import ImagePicker from 'react-native-image-crop-picker'; // Import the library
 
 const {width} = Dimensions.get('window');
@@ -93,7 +86,7 @@ const styles = StyleSheet.create({
     width: width * 0.24,
     height: width * 0.24,
     borderRadius: WP('2'),
-    margin: WP('2'),
+    margin: WP('1'),
   },
   deleteIcon: {
     position: 'absolute',

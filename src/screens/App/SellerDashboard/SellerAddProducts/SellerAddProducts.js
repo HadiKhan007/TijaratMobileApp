@@ -34,6 +34,7 @@ import {
   ImagePicker,
 } from 'react-native-image-picker';
 import {DrawerActions} from '@react-navigation/native';
+import ImageResizer from 'react-native-image-resizer';
 
 const SellerAddProducts = ({navigation}) => {
   const formikRef = useRef();
@@ -158,11 +159,50 @@ const SellerAddProducts = ({navigation}) => {
   const selectedCategoryId = categories.find(
     cat => cat.category._id === selectedCategory,
   )?.category._id;
+  const compressImage = async image => {
+    try {
+      const compressed = await ImageResizer.createResizedImage(
+        image?.uri,
+        200,
+        200,
+        'JPEG',
+        80,
+      );
 
+      return {
+        ...image,
+        uri: compressed.uri,
+        fileSize: compressed.size,
+      };
+    } catch (err) {
+      console.error('Error compressing image:', err);
+      return image;
+    }
+  };
+  const resizeImage = async image => {
+    try {
+      const resized = await ImageResizer.createResizedImage(
+        image.sourceURL,
+        500,
+        500,
+        'JPEG',
+        80,
+      );
+
+      return {
+        ...image,
+        sourceURL: resized.uri,
+        filename: resized.name,
+        mime: 'image/jpeg', // Change according to image type
+      };
+    } catch (err) {
+      console.error('Error resizing image:', err);
+      return image;
+    }
+  };
   const selectedSubCategoryId = categories
     .find(cat => cat.category._id === selectedCategory)
     ?.subCategories.find(subCat => subCat._id === selectedSubCategory)?._id;
-
   const handleClick = async values => {
     const formData = new FormData();
     formData.append('name', values.name);
@@ -183,18 +223,55 @@ const SellerAddProducts = ({navigation}) => {
     formData.append('hasShippingRules', selectedButton);
     formData.append('serllerId', sellerId);
     formData.append('applyMakeAnOffer', offer);
-    formData.append('pictures', selectedImages);
     formData.append('sale', true);
 
+    // if (selectedImage) {
+    //   formData.append('featureImage', {
+    //     name: selectedImage?.fileName,
+    //     type: selectedImage?.type,
+    //     uri: selectedImage?.uri,
+    //   });
+    // }
     if (selectedImage) {
-      formData.append('featureImage', selectedImage);
+      const compressedImage = await compressImage(selectedImage);
+      formData.append('featureImage', {
+        name: compressedImage?.fileName,
+        type: compressedImage?.type,
+        uri:
+          Platform.OS === 'ios'
+            ? compressedImage?.uri.replace('file://', '')
+            : compressedImage?.uri,
+      });
     }
+
+    // if (selectedImages) {
+    //   selectedImages.forEach(file => {
+    //     formData.append('pictures', {
+    //       name: file?.filename,
+    //       type: file?.mime,
+    //       uri: file?.sourceURL,
+    //     });
+    //   });
+    // }
+    if (selectedImages) {
+      for (let index = 0; index < selectedImages.length; index++) {
+        const image = selectedImages[index];
+        const resizedImage = await resizeImage(image);
+
+        formData.append('pictures', {
+          name: resizedImage?.filename,
+          type: resizedImage?.mime, // Change according to image type
+          uri: resizedImage?.sourceURL,
+        });
+      }
+    }
+
     try {
       setError(null);
       console.log('Dispatching addProductAsync');
       await dispatch(addProductAsync({productData: formData, token}));
       console.log('addProductAsync dispatched successfully');
-      Alert.alert('Done Dispatch');
+      Alert.alert('Add Product Successfully');
     } catch (err) {
       if (err.message) {
         setError(err.message);
@@ -205,6 +282,7 @@ const SellerAddProducts = ({navigation}) => {
       }
       console.error('Error dispatching addProductAsync:', err);
     }
+    console.log('formData', formData);
   };
 
   return (
