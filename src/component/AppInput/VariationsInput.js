@@ -7,11 +7,11 @@ import {TaskInput} from './TaskInput';
 const VariationsInput = ({title, placeholder1, placeholder2}) => {
   const [items, setItems] = useState([
     <View>
-      <TaskInput
+      {/* <TaskInput
         placeholder={placeholder1}
         placeholderTextColor={colors.p2}
         containerStyle={styles.inputCon2}
-      />
+      /> */}
       <View style={styles.rowContainer}>
         <TaskInput
           placeholder={placeholder2}
@@ -35,9 +35,12 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
       </View>
     </View>,
   ]);
+  const [shouldAddSection, setShouldAddSection] = useState(false);
 
   const handleRemoveItem1 = () => {
-    setItems(items.slice(0, items.length - 1));
+    if (items.length > 1) {
+      setItems(items.slice(0, items.length - 1));
+    }
   };
   const handleRemoveItem2 = () => {
     setItems(items.slice(0, items.length - 1));
@@ -68,7 +71,9 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
               resizeMode="contain"
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.imgCon2} onPress={handleAddItem2}>
+          <TouchableOpacity
+            style={styles.imgCon2}
+            onPress={() => setShouldAddSection(true)}>
             <Image
               source={appIcons.plus}
               style={styles.iconStyle}
@@ -80,32 +85,79 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
     ]);
   };
   const handleAddItem2 = () => {
-    setItems(prevComponents => [
-      ...prevComponents,
+    // Check if the additional section should be added
+    if (shouldAddSection) {
+      setItems(prevComponents => [
+        ...prevComponents,
+        <View style={styles.rowContainer}>
+          <TaskInput
+            placeholder={placeholder2}
+            placeholderTextColor={colors.p2}
+            containerStyle={styles.inputCon}
+          />
+          <TouchableOpacity style={styles.imgCon2}>
+            <Image
+              source={appIcons.neg}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.imgCon2}>
+            <Image
+              source={appIcons.plus}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>,
+      ]);
+    }
+  };
+  const handleRemoveSection = id => {
+    setItems(prevItems => prevItems.filter(item => item.id !== id));
+  };
+  const handleAddItem = () => {
+    setItems(prevItems => [
+      ...prevItems,
+      {
+        id: Date.now(),
+        placeholder: placeholder2,
+      },
+    ]);
+  };
+  const renderSection = item => (
+    <>
+      <TaskInput
+        placeholder={placeholder1}
+        placeholderTextColor={colors.p2}
+        containerStyle={styles.inputCon2}
+      />
 
-      <View style={styles.rowContainer}>
+      <View key={item.id} style={styles.rowContainer}>
         <TaskInput
-          placeholder={placeholder2}
+          placeholder={item.placeholder}
           placeholderTextColor={colors.p2}
           containerStyle={styles.inputCon}
         />
-        <TouchableOpacity style={styles.imgCon2}>
+        <TouchableOpacity
+          style={styles.imgCon2}
+          onPress={() => handleRemoveSection(item.id)}>
           <Image
             source={appIcons.neg}
             style={styles.iconStyle}
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.imgCon2}>
+        <TouchableOpacity style={styles.imgCon2} onPress={handleAddItem}>
           <Image
             source={appIcons.plus}
             style={styles.iconStyle}
             resizeMode="contain"
           />
         </TouchableOpacity>
-      </View>,
-    ]);
-  };
+      </View>
+    </>
+  );
   return (
     <View style={styles.mainContainer}>
       <View style={[styles.rowContainer, {justifyContent: 'space-between'}]}>
@@ -118,7 +170,9 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
           />
         </TouchableOpacity>
       </View>
-      {items.map(item => item)}
+      {items.map(renderSection)}
+
+      {/* {items.map(item => item)} */}
       <TouchableOpacity
         style={styles.removeCon}
         onPress={handleRemoveItem1}

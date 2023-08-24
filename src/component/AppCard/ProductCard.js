@@ -33,9 +33,9 @@ const ProductCard = ({apiData, index}) => {
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
         <Image
-          source={{uri: BASE_URL_IMG + apiData[index].pictures}}
+          source={{uri: BASE_URL_IMG + apiData[index].thumbnailImage}}
           style={styles.imgStyle}
-          resizeMode="contain"
+          resizeMode="cover"
         />
       </View>
       <View>
@@ -125,20 +125,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: WP('2'),
     flexDirection: 'row',
-    zIndex: 0, // Higher zIndex value
+    zIndex: 0,
   },
   imgContainer: {
-    backgroundColor: colors.pc,
     width: WP('30'),
-    height: WP('28'),
-    borderRadius: 8,
+    height: WP('30'),
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: WP('2'),
   },
   imgStyle: {
-    width: WP('22'),
-    height: WP('22'),
+    width: '100%',
+    height: WP('30'),
+    borderRadius: 16,
   },
   titleStyle: {
     color: colors.p1,

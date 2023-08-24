@@ -260,7 +260,7 @@ const SellerAddProducts = ({navigation}) => {
 
         formData.append('pictures', {
           name: resizedImage?.filename,
-          type: resizedImage?.mime, // Change according to image type
+          type: resizedImage?.mime,
           uri: resizedImage?.sourceURL,
         });
       }
@@ -513,6 +513,7 @@ const SellerAddProducts = ({navigation}) => {
                 Title="Variations"
                 mainContainer={styles.titleContainer}
               />
+              <VariationsInput />
               <View style={styles.cardStyle}>
                 <ClickButton
                   title="Product/Variations"
