@@ -5,164 +5,24 @@ import {WP, appIcons, colors, family, size} from '../../utilities';
 import {TaskInput} from './TaskInput';
 
 const VariationsInput = ({title, placeholder1, placeholder2}) => {
-  const [items, setItems] = useState([
-    <View>
-      {/* <TaskInput
-        placeholder={placeholder1}
-        placeholderTextColor={colors.p2}
-        containerStyle={styles.inputCon2}
-      /> */}
-      <View style={styles.rowContainer}>
-        <TaskInput
-          placeholder={placeholder2}
-          placeholderTextColor={colors.p2}
-          containerStyle={styles.inputCon}
-        />
-        <TouchableOpacity style={styles.imgCon2}>
-          <Image
-            source={appIcons.neg}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.imgCon2}>
-          <Image
-            source={appIcons.plus}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-    </View>,
-  ]);
-  const [shouldAddSection, setShouldAddSection] = useState(false);
+  const [items, setItems] = useState([]);
 
-  const handleRemoveItem1 = () => {
+  const addItem = () => {
+    setItems([...items, {}]);
+  };
+
+  const removeItem = index => {
     if (items.length > 1) {
-      setItems(items.slice(0, items.length - 1));
+      const updatedItems = items.filter((item, i) => i !== index);
+      setItems(updatedItems);
     }
   };
-  const handleRemoveItem2 = () => {
-    setItems(items.slice(0, items.length - 1));
-  };
-  const handleAddItem1 = () => {
-    setItems(prevComponents => [
-      ...prevComponents,
-      <>
-        <TaskInput
-          placeholder={placeholder1}
-          placeholderTextColor={colors.p2}
-          containerStyle={styles.inputCon2}
-        />
 
-        <View style={styles.rowContainer}>
-          <TaskInput
-            placeholder={placeholder2}
-            placeholderTextColor={colors.p2}
-            containerStyle={styles.inputCon}
-          />
-          <TouchableOpacity
-            style={styles.imgCon2}
-            onPress={handleRemoveItem2}
-            disabled={items.length === 1}>
-            <Image
-              source={appIcons.neg}
-              style={styles.iconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.imgCon2}
-            onPress={() => setShouldAddSection(true)}>
-            <Image
-              source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-      </>,
-    ]);
-  };
-  const handleAddItem2 = () => {
-    // Check if the additional section should be added
-    if (shouldAddSection) {
-      setItems(prevComponents => [
-        ...prevComponents,
-        <View style={styles.rowContainer}>
-          <TaskInput
-            placeholder={placeholder2}
-            placeholderTextColor={colors.p2}
-            containerStyle={styles.inputCon}
-          />
-          <TouchableOpacity style={styles.imgCon2}>
-            <Image
-              source={appIcons.neg}
-              style={styles.iconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.imgCon2}>
-            <Image
-              source={appIcons.plus}
-              style={styles.iconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>,
-      ]);
-    }
-  };
-  const handleRemoveSection = id => {
-    setItems(prevItems => prevItems.filter(item => item.id !== id));
-  };
-  const handleAddItem = () => {
-    setItems(prevItems => [
-      ...prevItems,
-      {
-        id: Date.now(),
-        placeholder: placeholder2,
-      },
-    ]);
-  };
-  const renderSection = item => (
-    <>
-      <TaskInput
-        placeholder={placeholder1}
-        placeholderTextColor={colors.p2}
-        containerStyle={styles.inputCon2}
-      />
-
-      <View key={item.id} style={styles.rowContainer}>
-        <TaskInput
-          placeholder={item.placeholder}
-          placeholderTextColor={colors.p2}
-          containerStyle={styles.inputCon}
-        />
-        <TouchableOpacity
-          style={styles.imgCon2}
-          onPress={() => handleRemoveSection(item.id)}>
-          <Image
-            source={appIcons.neg}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.imgCon2} onPress={handleAddItem}>
-          <Image
-            source={appIcons.plus}
-            style={styles.iconStyle}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-    </>
-  );
   return (
     <View style={styles.mainContainer}>
       <View style={[styles.rowContainer, {justifyContent: 'space-between'}]}>
         <Text style={styles.titleStyle}>{title}</Text>
-        <TouchableOpacity style={styles.imgCon} onPress={handleAddItem1}>
+        <TouchableOpacity style={styles.imgCon} onPress={addItem}>
           <Image
             source={appIcons.plus}
             style={styles.iconStyle}
@@ -170,12 +30,41 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
           />
         </TouchableOpacity>
       </View>
-      {items.map(renderSection)}
 
-      {/* {items.map(item => item)} */}
+      {items.map((item, index) => (
+        <View key={index}>
+          <TaskInput
+            placeholder={placeholder1}
+            placeholderTextColor={colors.p2}
+            containerStyle={styles.inputCon2}
+          />
+          <View style={styles.rowContainer}>
+            <TaskInput
+              placeholder={placeholder2}
+              placeholderTextColor={colors.p2}
+              containerStyle={styles.inputCon}
+            />
+            <TouchableOpacity style={styles.imgCon2}>
+              <Image
+                source={appIcons.neg}
+                style={styles.iconStyle}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.imgCon2}>
+              <Image
+                source={appIcons.plus}
+                style={styles.iconStyle}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
+
       <TouchableOpacity
         style={styles.removeCon}
-        onPress={handleRemoveItem1}
+        onPress={() => removeItem(items.length - 1)}
         disabled={items.length === 1}>
         <Text style={styles.btnStyle}>Remove</Text>
       </TouchableOpacity>

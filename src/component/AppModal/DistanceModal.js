@@ -16,9 +16,24 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppButton} from '../AppButton/AppButton';
 import {Formik} from 'formik';
 
-const DistanceModal = ({isModalVisible, onPress}) => {
+const DistanceModal = ({
+  isModalVisible,
+  onPress,
+  onSave,
+  distanceValues,
+  onDelete,
+  editIndex,
+  handleEditDistance,
+}) => {
   const formikRef = useRef();
-  const handleSave = () => {};
+  const handleSave = values => {
+    onSave(values);
+    toggleModalDis();
+  };
+
+  const toggleModalDis = () => {
+    onPress();
+  };
 
   return (
     <Formik
@@ -58,7 +73,11 @@ const DistanceModal = ({isModalVisible, onPress}) => {
                 inputStyle={styles.inputStyle}
                 placeholder="Distance in KM"
                 placeholderTextColor={colors.p2}
-                value={values.distance}
+                value={
+                  editIndex !== null
+                    ? distanceValues[editIndex]?.distance
+                    : values?.distance
+                }
                 onChangeText={handleChange('distance')}
                 errorMessage={errors.distance}
                 keyboardType={'numeric'}
@@ -70,7 +89,11 @@ const DistanceModal = ({isModalVisible, onPress}) => {
                 inputStyle={styles.inputStyle}
                 placeholder="Cost"
                 placeholderTextColor={colors.p2}
-                value={values.cost}
+                value={
+                  editIndex !== null
+                    ? distanceValues[editIndex]?.cost
+                    : values?.cost
+                }
                 onChangeText={handleChange('cost')}
                 errorMessage={errors.cost}
                 keyboardType={'numeric'}

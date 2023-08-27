@@ -11,6 +11,7 @@ import {
   ClickButton,
   CustomDropdown,
   ImagePickerModal,
+  RulesCard,
   TaskInput,
   TopHeader,
   VariationsInput,
@@ -509,6 +510,8 @@ const SellerAddProducts = ({navigation}) => {
                   }
                 />
               </View>
+              {selectedButton ===
+                'Special shipping rules for this product only' && <RulesCard />}
               <AppTitle
                 Title="Variations"
                 mainContainer={styles.titleContainer}

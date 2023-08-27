@@ -10,8 +10,34 @@ const RulesCard = ({...props}) => {
   const [isVisibleDis, setIsVisibleDis] = useState(false);
   const [isVisibleCity, setIsVisibleCity] = useState(false);
   const [isVisibleCon, setIsVisibleCon] = useState(false);
+  const [distanceValues, setDistanceValues] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const handleSaveDistance = values => {
+    if (editIndex !== null) {
+      const updatedValues = [...distanceValues];
+      updatedValues[editIndex] = values;
+      setDistanceValues(updatedValues);
+    } else {
+      setDistanceValues([...distanceValues, values]);
+    }
+    toggleModalDis();
+  };
+
+  const handleEditDistance = index => {
+    setEditIndex(index);
+    toggleModalDis();
+  };
+
+  const handleDeleteDistance = index => {
+    const updatedDistanceValues = [...distanceValues];
+    updatedDistanceValues.splice(index, 1);
+    setDistanceValues(updatedDistanceValues);
+  };
+
   const toggleModalDis = () => {
     setIsVisibleDis(!isVisibleDis);
+    setEditIndex(null);
   };
   const toggleModalCity = () => {
     setIsVisibleCity(!isVisibleCity);
@@ -43,65 +69,62 @@ const RulesCard = ({...props}) => {
         <Text style={styles.noteText}>
           -- Please Add Shipment Details by distance in (KM) from your origin
         </Text>
-        <DistanceModal isModalVisible={isVisibleDis} onPress={toggleModalDis} />
-        <View style={styles.distanceView}>
-          <View style={styles.rowCon}>
-            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-              Distance
-            </Text>
-            <Text
-              style={[
-                styles.titleStyle,
-                {fontSize: size.xsmall, marginLeft: -WP('15')},
-              ]}>
-              Cost
-            </Text>
-            <Text />
-          </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>100 Km</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
+        <DistanceModal
+          isModalVisible={isVisibleDis}
+          onPress={toggleModalDis}
+          onSave={handleSaveDistance}
+          distanceValues={distanceValues}
+          onDelete={handleDeleteDistance}
+          editIndex={editIndex}
+          handleEditDistance={handleEditDistance}
+        />
+        {distanceValues.length > 0 && (
+          <View style={styles.distanceView}>
+            <View style={styles.rowCon}>
+              <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+                Distance
+              </Text>
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {fontSize: size.xsmall, marginLeft: -WP('15')},
+                ]}>
+                Cost
+              </Text>
+              <Text />
             </View>
+            <AppDivider />
+            {distanceValues.map((item, index) => (
+              <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+                <Text style={styles.noteText}>{item.distance}</Text>
+                <Text style={styles.noteText}>{item.cost}</Text>
+
+                <View style={styles.rowStyle}>
+                  <TouchableOpacity
+                    style={styles.deleteCon}
+                    onPress={() => handleDeleteDistance(index)}>
+                    <Image
+                      source={appIcons.delete}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.editCon}
+                    onPress={() => handleEditDistance(index)}>
+                    <Image
+                      source={appIcons.edit}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
           </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>100 Km</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        )}
       </View>
+
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Text style={styles.titleStyle}>
