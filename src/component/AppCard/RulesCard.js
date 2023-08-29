@@ -15,18 +15,35 @@ const RulesCard = () => {
   const [isVisibleCon, setIsVisibleCon] = useState(false);
   const [distanceValues, setDistanceValues] = useState([]);
   const [countryVal, setCountryVal] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+  const [editDis, setEditDis] = useState(null);
+  const [editCon, setEditCon] = useState(null);
   const dispatch = useDispatch();
   const countryId = 'Pakistan';
   const cities = useSelector(state => state?.cities);
   const countries = useSelector(state => state?.countries?.countries);
-  console.log('====================================');
-  console.log('coun', countryVal);
-  console.log('====================================');
+
   useEffect(() => {
     dispatch(fetchCitiesFromCountriesAsync(countryId));
     dispatch(fetchCountriesAsync());
   }, [countryId, dispatch]);
+  ///Country Functions
+  const handleSaveCountryZone = (selected, values) => {
+    setCountryVal([...countryVal, values, selected]);
+    toggleModalCon();
+  };
+  const handleDeleteCountry = index => {
+    const updatedDistanceValues = [...countryVal];
+    updatedDistanceValues.splice(index, 1);
+    setCountryVal(updatedDistanceValues);
+  };
+  const toggleModalCon = () => {
+    setIsVisibleCon(!isVisibleCon);
+  };
+  const handleEditCountry = index => {
+    setEditCon(index);
+    toggleModalCon();
+  };
+  ///Distance Functions
   const handleSaveDistance = values => {
     if (editIndex !== null) {
       const updatedValues = [...distanceValues];
@@ -37,15 +54,9 @@ const RulesCard = () => {
     }
     toggleModalDis();
   };
-  const handleSaveCountryZone = values => {
-    // Update the state with the new shipping zone
-    setCountryVal([...countryVal, values]);
-    // Close the modal
-    toggleModalCon();
-  };
 
   const handleEditDistance = index => {
-    setEditIndex(index);
+    setEditDis(index);
     toggleModalDis();
   };
 
@@ -59,11 +70,10 @@ const RulesCard = () => {
     setIsVisibleDis(!isVisibleDis);
     setEditIndex(null);
   };
+
+  ///City Funtions
   const toggleModalCity = () => {
     setIsVisibleCity(!isVisibleCity);
-  };
-  const toggleModalCon = () => {
-    setIsVisibleCon(!isVisibleCon);
   };
 
   return (
@@ -94,9 +104,9 @@ const RulesCard = () => {
           onPress={toggleModalDis}
           onSave={handleSaveDistance}
           distanceValues={distanceValues}
-          onDelete={handleDeleteDistance}
-          editIndex={editIndex}
-          handleEditDistance={handleEditDistance}
+          // onDelete={handleDeleteDistance}
+          editIndex={editDis}
+          // handleEditDistance={handleEditDistance}
         />
         {distanceValues.length > 0 && (
           <View style={styles.distanceView}>
@@ -192,6 +202,7 @@ const RulesCard = () => {
           countires={countries?.countries}
           onSave={handleSaveCountryZone}
           countryVal={countryVal}
+          editIndex={editCon}
         />
         {countryVal.length > 0 && (
           <View style={styles.cityView}>
@@ -215,17 +226,21 @@ const RulesCard = () => {
             {countryVal?.map((item, index) => (
               <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
                 <Text style={styles.noteText}>{item?.zoneName}</Text>
-                <Text style={styles.noteText}>{item?.countires}</Text>
+                <Text style={styles.noteText}>{item?.countries}</Text>
                 <Text style={styles.noteText}>{item?.cost}</Text>
                 <View style={styles.rowStyle}>
-                  <TouchableOpacity style={styles.deleteCon}>
+                  <TouchableOpacity
+                    style={styles.deleteCon}
+                    onPress={() => handleDeleteCountry(index)}>
                     <Image
                       source={appIcons.delete}
                       style={styles.iconStyle}
                       resizeMode="center"
                     />
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.editCon}>
+                  <TouchableOpacity
+                    style={styles.editCon}
+                    onPress={() => handleEditCountry(index)}>
                     <Image
                       source={appIcons.edit}
                       style={styles.iconStyle}

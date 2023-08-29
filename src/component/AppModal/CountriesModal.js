@@ -31,15 +31,19 @@ const CountriesModal = ({
   countires,
   onSave,
   countryVal,
+  editIndex,
+  initialValues,
 }) => {
   const formikRef = useRef();
   const [state, setState] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const initialFormValues =
+    editIndex !== null ? countires[editIndex] : countriesFromField;
   const handleSetItems = newItems => {
     setSelectedItem(newItems);
   };
-  const handleSave = values => {
-    onSave(values);
+  const handleSave = (selected, values) => {
+    onSave(selected, values);
     toggleModal;
   };
   const toggleModal = () => {
@@ -49,7 +53,7 @@ const CountriesModal = ({
     <Formik
       innerRef={formikRef}
       initialValues={countriesFromField}
-      onSubmit={values => {
+      onSubmit={(selectedItem, values) => {
         handleSave(values);
       }}
       validateOnChange={false}
