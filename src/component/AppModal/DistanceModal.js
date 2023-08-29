@@ -21,9 +21,7 @@ const DistanceModal = ({
   onPress,
   onSave,
   distanceValues,
-  onDelete,
   editIndex,
-  handleEditDistance,
 }) => {
   const formikRef = useRef();
   const handleSave = values => {

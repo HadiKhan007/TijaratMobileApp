@@ -1,11 +1,32 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 import {TaskInput} from './TaskInput';
 
 const VariationsInput = ({title, placeholder1, placeholder2}) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    {
+      id: 0,
+      field: 'size',
+      variations: [
+        {
+          id: 0,
+          value: '',
+        },
+      ],
+    },
+    {
+      id: 1,
+      field: 'size',
+      variations: [
+        {
+          id: 0,
+          value: '',
+        },
+      ],
+    },
+  ]);
 
   const addItem = () => {
     setItems([...items, {}]);
@@ -16,6 +37,42 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
       const updatedItems = items.filter((item, i) => i !== index);
       setItems(updatedItems);
     }
+  };
+
+  const onAddField = itemId => {
+    setItems(prevItems => {
+      return prevItems.map(item => {
+        if (item.id === itemId) {
+          return {
+            ...item,
+            variations: [
+              ...item.variations,
+              {
+                id: item.variations.length,
+                value: '',
+              },
+            ],
+          };
+        }
+        return item;
+      });
+    });
+  };
+
+  const onRemoveField = (itemId, selectedId) => {
+    setItems(prevItems => {
+      return prevItems.map(item => {
+        if (item.id === itemId) {
+          return {
+            ...item,
+            variations: item.variations.filter(
+              variation => variation.id !== selectedId,
+            ),
+          };
+        }
+        return item;
+      });
+    });
   };
 
   return (
@@ -38,27 +95,36 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
             placeholderTextColor={colors.p2}
             containerStyle={styles.inputCon2}
           />
-          <View style={styles.rowContainer}>
-            <TaskInput
-              placeholder={placeholder2}
-              placeholderTextColor={colors.p2}
-              containerStyle={styles.inputCon}
-            />
-            <TouchableOpacity style={styles.imgCon2}>
-              <Image
-                source={appIcons.neg}
-                style={styles.iconStyle}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.imgCon2}>
-              <Image
-                source={appIcons.plus}
-                style={styles.iconStyle}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
+
+          {item.variations.map(ele => {
+            return (
+              <View style={styles.rowContainer}>
+                <TaskInput
+                  placeholder={placeholder2}
+                  placeholderTextColor={colors.p2}
+                  containerStyle={styles.inputCon}
+                />
+                <TouchableOpacity
+                  onPress={() => onRemoveField(item.id, ele.id)}
+                  style={styles.imgCon2}>
+                  <Image
+                    source={appIcons.neg}
+                    style={styles.iconStyle}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => onAddField(item.id)}
+                  style={styles.imgCon2}>
+                  <Image
+                    source={appIcons.plus}
+                    style={styles.iconStyle}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          })}
         </View>
       ))}
 

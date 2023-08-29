@@ -28,6 +28,16 @@ export const distanceFormFiled = {
   distance: '',
   cost: '',
 };
+export const citiesFromField = {
+  zoneName: '',
+  zone: '',
+  cost: '',
+};
+export const countriesFromField = {
+  zoneName: '',
+  countries: '',
+  cost: '',
+};
 
 // export const updateProfileFormFileds = {
 //   userName: '',
@@ -73,6 +83,16 @@ export const counterOfferVS = yup.object().shape({
 });
 export const distanceVS = yup.object().shape({
   distance: yup.string().required('Distance required'),
+  cost: yup.string().required('Cost required'),
+});
+export const citiesVs = yup.object().shape({
+  zoneName: yup.string().required('Zone Name required'),
+  zone: yup.string().required('Zone required'),
+  cost: yup.string().required('Cost required'),
+});
+export const countriesVS = yup.object().shape({
+  zoneName: yup.string().required('Zone Name required'),
+  countries: yup.array().min(1, 'Select at least one country'),
   cost: yup.string().required('Cost required'),
 });
 
