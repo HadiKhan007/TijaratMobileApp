@@ -3,6 +3,7 @@ import {View, SafeAreaView, Text, Alert, Platform} from 'react-native';
 import styles from './styles';
 import {
   AddImage,
+  AddPictures,
   AddSpecsInput,
   AppButton,
   AppLoader,
@@ -10,6 +11,7 @@ import {
   ClickButton,
   CustomDropdown,
   ImagePickerModal,
+  RulesCard,
   TaskInput,
   TopHeader,
   VariationsInput,
@@ -27,9 +29,15 @@ import {Formik} from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 import {addProductAsync} from '../../../../redux/Slices/SellerSlices/AddProductSlice';
 import {fetchCategoriesAsync} from '../../../../redux/Slices/SellerSlices/categoriesSlice';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {
+  launchCamera,
+  launchImageLibrary,
+  ImagePicker,
+} from 'react-native-image-picker';
+import {DrawerActions} from '@react-navigation/native';
+import ImageResizer from 'react-native-image-resizer';
 
-const SellerAddProducts = () => {
+const SellerAddProducts = ({navigation}) => {
   const formikRef = useRef();
   const dispatch = useDispatch();
   const addedProduct = useSelector(state => state.addProduct?.addedProduct);
@@ -49,7 +57,19 @@ const SellerAddProducts = () => {
   const [error, setError] = useState(null);
   const [attribute, setAttribute] = useState(false);
   const [variations, setVariations] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const handleImagesSelected = images => {
+    // Update the selected images state
+    setSelectedImages(images);
+  };
+  const handleDeleteImage = index => {
+    // Create a copy of the array and remove the selected image
+    const updatedImages = [...selectedImages];
+    updatedImages.splice(index, 1);
 
+    // Update the state with the updated array
+    setSelectedImages(updatedImages);
+  };
   const handleButtonClick = buttonName => {
     buttonName === 'Accept Offers' ? setOffer(!offer) : null;
     setSelectedButton(buttonName === selectedButton ? null : buttonName);
@@ -140,11 +160,50 @@ const SellerAddProducts = () => {
   const selectedCategoryId = categories.find(
     cat => cat.category._id === selectedCategory,
   )?.category._id;
+  const compressImage = async image => {
+    try {
+      const compressed = await ImageResizer.createResizedImage(
+        image?.uri,
+        200,
+        200,
+        'JPEG',
+        80,
+      );
 
+      return {
+        ...image,
+        uri: compressed.uri,
+        fileSize: compressed.size,
+      };
+    } catch (err) {
+      console.error('Error compressing image:', err);
+      return image;
+    }
+  };
+  const resizeImage = async image => {
+    try {
+      const resized = await ImageResizer.createResizedImage(
+        image.sourceURL,
+        500,
+        500,
+        'JPEG',
+        80,
+      );
+
+      return {
+        ...image,
+        sourceURL: resized.uri,
+        filename: resized.name,
+        mime: 'image/jpeg', // Change according to image type
+      };
+    } catch (err) {
+      console.error('Error resizing image:', err);
+      return image;
+    }
+  };
   const selectedSubCategoryId = categories
     .find(cat => cat.category._id === selectedCategory)
     ?.subCategories.find(subCat => subCat._id === selectedSubCategory)?._id;
-
   const handleClick = async values => {
     const formData = new FormData();
     formData.append('name', values.name);
@@ -165,18 +224,55 @@ const SellerAddProducts = () => {
     formData.append('hasShippingRules', selectedButton);
     formData.append('serllerId', sellerId);
     formData.append('applyMakeAnOffer', offer);
-    formData.append('pictures', selectedImage?.fileName);
     formData.append('sale', true);
 
+    // if (selectedImage) {
+    //   formData.append('featureImage', {
+    //     name: selectedImage?.fileName,
+    //     type: selectedImage?.type,
+    //     uri: selectedImage?.uri,
+    //   });
+    // }
     if (selectedImage) {
-      formData.append('featureImage', '');
+      const compressedImage = await compressImage(selectedImage);
+      formData.append('featureImage', {
+        name: compressedImage?.fileName,
+        type: compressedImage?.type,
+        uri:
+          Platform.OS === 'ios'
+            ? compressedImage?.uri.replace('file://', '')
+            : compressedImage?.uri,
+      });
     }
+
+    // if (selectedImages) {
+    //   selectedImages.forEach(file => {
+    //     formData.append('pictures', {
+    //       name: file?.filename,
+    //       type: file?.mime,
+    //       uri: file?.sourceURL,
+    //     });
+    //   });
+    // }
+    if (selectedImages) {
+      for (let index = 0; index < selectedImages.length; index++) {
+        const image = selectedImages[index];
+        const resizedImage = await resizeImage(image);
+
+        formData.append('pictures', {
+          name: resizedImage?.filename,
+          type: resizedImage?.mime,
+          uri: resizedImage?.sourceURL,
+        });
+      }
+    }
+
     try {
       setError(null);
       console.log('Dispatching addProductAsync');
       await dispatch(addProductAsync({productData: formData, token}));
       console.log('addProductAsync dispatched successfully');
-      Alert.alert('Done Dispatch');
+      Alert.alert('Add Product Successfully');
     } catch (err) {
       if (err.message) {
         setError(err.message);
@@ -187,6 +283,7 @@ const SellerAddProducts = () => {
       }
       console.error('Error dispatching addProductAsync:', err);
     }
+    console.log('formData', formData);
   };
 
   return (
@@ -208,7 +305,11 @@ const SellerAddProducts = () => {
             enableAutomaticScroll
             showsVerticalScrollIndicator={false}>
             <View style={styles.mainContainer}>
-              <TopHeader iconName={appIcons.menuIcon} title="Add a Product" />
+              <TopHeader
+                iconName={appIcons.menuIcon}
+                title="Add a Product"
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+              />
               <AppTitle
                 Title="Add Product"
                 mainContainer={styles.titleContainer}
@@ -356,10 +457,22 @@ const SellerAddProducts = () => {
                 title="Delivery Option"
                 error={errors.deliveryOptions}
               />
+              <AppTitle
+                Title="Add Feature Image"
+                mainContainer={styles.titleContainer}
+              />
               <AddImage
-                title="Add Feature Image"
                 onPress={() => setshow(!show)}
                 selectedImage={selectedImage}
+              />
+              <AppTitle
+                Title="Pictures"
+                mainContainer={styles.titleContainer}
+              />
+              <AddPictures
+                images={selectedImages}
+                onImagesSelected={handleImagesSelected}
+                onDeleteImage={handleDeleteImage}
               />
               {errors.featureImage && (
                 <Text style={styles.errorMessage}>{errors.featureImage}</Text>
@@ -397,15 +510,13 @@ const SellerAddProducts = () => {
                   }
                 />
               </View>
+              {selectedButton ===
+                'Special shipping rules for this product only' && <RulesCard />}
               <AppTitle
                 Title="Variations"
                 mainContainer={styles.titleContainer}
               />
-              <VariationsInput
-                title="Product Variations"
-                placeholder1="Size, Material, Color"
-                placeholder2="Value(L/M/S)"
-              />
+              <VariationsInput />
               <View style={styles.cardStyle}>
                 <ClickButton
                   title="Product/Variations"
@@ -439,7 +550,6 @@ const SellerAddProducts = () => {
                   />
                 )}
               </View>
-
               <AppButton
                 title="Add Now"
                 containerStyle={styles.btnStyle}

@@ -12,6 +12,8 @@ import orderDetailsReducer from './SellerSlices/orderDetailSlice';
 import sellerAllProductsReducer from './SellerSlices/sellerAllProductsSlice';
 import addProductReducer from './SellerSlices/AddProductSlice';
 import categoriesReducer from './SellerSlices/categoriesSlice';
+import citiesReducer from './SellerSlices/citiesfromCountries';
+import countriesReducer from './SellerSlices/countriesSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   sellerAllProducts: sellerAllProductsReducer,
   addProduct: addProductReducer,
   categories: categoriesReducer,
+  cities: citiesReducer,
+  countries: countriesReducer,
 
   // Add other reducers here
 });

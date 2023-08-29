@@ -1,85 +1,162 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import Modal from 'react-native-modal';
-import {appIcons, colors, family, size, WP} from '../../utilities';
+import {
+  appIcons,
+  colors,
+  countriesFromField,
+  countriesVS,
+  family,
+  size,
+  WP,
+} from '../../utilities';
 import {TaskInput} from '../AppInput/TaskInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppButton} from '../AppButton/AppButton';
 import {CustomDropdown} from '../DropDown/CustomDropDown';
 import {ClickButton} from '../AppButton/ClickButton';
+import {Formik} from 'formik';
 
-const CountriesModal = ({isModalVisible, onPress}) => {
+const CountriesModal = ({
+  isModalVisible,
+  onPress,
+  countires,
+  onSave,
+  countryVal,
+  editIndex,
+  initialValues,
+}) => {
+  const formikRef = useRef();
   const [state, setState] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const initialFormValues =
+    editIndex !== null ? countires[editIndex] : countriesFromField;
+  const handleSetItems = newItems => {
+    setSelectedItem(newItems);
+  };
+  const handleSave = (selected, values) => {
+    onSave(selected, values);
+    toggleModal;
+  };
+  const toggleModal = () => {
+    onPress();
+  };
   return (
-    <KeyboardAwareScrollView
-      style={styles.main}
-      enableOnAndroid
-      contentContainerStyle={styles.contentContainer}
-      enableAutomaticScroll
-      showsVerticalScrollIndicator={false}>
-      <Modal isVisible={isModalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={styles.rowContainer}>
-            <Text style={styles.titleStyle}>Add Shipping Zone</Text>
-            <TouchableOpacity style={styles.iconContainer} onPress={onPress}>
-              <Image
-                source={appIcons.crossIcon}
-                style={styles.iconStyle}
-                resizeMode="contain"
+    <Formik
+      innerRef={formikRef}
+      initialValues={countriesFromField}
+      onSubmit={(selectedItem, values) => {
+        handleSave(values);
+      }}
+      validateOnChange={false}
+      validateOnBlur={false}
+      validationSchema={countriesVS}>
+      {({values, errors, handleSubmit, handleChange}) => (
+        <KeyboardAwareScrollView
+          style={styles.main}
+          enableOnAndroid
+          contentContainerStyle={styles.contentContainer}
+          enableAutomaticScroll
+          showsVerticalScrollIndicator={false}>
+          <Modal isVisible={isModalVisible}>
+            <View style={styles.modalContainer}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.titleStyle}>Add Shipping Zone</Text>
+                <TouchableOpacity
+                  style={styles.iconContainer}
+                  onPress={onPress}>
+                  <Image
+                    source={appIcons.crossIcon}
+                    style={styles.iconStyle}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+              <TaskInput
+                title="Zone Name"
+                titleStyle={styles.inputTitle}
+                inputContainerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                placeholder="Customers won’t see this."
+                placeholderTextColor={colors.p2}
+                value={values.zoneName}
+                onChangeText={handleChange('zoneName')}
+                errorMessage={errors.zoneName}
               />
-            </TouchableOpacity>
-          </View>
-          <TaskInput
-            title="Zone Name"
-            titleStyle={styles.inputTitle}
-            inputContainerStyle={styles.containerStyle}
-            inputStyle={styles.inputStyle}
-            placeholder="Customers won’t see this."
-            placeholderTextColor={colors.p2}
-            // value={values.email}
-            // onChangeText={handleChange('email')}
-            // errorMessage={errors.email}
-          />
-          <CustomDropdown items={[]} title="Countries" />
+              <CustomDropdown
+                items={countires?.map(country => ({
+                  label: country,
+                  value: country,
+                }))}
+                title="Countries"
+                onSelectItem={handleSetItems}
+                setItems={selectedItem}
+              />
 
-          <TaskInput
-            title="Add cost"
-            titleStyle={styles.inputTitle}
-            inputContainerStyle={styles.containerStyle}
-            inputStyle={styles.inputStyle}
-            placeholder="Rs."
-            placeholderTextColor={colors.p2}
-            // value={values.email}
-            // onChangeText={handleChange('email')}
-            // errorMessage={errors.email}
-            keyboardType={'numeric'}
-          />
-          <ClickButton
-            title="Add cost rule by weight"
-            onPress={() => setState(!state)}
-            selected={state}
-          />
-          <View
-            style={[
-              styles.rowContainer,
-              {justifyContent: 'center', marginVertical: WP('3')},
-            ]}>
-            <AppButton
-              containerStyle={styles.btnStyle}
-              title="Save"
-              // onPress={() => navigation.navigate('UMyAccount')}
-            />
-            <AppButton
-              containerStyle={styles.btn2Style}
-              title="Cancel"
-              titleStyle={styles.btn2Title}
-              onPress={onPress}
-            />
-          </View>
-        </View>
-      </Modal>
-    </KeyboardAwareScrollView>
+              {state === false && (
+                <TaskInput
+                  title="Add cost"
+                  titleStyle={styles.inputTitle}
+                  inputContainerStyle={styles.containerStyle}
+                  inputStyle={styles.inputStyle}
+                  placeholder="Rs."
+                  placeholderTextColor={colors.p2}
+                  value={values.cost}
+                  onChangeText={handleChange('cost')}
+                  errorMessage={errors.cost}
+                  keyboardType={'numeric'}
+                />
+              )}
+              <ClickButton
+                title="Add cost rule by weight"
+                onPress={() => setState(!state)}
+                selected={state}
+              />
+              {state && (
+                <TaskInput
+                  titleStyle={styles.inputTitle}
+                  inputContainerStyle={styles.containerStyle}
+                  inputStyle={styles.inputStyle}
+                  placeholder="Rs."
+                  placeholderTextColor={colors.p2}
+                  value={`Rs. ${values.cost} / KG`}
+                  onChangeText={handleChange('cost')}
+                  errorMessage={errors.cost}
+                  keyboardType={'numeric'}
+                  editable={false}
+                />
+              )}
+              <View
+                style={[
+                  styles.rowContainer,
+                  {justifyContent: 'center', marginVertical: WP('3')},
+                ]}>
+                <AppButton
+                  containerStyle={styles.btnStyle}
+                  title="Save"
+                  onPress={handleSubmit}
+                  // onPress={() => navigation.navigate('UMyAccount')}
+                />
+                <AppButton
+                  containerStyle={styles.btn2Style}
+                  title="Cancel"
+                  titleStyle={styles.btn2Title}
+                  onPress={onPress}
+                />
+              </View>
+            </View>
+          </Modal>
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
 
@@ -94,7 +171,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     backgroundColor: colors.w2,
-    height: '65%',
+    height: '75%',
     paddingHorizontal: WP('5'),
   },
   iconStyle: {

@@ -21,6 +21,8 @@ const ENDPOINTS = {
   SELLER_ALL_PRODUCTS: 'products/by-seller/',
   ADD_PRODUCTS: 'products/create',
   CATEGORIES: 'categories/list',
+  CITIES: 'country/cities/Pakistan',
+  COUNTRIES: 'countries/data',
 };
 
 export {BASE_URL, ENDPOINTS, BASE_URL_IMG};

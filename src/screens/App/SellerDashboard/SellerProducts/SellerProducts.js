@@ -10,6 +10,7 @@ import {
 import {appIcons} from '../../../../utilities';
 import {useDispatch, useSelector} from 'react-redux';
 import {sellerAllProductsAsync} from '../../../../redux/Slices/SellerSlices/sellerAllProductsSlice';
+import {DrawerActions} from '@react-navigation/native';
 
 const SellerProducts = ({navigation}) => {
   const dispatch = useDispatch();
@@ -30,7 +31,11 @@ const SellerProducts = ({navigation}) => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <View style={styles.mainContainer}>
-        <TopHeader iconName={appIcons.menuIcon} title="Seller Dashboard" />
+        <TopHeader
+          iconName={appIcons.menuIcon}
+          title="Seller Dashboard"
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        />
         <AppTitle
           Title="All Products"
           secondTitle="Archive Product"

@@ -1,23 +1,79 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 import {DistanceModal} from '../AppModal/DistanceModal';
 import {CityModal} from '../AppModal/CityModal';
 import {AppDivider} from '../AppDivider/AppDivider';
 import {CountriesModal} from '../AppModal/CountriesModal';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchCitiesFromCountriesAsync} from '../../redux/Slices/SellerSlices/citiesfromCountries';
+import {fetchCountriesAsync} from '../../redux/Slices/SellerSlices/countriesSlice';
 
-const RulesCard = ({...props}) => {
+const RulesCard = () => {
   const [isVisibleDis, setIsVisibleDis] = useState(false);
   const [isVisibleCity, setIsVisibleCity] = useState(false);
   const [isVisibleCon, setIsVisibleCon] = useState(false);
-  const toggleModalDis = () => {
-    setIsVisibleDis(!isVisibleDis);
+  const [distanceValues, setDistanceValues] = useState([]);
+  const [countryVal, setCountryVal] = useState([]);
+  const [editDis, setEditDis] = useState(null);
+  const [editCon, setEditCon] = useState(null);
+  const dispatch = useDispatch();
+  const countryId = 'Pakistan';
+  const cities = useSelector(state => state?.cities);
+  const countries = useSelector(state => state?.countries?.countries);
+
+  useEffect(() => {
+    dispatch(fetchCitiesFromCountriesAsync(countryId));
+    dispatch(fetchCountriesAsync());
+  }, [countryId, dispatch]);
+  ///Country Functions
+  const handleSaveCountryZone = (selected, values) => {
+    setCountryVal([...countryVal, values, selected]);
+    toggleModalCon();
   };
-  const toggleModalCity = () => {
-    setIsVisibleCity(!isVisibleCity);
+  const handleDeleteCountry = index => {
+    const updatedDistanceValues = [...countryVal];
+    updatedDistanceValues.splice(index, 1);
+    setCountryVal(updatedDistanceValues);
   };
   const toggleModalCon = () => {
     setIsVisibleCon(!isVisibleCon);
+  };
+  const handleEditCountry = index => {
+    setEditCon(index);
+    toggleModalCon();
+  };
+  ///Distance Functions
+  const handleSaveDistance = values => {
+    if (editIndex !== null) {
+      const updatedValues = [...distanceValues];
+      updatedValues[editIndex] = values;
+      setDistanceValues(updatedValues);
+    } else {
+      setDistanceValues([...distanceValues, values]);
+    }
+    toggleModalDis();
+  };
+
+  const handleEditDistance = index => {
+    setEditDis(index);
+    toggleModalDis();
+  };
+
+  const handleDeleteDistance = index => {
+    const updatedDistanceValues = [...distanceValues];
+    updatedDistanceValues.splice(index, 1);
+    setDistanceValues(updatedDistanceValues);
+  };
+
+  const toggleModalDis = () => {
+    setIsVisibleDis(!isVisibleDis);
+    setEditIndex(null);
+  };
+
+  ///City Funtions
+  const toggleModalCity = () => {
+    setIsVisibleCity(!isVisibleCity);
   };
 
   return (
@@ -43,65 +99,62 @@ const RulesCard = ({...props}) => {
         <Text style={styles.noteText}>
           -- Please Add Shipment Details by distance in (KM) from your origin
         </Text>
-        <DistanceModal isModalVisible={isVisibleDis} onPress={toggleModalDis} />
-        <View style={styles.distanceView}>
-          <View style={styles.rowCon}>
-            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-              Distance
-            </Text>
-            <Text
-              style={[
-                styles.titleStyle,
-                {fontSize: size.xsmall, marginLeft: -WP('15')},
-              ]}>
-              Cost
-            </Text>
-            <Text />
-          </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>100 Km</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
+        <DistanceModal
+          isModalVisible={isVisibleDis}
+          onPress={toggleModalDis}
+          onSave={handleSaveDistance}
+          distanceValues={distanceValues}
+          // onDelete={handleDeleteDistance}
+          editIndex={editDis}
+          // handleEditDistance={handleEditDistance}
+        />
+        {distanceValues.length > 0 && (
+          <View style={styles.distanceView}>
+            <View style={styles.rowCon}>
+              <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+                Distance
+              </Text>
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {fontSize: size.xsmall, marginLeft: -WP('15')},
+                ]}>
+                Cost
+              </Text>
+              <Text />
             </View>
+            <AppDivider />
+            {distanceValues.map((item, index) => (
+              <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+                <Text style={styles.noteText}>{item.distance}</Text>
+                <Text style={styles.noteText}>{item.cost}</Text>
+
+                <View style={styles.rowStyle}>
+                  <TouchableOpacity
+                    style={styles.deleteCon}
+                    onPress={() => handleDeleteDistance(index)}>
+                    <Image
+                      source={appIcons.delete}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.editCon}
+                    onPress={() => handleEditDistance(index)}>
+                    <Image
+                      source={appIcons.edit}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
           </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>100 Km</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        )}
       </View>
+
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Text style={styles.titleStyle}>
@@ -120,7 +173,11 @@ const RulesCard = ({...props}) => {
           , All over Pakistan) different areas for shipping your orders
         </Text>
 
-        <CityModal isModalVisible={isVisibleCity} onPress={toggleModalCity} />
+        <CityModal
+          isModalVisible={isVisibleCity}
+          onPress={toggleModalCity}
+          cities={cities}
+        />
       </View>
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
@@ -142,69 +199,59 @@ const RulesCard = ({...props}) => {
         <CountriesModal
           isModalVisible={isVisibleCon}
           onPress={toggleModalCon}
+          countires={countries?.countries}
+          onSave={handleSaveCountryZone}
+          countryVal={countryVal}
+          editIndex={editCon}
         />
-        <View style={styles.cityView}>
-          <View style={styles.rowCon}>
-            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-              Name
-            </Text>
-            <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
-              Countries
-            </Text>
-            <Text
-              style={[
-                styles.titleStyle,
-                {fontSize: size.xsmall, marginRight: WP('24')},
-              ]}>
-              Cost
-            </Text>
-            <View />
-          </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>adilpur</Text>
-            <Text style={styles.noteText}>adilpur</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
+        {countryVal.length > 0 && (
+          <View style={styles.cityView}>
+            <View style={styles.rowCon}>
+              <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+                Name
+              </Text>
+              <Text style={[styles.titleStyle, {fontSize: size.xsmall}]}>
+                Countries
+              </Text>
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {fontSize: size.xsmall, marginRight: WP('24')},
+                ]}>
+                Cost
+              </Text>
+              <View />
             </View>
+            <AppDivider />
+            {countryVal?.map((item, index) => (
+              <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
+                <Text style={styles.noteText}>{item?.zoneName}</Text>
+                <Text style={styles.noteText}>{item?.countries}</Text>
+                <Text style={styles.noteText}>{item?.cost}</Text>
+                <View style={styles.rowStyle}>
+                  <TouchableOpacity
+                    style={styles.deleteCon}
+                    onPress={() => handleDeleteCountry(index)}>
+                    <Image
+                      source={appIcons.delete}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.editCon}
+                    onPress={() => handleEditCountry(index)}>
+                    <Image
+                      source={appIcons.edit}
+                      style={styles.iconStyle}
+                      resizeMode="center"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
           </View>
-          <AppDivider />
-          <View style={[styles.rowCon, {marginVertical: WP('2')}]}>
-            <Text style={styles.noteText}>adilpur</Text>
-            <Text style={styles.noteText}>adilpur</Text>
-            <Text style={styles.noteText}>Rs. 100</Text>
-            <View style={styles.rowStyle}>
-              <TouchableOpacity style={styles.deleteCon}>
-                <Image
-                  source={appIcons.delete}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.editCon}>
-                <Image
-                  source={appIcons.edit}
-                  style={styles.iconStyle}
-                  resizeMode="center"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        )}
       </View>
     </View>
   );
