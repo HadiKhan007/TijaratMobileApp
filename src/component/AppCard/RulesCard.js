@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WP, appIcons, colors, family, size} from '../../utilities';
 import {DistanceModal} from '../AppModal/DistanceModal';
@@ -8,6 +8,7 @@ import {CountriesModal} from '../AppModal/CountriesModal';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCitiesFromCountriesAsync} from '../../redux/Slices/SellerSlices/citiesfromCountries';
 import {fetchCountriesAsync} from '../../redux/Slices/SellerSlices/countriesSlice';
+import {ListItem} from '@rneui/themed';
 
 const RulesCard = () => {
   const [isVisibleDis, setIsVisibleDis] = useState(false);
@@ -22,13 +23,69 @@ const RulesCard = () => {
   const cities = useSelector(state => state?.cities);
   const countries = useSelector(state => state?.countries?.countries);
 
+  const [cityData, setCityData] = useState([
+    {
+      id: 0,
+      region: 'Pakistan',
+      expanded: false,
+      otherInfo: {
+        data: ['Lahore', 'R1 Johar Town Lahore', 'Rs 2000'],
+      },
+    },
+
+    {
+      id: 1,
+      region: 'India',
+      expanded: false,
+      otherInfo: {
+        data: ['Lahore', 'R2 Johar Town Lahore', 'Rs 2000'],
+      },
+    },
+
+    {
+      id: 2,
+      region: 'Aus',
+      expanded: false,
+      otherInfo: {
+        data: ['Lahore', 'R3 Johar Town Lahore', 'Rs 2000'],
+      },
+    },
+  ]);
+
+  const handleToggle = id => {
+    const updatedCityData = cityData.map(city => {
+      if (city.id === id) {
+        return {
+          ...city,
+          expanded: !city.expanded,
+        };
+      } else {
+        return {
+          ...city,
+          expanded: false,
+        };
+      }
+    });
+
+    setCityData(updatedCityData);
+  };
+
   useEffect(() => {
     dispatch(fetchCitiesFromCountriesAsync(countryId));
     dispatch(fetchCountriesAsync());
   }, [countryId, dispatch]);
   ///Country Functions
-  const handleSaveCountryZone = (selected, values) => {
-    setCountryVal([...countryVal, values, selected]);
+  const handleSaveCountryZone = (values, selectedItem) => {
+    if (editCon !== null) {
+      const updatedValues = [...countryVal];
+      updatedValues[editCon] = {...values, countries: selectedItem.label};
+      setCountryVal(updatedValues);
+    } else {
+      setCountryVal([
+        ...countryVal,
+        {...values, countries: selectedItem.label},
+      ]);
+    }
     toggleModalCon();
   };
   const handleDeleteCountry = index => {
@@ -45,10 +102,11 @@ const RulesCard = () => {
   };
   ///Distance Functions
   const handleSaveDistance = values => {
-    if (editIndex !== null) {
+    if (editDis !== null) {
       const updatedValues = [...distanceValues];
-      updatedValues[editIndex] = values;
+      updatedValues[editDis] = values;
       setDistanceValues(updatedValues);
+      setEditDis(null);
     } else {
       setDistanceValues([...distanceValues, values]);
     }
@@ -56,8 +114,10 @@ const RulesCard = () => {
   };
 
   const handleEditDistance = index => {
-    setEditDis(index);
-    toggleModalDis();
+    setEditDis(index); // Set the index of the item being edited
+    const editedDistance = distanceValues[index]; // Get the existing value being edited
+    toggleModalDis(); // Open the modal
+    // Edited values will be passed to the DistanceModal via editedValues prop
   };
 
   const handleDeleteDistance = index => {
@@ -68,7 +128,7 @@ const RulesCard = () => {
 
   const toggleModalDis = () => {
     setIsVisibleDis(!isVisibleDis);
-    setEditIndex(null);
+    setEditDis(null);
   };
 
   ///City Funtions
@@ -104,9 +164,8 @@ const RulesCard = () => {
           onPress={toggleModalDis}
           onSave={handleSaveDistance}
           distanceValues={distanceValues}
-          // onDelete={handleDeleteDistance}
           editIndex={editDis}
-          // handleEditDistance={handleEditDistance}
+          editedValues={editDis !== null ? distanceValues[editDis] : null}
         />
         {distanceValues.length > 0 && (
           <View style={styles.distanceView}>
@@ -173,6 +232,29 @@ const RulesCard = () => {
           , All over Pakistan) different areas for shipping your orders
         </Text>
 
+        {/* city details  */}
+        <View style={styles.cityDataContainer}>
+          {cityData.map(item => {
+            return (
+              <Fragment>
+                <TouchableOpacity
+                  onPress={() => handleToggle(item.id)}
+                  style={styles.innerContainer}>
+                  <Text>{item.region}</Text>
+                </TouchableOpacity>
+
+                {item.expanded && (
+                  <View style={{marginStart: 5}}>
+                    {item.otherInfo.data.map((info, index) => (
+                      <Text key={index}>{info}</Text>
+                    ))}
+                  </View>
+                )}
+              </Fragment>
+            );
+          })}
+        </View>
+
         <CityModal
           isModalVisible={isVisibleCity}
           onPress={toggleModalCity}
@@ -200,9 +282,11 @@ const RulesCard = () => {
           isModalVisible={isVisibleCon}
           onPress={toggleModalCon}
           countires={countries?.countries}
-          onSave={handleSaveCountryZone}
+          onSave={(values, selectedItem) =>
+            handleSaveCountryZone(values, selectedItem)
+          }
           countryVal={countryVal}
-          editIndex={editCon}
+          editedValues={editCon !== null ? countryVal[editCon] : null}
         />
         {countryVal.length > 0 && (
           <View style={styles.cityView}>
@@ -348,5 +432,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: WP('1'),
+  },
+  cityDataContainer: {
+    borderColor: colors.g1,
+    borderWidth: 1,
+    marginTop: 10,
+    padding: 10,
+  },
+  innerContainer: {
+    flexDirection: 'row',
+    padding: 2,
   },
 });

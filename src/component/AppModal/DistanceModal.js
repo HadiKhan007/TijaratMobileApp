@@ -22,10 +22,11 @@ const DistanceModal = ({
   onSave,
   distanceValues,
   editIndex,
+  editedValues,
 }) => {
   const formikRef = useRef();
   const handleSave = values => {
-    onSave(values);
+    onSave(values, editIndex); // Call the onSave function with updated values and index
     toggleModalDis();
   };
 
@@ -36,7 +37,7 @@ const DistanceModal = ({
   return (
     <Formik
       innerRef={formikRef}
-      initialValues={distanceFormFiled}
+      initialValues={editedValues || distanceFormFiled}
       onSubmit={values => {
         handleSave(values);
       }}
@@ -71,11 +72,7 @@ const DistanceModal = ({
                 inputStyle={styles.inputStyle}
                 placeholder="Distance in KM"
                 placeholderTextColor={colors.p2}
-                value={
-                  editIndex !== null
-                    ? distanceValues[editIndex]?.distance
-                    : values?.distance
-                }
+                value={values?.distance}
                 onChangeText={handleChange('distance')}
                 errorMessage={errors.distance}
                 keyboardType={'numeric'}
@@ -87,11 +84,7 @@ const DistanceModal = ({
                 inputStyle={styles.inputStyle}
                 placeholder="Cost"
                 placeholderTextColor={colors.p2}
-                value={
-                  editIndex !== null
-                    ? distanceValues[editIndex]?.cost
-                    : values?.cost
-                }
+                value={values?.cost}
                 onChangeText={handleChange('cost')}
                 errorMessage={errors.cost}
                 keyboardType={'numeric'}

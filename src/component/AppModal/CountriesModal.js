@@ -1,13 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import {
   appIcons,
@@ -30,20 +23,18 @@ const CountriesModal = ({
   onPress,
   countires,
   onSave,
-  countryVal,
   editIndex,
-  initialValues,
+  editedValues,
 }) => {
   const formikRef = useRef();
   const [state, setState] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const initialFormValues =
-    editIndex !== null ? countires[editIndex] : countriesFromField;
+
   const handleSetItems = newItems => {
     setSelectedItem(newItems);
   };
-  const handleSave = (selected, values) => {
-    onSave(selected, values);
+  const handleSave = (values, selectedItem) => {
+    onSave(values, selectedItem, editIndex);
     toggleModal;
   };
   const toggleModal = () => {
@@ -52,9 +43,9 @@ const CountriesModal = ({
   return (
     <Formik
       innerRef={formikRef}
-      initialValues={countriesFromField}
-      onSubmit={(selectedItem, values) => {
-        handleSave(values);
+      initialValues={editedValues || countriesFromField}
+      onSubmit={values => {
+        handleSave(values, selectedItem);
       }}
       validateOnChange={false}
       validateOnBlur={false}

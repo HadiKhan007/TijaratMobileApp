@@ -1,14 +1,14 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {BASE_URL, ENDPOINTS} from '../../../utilities';
 import axios from 'axios';
+import {BASE_URL, ENDPOINTS} from '../../../utilities';
 
-const apiUrl = BASE_URL + ENDPOINTS.ADD_PRODUCTS;
+const apiUrl = BASE_URL + ENDPOINTS.EDIT_PRODUCT; // Adjust the endpoint for editing
 
-export const addProductAsync = createAsyncThunk(
-  'addProduct/addProduct',
-  async ({productData, token}, thunkAPI) => {
+export const editProductAsync = createAsyncThunk(
+  'editProduct/editProduct',
+  async ({productId, productData, token}, thunkAPI) => {
     try {
-      const response = await axios.post(apiUrl, productData, {
+      const response = await axios.put(`${apiUrl}/${productId}`, productData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -16,6 +16,7 @@ export const addProductAsync = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.response) {
+        // Log the server error message
         console.error('Server Error:', error.response.data);
       } else {
         console.error('Request Failed:', error.message);
@@ -30,26 +31,26 @@ const initialState = {
   success: false,
   error: null,
   validationErrors: [],
-  addedProduct: null,
+  editedProduct: null,
 };
 
-const addProductSlice = createSlice({
-  name: 'addProduct',
+const editProductSlice = createSlice({
+  name: 'editProduct',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(addProductAsync.pending, state => {
+      .addCase(editProductAsync.pending, state => {
         state.loading = true;
         state.success = false;
         state.error = null;
       })
-      .addCase(addProductAsync.fulfilled, (state, action) => {
+      .addCase(editProductAsync.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.addedProduct = action.payload;
+        state.editedProduct = action.payload;
       })
-      .addCase(addProductAsync.rejected, (state, action) => {
+      .addCase(editProductAsync.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         state.validationErrors = [];
@@ -57,4 +58,4 @@ const addProductSlice = createSlice({
   },
 });
 
-export default addProductSlice.reducer;
+export default editProductSlice.reducer;

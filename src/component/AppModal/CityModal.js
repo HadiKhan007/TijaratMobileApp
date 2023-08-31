@@ -18,7 +18,7 @@ import {CustomDropdown} from '../DropDown/CustomDropDown';
 import {ClickButton} from '../AppButton/ClickButton';
 import {Formik} from 'formik';
 
-const CityModal = ({isModalVisible, onPress, cities}) => {
+const CityModal = ({isModalVisible, onPress, cities, onSave, editedValues}) => {
   const formikRef = useRef();
 
   const [state, setState] = useState(false);
@@ -27,7 +27,9 @@ const CityModal = ({isModalVisible, onPress, cities}) => {
     setSelectedItem(newItems);
   };
   const citiesData = cities?.cities?.cities;
-  const handleSave = () => {};
+  const handleSave = values => {
+    handleSave(values, selectedItem);
+  };
 
   return (
     <Formik
