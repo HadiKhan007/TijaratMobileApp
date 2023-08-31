@@ -24,6 +24,7 @@ const ENDPOINTS = {
   CITIES: 'country/cities/Pakistan',
   COUNTRIES: 'countries/data',
   EDIT_PRODUCTS: 'products/update/',
+  DELETE_PRODUCTS: 'products/delete/',
 };
 
 export {BASE_URL, ENDPOINTS, BASE_URL_IMG};

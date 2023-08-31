@@ -16,41 +16,17 @@ const RulesCard = () => {
   const [isVisibleCon, setIsVisibleCon] = useState(false);
   const [distanceValues, setDistanceValues] = useState([]);
   const [countryVal, setCountryVal] = useState([]);
+  const [cityVal, setCityVal] = useState([]);
   const [editDis, setEditDis] = useState(null);
   const [editCon, setEditCon] = useState(null);
+  const [editCity, setEditCity] = useState(null);
   const dispatch = useDispatch();
   const countryId = 'Pakistan';
   const cities = useSelector(state => state?.cities);
   const countries = useSelector(state => state?.countries?.countries);
 
-  const [cityData, setCityData] = useState([
-    {
-      id: 0,
-      region: 'Pakistan',
-      expanded: false,
-      otherInfo: {
-        data: ['Lahore', 'R1 Johar Town Lahore', 'Rs 2000'],
-      },
-    },
-
-    {
-      id: 1,
-      region: 'India',
-      expanded: false,
-      otherInfo: {
-        data: ['Lahore', 'R2 Johar Town Lahore', 'Rs 2000'],
-      },
-    },
-
-    {
-      id: 2,
-      region: 'Aus',
-      expanded: false,
-      otherInfo: {
-        data: ['Lahore', 'R3 Johar Town Lahore', 'Rs 2000'],
-      },
-    },
-  ]);
+  const [cityData, setCityData] = useState([]);
+  console.log('CityData', cityData[0]?.otherInfo?.data);
 
   const handleToggle = id => {
     const updatedCityData = cityData.map(city => {
@@ -74,6 +50,7 @@ const RulesCard = () => {
     dispatch(fetchCitiesFromCountriesAsync(countryId));
     dispatch(fetchCountriesAsync());
   }, [countryId, dispatch]);
+
   ///Country Functions
   const handleSaveCountryZone = (values, selectedItem) => {
     if (editCon !== null) {
@@ -130,10 +107,58 @@ const RulesCard = () => {
     setIsVisibleDis(!isVisibleDis);
     setEditDis(null);
   };
-
   ///City Funtions
+
+  const handleSaveCityZone = (values, selectedItem) => {
+    if (editCity !== null) {
+      const updatedCityData = [...cityData];
+      updatedCityData[editCity] = {
+        ...cityData[editCity],
+        otherInfo: {
+          ...cityData[editCity].otherInfo,
+          data: [
+            ...cityData[editCity].otherInfo.data,
+            {
+              ZoneName: values.ZoneName,
+              Region: selectedItem.label,
+              City: values.City,
+              Cost: values.Cost,
+            },
+          ],
+        },
+      };
+      setCityData(updatedCityData);
+    } else {
+      const newCityData = {
+        id: cityData.length,
+        region: selectedItem.label,
+        expanded: false,
+        otherInfo: {
+          data: [
+            {
+              ZoneName: values.ZoneName,
+              Region: selectedItem.label,
+              City: values.City,
+              Cost: values.Cost,
+            },
+          ],
+        },
+      };
+      setCityData([...cityData, newCityData]);
+    }
+    toggleModalCity();
+  };
+  const handleDeleteCity = index => {
+    const updatedDistanceValues = [...cityData];
+    updatedDistanceValues.splice(index, 1);
+    setCityData(updatedDistanceValues);
+  };
   const toggleModalCity = () => {
     setIsVisibleCity(!isVisibleCity);
+  };
+  const handleEditCity = index => {
+    setEditCity(index);
+    toggleModalCity();
   };
 
   return (
@@ -233,32 +258,100 @@ const RulesCard = () => {
         </Text>
 
         {/* city details  */}
-        <View style={styles.cityDataContainer}>
-          {cityData.map(item => {
-            return (
-              <Fragment>
+        {cityData && cityData.length > 0 && (
+          <View style={styles.cityDataContainer}>
+            {cityData.map((item, index) => (
+              <Fragment key={index}>
                 <TouchableOpacity
                   onPress={() => handleToggle(item.id)}
                   style={styles.innerContainer}>
-                  <Text>{item.region}</Text>
+                  <View style={[styles.rowContainer]}>
+                    <Text style={styles.textStyle}>Zone Name:</Text>
+                    <Text style={[styles.rightText, {marginLeft: WP('3')}]}>
+                      {item.region}
+                    </Text>
+                  </View>
+                  <Image
+                    style={[
+                      styles.iconStyle,
+                      {
+                        transform: item.expanded
+                          ? [{rotate: '180deg'}]
+                          : [{rotate: '0deg'}],
+                      },
+                    ]}
+                    source={appIcons.downArrow}
+                  />
                 </TouchableOpacity>
 
                 {item.expanded && (
-                  <View style={{marginStart: 5}}>
-                    {item.otherInfo.data.map((info, index) => (
-                      <Text key={index}>{info}</Text>
+                  <View style={styles.infoCon}>
+                    {item.otherInfo.data.map((info, subIndex) => (
+                      <View key={subIndex}>
+                        <View style={styles.rowCon2}>
+                          <View style={styles.column}>
+                            <Text style={styles.textStyle}>Zone Name:</Text>
+                          </View>
+                          <View style={styles.column}>
+                            <Text style={styles.rightText}>
+                              {info?.ZoneName}
+                            </Text>
+                          </View>
+                        </View>
+                        <View style={styles.rowCon2}>
+                          <View style={styles.column}>
+                            <Text style={styles.textStyle}>Region:</Text>
+                          </View>
+                          <View style={styles.column}>
+                            <Text style={styles.rightText}>{info?.Region}</Text>
+                          </View>
+                        </View>
+                        <View style={styles.rowCon2}>
+                          <View style={styles.column}>
+                            <Text style={styles.textStyle}>City:</Text>
+                          </View>
+                          <View style={styles.column}>
+                            <Text style={styles.rightText}>{info?.City}</Text>
+                          </View>
+                        </View>
+                        <View style={styles.rowCon2}>
+                          <View style={styles.column}>
+                            <Text style={styles.textStyle}>Cost:</Text>
+                          </View>
+                          <View style={styles.column}>
+                            <Text style={styles.rightText}>{info?.Cost}</Text>
+                          </View>
+                        </View>
+                        <View style={styles.rowContainer}>
+                          <TouchableOpacity
+                            onPress={() => handleEditCity(index)}>
+                            <Text style={styles.editText}>Edit</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity>
+                            <Text
+                              style={styles.deleteText}
+                              onPress={() => handleDeleteCity(index)}>
+                              Delete
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
                     ))}
                   </View>
                 )}
               </Fragment>
-            );
-          })}
-        </View>
+            ))}
+          </View>
+        )}
 
         <CityModal
           isModalVisible={isVisibleCity}
           onPress={toggleModalCity}
           cities={cities}
+          onSave={(values, selectedCity) =>
+            handleSaveCityZone(values, selectedCity)
+          }
+          editedValues={editCity !== null ? cityVal[editCity] : null}
         />
       </View>
       <View style={styles.mainContainer}>
@@ -362,6 +455,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: WP('2'),
   },
+  rowCon2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: WP('2'),
+  },
   iconContainer: {
     backgroundColor: colors.gr,
     width: WP('8'),
@@ -441,6 +539,47 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexDirection: 'row',
-    padding: 2,
+    padding: WP('1'),
+    borderColor: colors.g1,
+    borderWidth: 1,
+    marginTop: WP('2'),
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: WP('2'),
+  },
+  arrowContainer: {
+    alignSelf: 'flex-end',
+  },
+  textStyle: {
+    color: colors.p1,
+    fontFamily: family.workSans_medium,
+    fontSize: size.small,
+  },
+  rightText: {
+    color: colors.b1,
+    fontFamily: family.morkSans_regular,
+    fontSize: size.normal,
+    marginHorizontal: WP('2'),
+    marginLeft: -WP('10'),
+  },
+  infoCon: {
+    borderWidth: 1,
+    borderColor: colors.g1,
+    padding: WP('2'),
+  },
+  column: {
+    flex: 0.5,
+  },
+  editText: {
+    color: colors.p1,
+    fontFamily: family.workSans_medium,
+    fontSize: size.medium,
+    textDecorationLine: 'underline',
+  },
+  deleteText: {
+    color: colors.r1,
+    fontFamily: family.workSans_medium,
+    fontSize: size.medium,
+    textDecorationLine: 'underline',
   },
 });

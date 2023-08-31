@@ -30,7 +30,7 @@ export const distanceFormFiled = {
 };
 export const citiesFromField = {
   zoneName: '',
-  zone: '',
+  city: '',
   cost: '',
 };
 export const countriesFromField = {
@@ -87,7 +87,7 @@ export const distanceVS = yup.object().shape({
 });
 export const citiesVs = yup.object().shape({
   zoneName: yup.string().required('Zone Name required'),
-  zone: yup.string().required('Zone required'),
+  city: yup.array().min(1, 'Select at least one city'),
   cost: yup.string().required('Cost required'),
 });
 export const countriesVS = yup.object().shape({

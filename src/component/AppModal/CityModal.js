@@ -18,25 +18,36 @@ import {CustomDropdown} from '../DropDown/CustomDropDown';
 import {ClickButton} from '../AppButton/ClickButton';
 import {Formik} from 'formik';
 
-const CityModal = ({isModalVisible, onPress, cities, onSave, editedValues}) => {
+const CityModal = ({
+  isModalVisible,
+  onPress,
+  cities,
+  onSave,
+  editIndex,
+  editedValues,
+}) => {
   const formikRef = useRef();
-
   const [state, setState] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+
   const handleSetItems = newItems => {
-    setSelectedItem(newItems);
+    setSelectedCity(newItems);
   };
   const citiesData = cities?.cities?.cities;
   const handleSave = values => {
-    handleSave(values, selectedItem);
+    onSave(values, selectedCity, editIndex);
+    toggleModal();
+  };
+  const toggleModal = () => {
+    onPress();
   };
 
   return (
     <Formik
       innerRef={formikRef}
-      initialValues={citiesFromField}
+      initialValues={editedValues || citiesFromField}
       onSubmit={values => {
-        handleSave(values);
+        handleSave(values, selectedCity);
       }}
       validateOnChange={false}
       validateOnBlur={false}
@@ -80,8 +91,7 @@ const CityModal = ({isModalVisible, onPress, cities, onSave, editedValues}) => {
                 }))}
                 title="Zone"
                 onSelectItem={handleSetItems}
-                setItems={selectedItem}
-                error={selectedItem === 0 ? errors?.zone : null}
+                setItems={selectedCity}
               />
               {state === false && (
                 <TaskInput
