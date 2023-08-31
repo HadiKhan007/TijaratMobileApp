@@ -59,7 +59,6 @@ const SellerAddProducts = ({navigation}) => {
   const [variations, setVariations] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const handleImagesSelected = images => {
-    // Update the selected images state
     setSelectedImages(images);
   };
   const handleDeleteImage = index => {
@@ -226,13 +225,6 @@ const SellerAddProducts = ({navigation}) => {
     formData.append('applyMakeAnOffer', offer);
     formData.append('sale', true);
 
-    // if (selectedImage) {
-    //   formData.append('featureImage', {
-    //     name: selectedImage?.fileName,
-    //     type: selectedImage?.type,
-    //     uri: selectedImage?.uri,
-    //   });
-    // }
     if (selectedImage) {
       const compressedImage = await compressImage(selectedImage);
       formData.append('featureImage', {
@@ -245,15 +237,6 @@ const SellerAddProducts = ({navigation}) => {
       });
     }
 
-    // if (selectedImages) {
-    //   selectedImages.forEach(file => {
-    //     formData.append('pictures', {
-    //       name: file?.filename,
-    //       type: file?.mime,
-    //       uri: file?.sourceURL,
-    //     });
-    //   });
-    // }
     if (selectedImages) {
       for (let index = 0; index < selectedImages.length; index++) {
         const image = selectedImages[index];
@@ -285,6 +268,7 @@ const SellerAddProducts = ({navigation}) => {
     }
     console.log('formData', formData);
   };
+  console.log('offers-->', offer);
 
   return (
     <SafeAreaView style={styles.rootContainer}>
