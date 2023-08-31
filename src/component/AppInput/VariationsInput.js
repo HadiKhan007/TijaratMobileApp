@@ -97,7 +97,6 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
             placeholderTextColor={colors.p2}
             containerStyle={styles.inputCon2}
           />
-
           {item?.variations?.map(ele => {
             return (
               <View style={styles.rowContainer}>

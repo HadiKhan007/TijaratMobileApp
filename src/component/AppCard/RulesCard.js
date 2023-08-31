@@ -109,45 +109,47 @@ const RulesCard = () => {
   };
   ///City Funtions
 
+  // Define a function to add or update city data
   const handleSaveCityZone = (values, selectedItem) => {
     if (editCity !== null) {
       const updatedCityData = [...cityData];
       updatedCityData[editCity] = {
         ...cityData[editCity],
         otherInfo: {
-          ...cityData[editCity].otherInfo,
           data: [
-            ...cityData[editCity].otherInfo.data,
             {
-              ZoneName: values.ZoneName,
-              Region: selectedItem.label,
-              City: values.City,
-              Cost: values.Cost,
+              ZoneName: values.zoneName,
+              Region: 'Pakistan',
+              City: selectedItem.label, // Make sure 'values' contains city information
+              Cost: values.cost,
             },
           ],
         },
       };
       setCityData(updatedCityData);
     } else {
-      const newCityData = {
-        id: cityData.length,
-        region: selectedItem.label,
-        expanded: false,
-        otherInfo: {
-          data: [
-            {
-              ZoneName: values.ZoneName,
-              Region: selectedItem.label,
-              City: values.City,
-              Cost: values.Cost,
-            },
-          ],
+      setCityData([
+        ...cityData,
+        {
+          id: cityData.length, // Adjust the way you generate IDs
+          region: selectedItem.label,
+          expanded: false,
+          otherInfo: {
+            data: [
+              {
+                ZoneName: values.zoneName,
+                Region: 'Pakistan',
+                City: selectedItem.label, // Make sure 'values' contains city information
+                Cost: values.cost,
+              },
+            ],
+          },
         },
-      };
-      setCityData([...cityData, newCityData]);
+      ]);
     }
     toggleModalCity();
   };
+
   const handleDeleteCity = index => {
     const updatedDistanceValues = [...cityData];
     updatedDistanceValues.splice(index, 1);
