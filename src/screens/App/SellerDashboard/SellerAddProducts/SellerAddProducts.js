@@ -516,7 +516,6 @@ const SellerAddProducts = ({navigation}) => {
                 Title="Variations"
                 mainContainer={styles.titleContainer}
               />
-              <VariationsInput />
               <View style={styles.cardStyle}>
                 <ClickButton
                   title="Product/Variations"

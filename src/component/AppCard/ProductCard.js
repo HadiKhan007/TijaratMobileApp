@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -WP('24'),
     right: WP('3'),
-    backgroundColor: colors.w1,
+    backgroundColor: colors.red,
     width: WP('27'),
     paddingHorizontal: WP('1'),
   },

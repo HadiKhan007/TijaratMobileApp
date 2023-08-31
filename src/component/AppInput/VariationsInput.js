@@ -16,20 +16,22 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
         },
       ],
     },
-    {
-      id: 1,
-      field: 'size',
-      variations: [
-        {
-          id: 0,
-          value: '',
-        },
-      ],
-    },
   ]);
 
   const addItem = () => {
-    setItems([...items, {}]);
+    setItems([
+      ...items,
+      {
+        id: items.length + 1,
+        field: 'size',
+        variations: [
+          {
+            id: 0,
+            value: '',
+          },
+        ],
+      },
+    ]);
   };
 
   const removeItem = index => {
@@ -96,7 +98,7 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
             containerStyle={styles.inputCon2}
           />
 
-          {item.variations.map(ele => {
+          {item?.variations?.map(ele => {
             return (
               <View style={styles.rowContainer}>
                 <TaskInput
@@ -105,8 +107,15 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
                   containerStyle={styles.inputCon}
                 />
                 <TouchableOpacity
+                  disabled={item.variations.length === 1}
                   onPress={() => onRemoveField(item.id, ele.id)}
-                  style={styles.imgCon2}>
+                  style={[
+                    styles.imgCon2,
+                    {
+                      backgroundColor:
+                        item.variations.length === 1 ? 'lightgrey' : colors.gr2,
+                    },
+                  ]}>
                   <Image
                     source={appIcons.neg}
                     style={styles.iconStyle}
@@ -129,7 +138,10 @@ const VariationsInput = ({title, placeholder1, placeholder2}) => {
       ))}
 
       <TouchableOpacity
-        style={styles.removeCon}
+        style={[
+          styles.removeCon,
+          {backgroundColor: items.length === 1 ? 'lightgrey' : colors.gr2},
+        ]}
         onPress={() => removeItem(items.length - 1)}
         disabled={items.length === 1}>
         <Text style={styles.btnStyle}>Remove</Text>
@@ -190,7 +202,6 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   removeCon: {
-    backgroundColor: colors.gr2,
     width: '30%',
     alignSelf: 'center',
     alignItems: 'center',
